@@ -1,0 +1,925 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://GridSystem/Scripts/GridManager.cs" type="Script" id=1]
+[ext_resource path="res://GridSystem/Scenes/TileScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GridSystem/Assets/Gameplay/newBG2.png" type="Texture" id=3]
+[ext_resource path="res://GridSystem/Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GridSystem/Scripts/TurnManager.cs" type="Script" id=5]
+[ext_resource path="res://GridSystem/Scripts/GameplayUiController.cs" type="Script" id=6]
+[ext_resource path="res://GridSystem/Scenes/UnitVitals.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GridSystem/Assets/Gameplay/popup.png" type="Texture" id=8]
+[ext_resource path="res://GridSystem/Assets/Gameplay/spark 1.png" type="Texture" id=9]
+[ext_resource path="res://GridSystem/Fonts/EndResultFont.tres" type="DynamicFont" id=10]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Avatar (1).png" type="Texture" id=11]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 107.png" type="Texture" id=12]
+[ext_resource path="res://GridSystem/Assets/Gameplay/overlay.png" type="Texture" id=13]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Rectangle 1.png" type="Texture" id=14]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 113.png" type="Texture" id=15]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 114.png" type="Texture" id=16]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 114 (1).png" type="Texture" id=17]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 113 (1).png" type="Texture" id=18]
+[ext_resource path="res://GridSystem/Assets/Gameplay/player-nameplate (1).png" type="Texture" id=19]
+[ext_resource path="res://GridSystem/Assets/Gameplay/player-nameplate.png" type="Texture" id=20]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 117 (1).png" type="Texture" id=21]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 131.png" type="Texture" id=22]
+[ext_resource path="res://GridSystem/Scripts/PlayerInfo.cs" type="Script" id=23]
+[ext_resource path="res://GridSystem/Scripts/OptionsScreen.cs" type="Script" id=24]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Frame.png" type="Texture" id=25]
+[ext_resource path="res://GridSystem/Scripts/TurnTimer.cs" type="Script" id=26]
+[ext_resource path="res://GridSystem/Fonts/MainMsgFonts.tres" type="DynamicFont" id=27]
+[ext_resource path="res://GridSystem/Fonts/new_dynamicfont2.tres" type="DynamicFont" id=28]
+[ext_resource path="res://GridSystem/Fonts/timerFonts.tres" type="DynamicFont" id=29]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Rectangle 24.png" type="Texture" id=30]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 133.png" type="Texture" id=32]
+[ext_resource path="res://Hamza_work/Cards New/cartridgeNetherstoneMod_copy.png" type="Texture" id=33]
+[ext_resource path="res://CardSystem/Scripts/CardsManager.cs" type="Script" id=34]
+[ext_resource path="res://GridSystem/Scripts/CameraShake.cs" type="Script" id=35]
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Hamza_work/Fonts/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = SubResource( 3 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "PopUpAnim"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MsgPopup/PopupBg:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1332, 0 ), Vector2( -473, 0 ), Vector2( -473, 0 ), Vector2( -1336, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MsgPopup/PopupBg:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 428, 118 ), Vector2( 428, 118 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MsgPopup/PopupBg:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5, 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MsgPopup/PopupBg:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 900, 550 ) ]
+}
+
+[node name="Grid" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="GameplayBG" type="Sprite" parent="."]
+position = Vector2( 956, 464 )
+scale = Vector2( 1.71892, 1.71892 )
+texture = ExtResource( 3 )
+
+[node name="Rect" type="Sprite" parent="GameplayBG"]
+self_modulate = Color( 0, 0.364706, 0.894118, 0.419608 )
+position = Vector2( 1.11086, 177.753 )
+scale = Vector2( 0.249931, 0.205064 )
+texture = ExtResource( 14 )
+
+[node name="TilesParent" type="Node2D" parent="."]
+position = Vector2( 377, 353 )
+
+[node name="YSort" type="YSort" parent="TilesParent"]
+position = Vector2( -377, -353 )
+
+[node name="HexTile1" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 377, 353 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile2" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 566.24, 353 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile3" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 755.48, 353 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile4" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 944.72, 353 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile5" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1133.96, 353 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile6" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1323.2, 353 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile7" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1512.44, 353 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile8" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 471.62, 467 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile9" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 660.86, 467 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile10" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 850.1, 467 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile11" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1039.34, 467 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile12" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1228.58, 467 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile13" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1417.82, 467 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile14" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 377, 581 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile15" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 566.24, 581 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile16" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 755.48, 581 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile17" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 944.72, 581 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile18" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1133.96, 581 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile19" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1323.2, 581 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile20" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1512.44, 581 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile22" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 471.62, 695 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile21" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 660.86, 695 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile23" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 850.1, 695 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile24" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1039.34, 695 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile25" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1228.58, 695 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile26" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1417.82, 695 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile27" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 377, 809 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile28" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 566.24, 809 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile29" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 755.48, 809 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile30" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 944.72, 809 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile31" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1133.96, 809 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile32" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1323.2, 809 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="HexTile33" parent="TilesParent/YSort" instance=ExtResource( 2 )]
+position = Vector2( 1512.44, 809 )
+scale = Vector2( 2.28, 2.28 )
+
+[node name="Player1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 214, 187 )
+PlayerNumber = 1
+
+[node name="Player2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 214, 187 )
+PlayerNumber = 2
+SpawnPos = PoolIntArray( 12, 18, 25 )
+
+[node name="TurnManager" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="CardsManager" type="Node2D" parent="."]
+script = ExtResource( 34 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+follow_viewport_enable = true
+
+[node name="UiController" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1.0
+mouse_filter = 2
+script = ExtResource( 6 )
+
+[node name="Player1Info" type="Control" parent="CanvasLayer/UiController"]
+anchor_top = 0.035
+anchor_right = 0.196
+anchor_bottom = 0.181
+margin_top = -0.125
+margin_right = 118.942
+margin_bottom = 50.52
+rect_scale = Vector2( 0.76, 0.76 )
+rect_clip_content = true
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 23 )
+
+[node name="TurnHighlight" type="TextureRect" parent="CanvasLayer/UiController/Player1Info"]
+self_modulate = Color( 1, 1, 1, 0.117647 )
+anchor_right = 1.07
+anchor_bottom = 1.258
+margin_right = -0.140076
+margin_bottom = -0.0728455
+texture = ExtResource( 30 )
+expand = true
+stretch_mode = 6
+
+[node name="NameBg" type="TextureRect" parent="CanvasLayer/UiController/Player1Info"]
+light_mask = 512
+anchor_left = 0.377
+anchor_top = 0.274
+anchor_right = 0.875
+anchor_bottom = 0.669
+margin_left = -0.1269
+margin_top = -0.0394821
+margin_right = -0.0329285
+margin_bottom = -0.0504837
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 1
+
+[node name="PLabel" type="Label" parent="CanvasLayer/UiController/Player1Info/NameBg"]
+self_modulate = Color( 0.235294, 0.847059, 0.803922, 1 )
+anchor_left = 0.027
+anchor_top = 0.191
+anchor_right = 0.98
+anchor_bottom = 0.809
+margin_left = 0.00400043
+margin_top = 0.0229998
+margin_right = -0.0399933
+margin_bottom = -0.0230026
+custom_fonts/font = ExtResource( 28 )
+text = "Player 1"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ProfileBg" type="TextureRect" parent="CanvasLayer/UiController/Player1Info"]
+light_mask = 512
+anchor_right = 0.498
+anchor_bottom = 1.112
+margin_right = 0.0939941
+margin_bottom = -1.52588e-05
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 1
+
+[node name="ProfilePic" type="TextureRect" parent="CanvasLayer/UiController/Player1Info/ProfileBg"]
+anchor_left = 0.256
+anchor_top = 0.172
+anchor_right = 0.681
+anchor_bottom = 0.643
+margin_left = -0.0311241
+margin_top = 0.0562515
+margin_right = 0.0652466
+margin_bottom = -0.0543823
+expand = true
+
+[node name="Spark" type="TextureRect" parent="CanvasLayer/UiController/Player1Info"]
+light_mask = 512
+anchor_left = 0.146
+anchor_top = 0.663
+anchor_right = 0.278
+anchor_bottom = 0.959
+margin_left = 0.0590439
+margin_top = 0.019722
+margin_right = -0.144958
+margin_bottom = 0.019722
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="Player2Info" type="Control" parent="CanvasLayer/UiController"]
+anchor_left = 0.777
+anchor_top = 0.035
+anchor_right = 0.973
+anchor_bottom = 0.174
+margin_left = 0.383057
+margin_top = 0.200005
+margin_right = 119.325
+margin_bottom = 48.365
+rect_scale = Vector2( 0.76, 0.76 )
+rect_clip_content = true
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 23 )
+
+[node name="TurnHighlight" type="TextureRect" parent="CanvasLayer/UiController/Player2Info"]
+self_modulate = Color( 1, 1, 1, 0.117647 )
+anchor_right = 1.07
+anchor_bottom = 1.258
+margin_right = -0.140076
+margin_bottom = -0.0728455
+texture = ExtResource( 30 )
+expand = true
+stretch_mode = 6
+
+[node name="NameBg" type="TextureRect" parent="CanvasLayer/UiController/Player2Info"]
+light_mask = 512
+anchor_left = 0.142
+anchor_top = 0.287
+anchor_right = 0.64
+anchor_bottom = 0.708
+margin_left = -0.0687752
+margin_top = 0.0575256
+margin_right = 0.0252075
+margin_bottom = -0.0414734
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 1
+
+[node name="PLabel" type="Label" parent="CanvasLayer/UiController/Player2Info/NameBg"]
+self_modulate = Color( 0.235294, 0.847059, 0.803922, 1 )
+anchor_left = 0.027
+anchor_top = 0.18
+anchor_right = 0.966
+anchor_bottom = 0.82
+margin_left = 0.00399995
+margin_right = 0.0319977
+custom_fonts/font = ExtResource( 28 )
+text = "Player 2"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ProfileBg" type="TextureRect" parent="CanvasLayer/UiController/Player2Info"]
+light_mask = 512
+anchor_left = 0.522
+anchor_right = 1.02
+anchor_bottom = 1.168
+margin_left = -0.0340118
+margin_right = 0.059967
+margin_bottom = 0.00798035
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 1
+
+[node name="ProfilePic" type="TextureRect" parent="CanvasLayer/UiController/Player2Info/ProfileBg"]
+anchor_left = 0.29
+anchor_top = 0.172
+anchor_right = 0.716
+anchor_bottom = 0.641
+margin_left = 0.086647
+margin_top = -0.362358
+margin_right = -0.0637512
+margin_bottom = 0.0149536
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Spark" type="TextureRect" parent="CanvasLayer/UiController/Player2Info"]
+light_mask = 512
+anchor_left = 0.646
+anchor_top = 0.697
+anchor_right = 0.778
+anchor_bottom = 1.008
+margin_left = 0.137985
+margin_top = -0.0480042
+margin_right = -0.0660095
+margin_bottom = -0.0570068
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="ActionPanel" type="Control" parent="CanvasLayer/UiController"]
+anchor_left = 0.735
+anchor_top = 0.83
+anchor_right = 0.993
+anchor_bottom = 0.972
+margin_left = 0.0649414
+margin_top = -0.399963
+margin_right = 0.446899
+margin_bottom = 0.23999
+mouse_filter = 1
+
+[node name="Move" type="Control" parent="CanvasLayer/UiController/ActionPanel"]
+anchor_right = 0.242
+anchor_bottom = 0.779
+margin_right = -0.0320053
+margin_bottom = 0.0339966
+rect_pivot_offset = Vector2( 60, 120 )
+
+[node name="MoveButton" type="TextureButton" parent="CanvasLayer/UiController/ActionPanel/Move"]
+anchor_left = 0.167
+anchor_top = 0.292
+anchor_right = 0.833
+anchor_bottom = 1.0
+margin_left = -0.0400009
+margin_top = -0.0400047
+margin_right = 0.0399933
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 21, 40 )
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 15 )
+texture_focused = ExtResource( 15 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UiController/ActionPanel/Move"]
+anchor_left = 0.167
+anchor_right = 0.833
+anchor_bottom = 0.3
+margin_left = -0.0400009
+margin_right = 0.0399933
+texture = ExtResource( 19 )
+expand = true
+stretch_mode = 6
+
+[node name="Attack" type="Control" parent="CanvasLayer/UiController/ActionPanel"]
+anchor_left = 0.242
+anchor_right = 0.484
+anchor_bottom = 0.779
+margin_left = -0.0320053
+margin_right = -0.0640106
+margin_bottom = 0.0339966
+rect_pivot_offset = Vector2( 92, 150 )
+
+[node name="AttackButton" type="TextureButton" parent="CanvasLayer/UiController/ActionPanel/Attack"]
+anchor_left = 0.167
+anchor_top = 0.292
+anchor_right = 0.833
+anchor_bottom = 1.0
+margin_left = -0.0400009
+margin_top = -0.0400047
+margin_right = 0.0399933
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 18 )
+texture_focused = ExtResource( 18 )
+expand = true
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/UiController/ActionPanel/Attack"]
+anchor_left = 0.167
+anchor_right = 0.833
+anchor_bottom = 0.3
+margin_left = -0.0400009
+margin_right = 0.0399933
+texture = ExtResource( 20 )
+expand = true
+stretch_mode = 6
+
+[node name="SkipUnitTurn" type="Control" parent="CanvasLayer/UiController/ActionPanel"]
+anchor_left = 0.56
+anchor_right = 0.968
+anchor_bottom = 0.422
+margin_left = 0.23999
+margin_right = -0.128021
+margin_bottom = 0.0119934
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UiController/ActionPanel/SkipUnitTurn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_normal = ExtResource( 21 )
+expand = true
+stretch_mode = 5
+
+[node name="TimerLabel2" type="Label" parent="CanvasLayer/UiController/ActionPanel/SkipUnitTurn"]
+anchor_left = 0.075
+anchor_top = 0.177
+anchor_right = 0.934
+anchor_bottom = 0.839
+margin_left = -0.0750008
+margin_top = 0.026
+margin_right = -0.0940094
+margin_bottom = -0.0180016
+input_pass_on_modal_close_click = false
+custom_fonts/font = ExtResource( 29 )
+text = "Skip Turn"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="TurnTimer" type="Control" parent="CanvasLayer/UiController"]
+pause_mode = 1
+anchor_left = 0.029
+anchor_top = 0.853
+anchor_right = 0.172
+anchor_bottom = 0.919
+margin_left = -0.709
+margin_top = -0.23999
+margin_right = -1.41202
+margin_bottom = -1.52002
+mouse_filter = 1
+script = ExtResource( 26 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UiController/TurnTimer"]
+anchor_right = 1.0
+anchor_bottom = 1.026
+margin_right = 2.0
+margin_bottom = -0.0139999
+texture = ExtResource( 21 )
+expand = true
+stretch_mode = 6
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/UiController/TurnTimer"]
+anchor_left = 0.062
+anchor_right = 0.93
+anchor_bottom = 1.0
+margin_left = 0.103999
+margin_top = 5.0
+margin_right = 2.55998
+custom_fonts/font = ExtResource( 29 )
+text = "Player1 Turn: 00:"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Timer" type="Timer" parent="CanvasLayer/UiController/TurnTimer"]
+one_shot = true
+
+[node name="OptionsBtn" type="Control" parent="CanvasLayer/UiController"]
+anchor_top = 0.428
+anchor_right = 0.041
+anchor_bottom = 0.506
+margin_top = 0.759979
+margin_right = -0.761002
+margin_bottom = 0.519958
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UiController/OptionsBtn"]
+anchor_right = 0.887
+anchor_bottom = 1.0
+margin_right = 0.0459976
+texture_normal = ExtResource( 22 )
+expand = true
+stretch_mode = 5
+
+[node name="Mana" type="Control" parent="CanvasLayer/UiController"]
+anchor_left = 0.512
+anchor_right = 0.512
+margin_left = -98.5521
+margin_top = 38.0
+margin_right = 101.448
+margin_bottom = 217.0
+
+[node name="ManaBg" type="TextureRect" parent="CanvasLayer/UiController/Mana"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -3.0
+margin_bottom = -3.0
+texture = ExtResource( 32 )
+expand = true
+stretch_mode = 6
+
+[node name="P1Mana" type="Label" parent="CanvasLayer/UiController/Mana"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.32
+anchor_top = 0.313
+anchor_right = 0.475
+anchor_bottom = 0.475
+margin_top = -0.0270042
+margin_bottom = -0.0250015
+custom_fonts/font = ExtResource( 29 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="P2Mana" type="Label" parent="CanvasLayer/UiController/Mana"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.32
+anchor_top = 0.313
+anchor_right = 0.475
+anchor_bottom = 0.475
+margin_left = 36.0
+margin_top = 28.973
+margin_right = 36.0
+margin_bottom = 28.975
+custom_fonts/font = ExtResource( 29 )
+text = "0"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="CardList" type="Control" parent="CanvasLayer/UiController"]
+anchor_left = 0.251
+anchor_top = 0.83
+anchor_right = 0.727
+anchor_bottom = 1.0
+margin_left = -0.171021
+margin_top = -0.400024
+margin_right = 0.432861
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UiController/CardList"]
+anchor_right = 0.976
+anchor_bottom = 1.0
+margin_right = -3.47998
+margin_bottom = -2.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 130
+columns = 9
+
+[node name="TempCardList" type="Control" parent="CanvasLayer/UiController"]
+anchor_left = 0.55
+anchor_top = 0.169
+anchor_right = 0.891
+anchor_bottom = 0.728
+margin_left = -0.550049
+margin_top = -0.52002
+margin_right = 0.388916
+margin_bottom = -0.240051
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UiController/TempCardList"]
+anchor_right = 0.976
+anchor_bottom = 1.0
+margin_right = -3.66406
+margin_bottom = -4.0
+custom_constants/vseparation = 200
+custom_constants/hseparation = 300
+columns = 2
+
+[node name="UnitVitals" parent="CanvasLayer/UiController" instance=ExtResource( 7 )]
+margin_left = -2026.0
+margin_top = 507.0
+margin_right = -2026.0
+margin_bottom = 507.0
+
+[node name="OptionsScreen" type="Control" parent="CanvasLayer/UiController"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+script = ExtResource( 24 )
+
+[node name="BgOverlay" type="TextureRect" parent="CanvasLayer/UiController/OptionsScreen"]
+self_modulate = Color( 0.0470588, 0.196078, 0.305882, 0.513726 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1.0
+margin_bottom = -2.0
+mouse_filter = 0
+texture = ExtResource( 13 )
+expand = true
+
+[node name="MsgPopup" type="Control" parent="CanvasLayer/UiController/OptionsScreen"]
+anchor_left = 0.247
+anchor_top = 0.211
+anchor_right = 0.724
+anchor_bottom = 0.707
+margin_left = 0.513031
+margin_top = 0.11998
+margin_right = 0.15686
+margin_bottom = 0.0159912
+
+[node name="PopupBg" type="TextureRect" parent="CanvasLayer/UiController/OptionsScreen/MsgPopup"]
+light_mask = 524288
+anchor_left = -0.516
+anchor_right = -0.049
+anchor_bottom = 0.22
+margin_left = 477.636
+margin_top = 3.0
+margin_right = 949.882
+margin_bottom = 435.173
+mouse_filter = 0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 1
+
+[node name="MsgLbl" type="Label" parent="CanvasLayer/UiController/OptionsScreen/MsgPopup/PopupBg"]
+anchor_left = 0.14
+anchor_top = 0.068
+anchor_right = 0.832
+anchor_bottom = 0.941
+margin_left = 0.079998
+margin_top = -0.0240002
+margin_right = -0.0960083
+margin_bottom = -0.038002
+input_pass_on_modal_close_click = false
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_colors/font_color = Color( 0.113725, 0.466667, 0.486275, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.554466, 0.739643, 0.830078, 1 )
+custom_fonts/font = ExtResource( 27 )
+text = "Your Turn"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+
+[node name="AppliedCard" type="Control" parent="CanvasLayer/UiController/OptionsScreen"]
+visible = false
+anchor_right = 0.999
+anchor_bottom = 1.0
+margin_right = 0.920898
+margin_bottom = -2.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UiController/OptionsScreen/AppliedCard"]
+anchor_right = 1.0
+anchor_bottom = 1.002
+margin_right = 1.0
+margin_bottom = -0.156128
+texture = ExtResource( 33 )
+expand = true
+stretch_mode = 6
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer/UiController/OptionsScreen"]
+visible = false
+anchor_right = 0.326
+anchor_bottom = 0.998
+margin_right = -0.246033
+margin_bottom = 2.15991
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UiController/OptionsScreen/PauseMenu"]
+anchor_left = 0.671
+anchor_top = 0.214
+anchor_right = 2.411
+anchor_bottom = 0.705
+margin_left = -0.04599
+margin_top = -0.12001
+margin_right = -0.286011
+margin_bottom = -0.400024
+texture = ExtResource( 25 )
+expand = true
+stretch_mode = 6
+
+[node name="ResumeBtn" type="TextureButton" parent="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect"]
+anchor_left = 0.221
+anchor_top = 0.319
+anchor_right = 0.77
+anchor_bottom = 0.444
+margin_left = 0.330978
+margin_top = -0.0700073
+margin_right = -0.478027
+margin_bottom = 0.129944
+texture_normal = ExtResource( 21 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect/ResumeBtn"]
+anchor_left = 0.075
+anchor_top = 0.177
+anchor_right = 0.934
+anchor_bottom = 0.839
+margin_left = 0.0249996
+margin_top = -0.505
+margin_right = 0.697998
+margin_bottom = 2.465
+input_pass_on_modal_close_click = false
+custom_fonts/font = SubResource( 4 )
+text = "Resume"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ReturnToMenuBtn" type="TextureButton" parent="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect"]
+anchor_left = 0.218
+anchor_top = 0.534
+anchor_right = 0.766
+anchor_bottom = 0.659
+margin_left = -0.402008
+margin_top = -0.0200195
+margin_right = -0.122009
+margin_bottom = 0.179932
+texture_normal = ExtResource( 21 )
+expand = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect/ReturnToMenuBtn"]
+anchor_left = 0.075
+anchor_top = 0.177
+anchor_right = 0.934
+anchor_bottom = 0.839
+margin_left = 0.0249996
+margin_top = -0.505
+margin_right = 0.697998
+margin_bottom = 2.465
+input_pass_on_modal_close_click = false
+custom_fonts/font = SubResource( 4 )
+text = "Quit To Menu"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MsgLbl2" type="Label" parent="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect"]
+anchor_left = 0.2
+anchor_top = 0.242
+anchor_right = 0.804
+anchor_bottom = 0.47
+margin_left = 0.199997
+margin_top = -0.259979
+margin_right = 0.44397
+margin_bottom = 22.9
+input_pass_on_modal_close_click = false
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_colors/font_color = Color( 0.113725, 0.466667, 0.486275, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.554466, 0.739643, 0.830078, 1 )
+custom_fonts/font = ExtResource( 10 )
+text = "It's a Draw"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UiController/OptionsScreen"]
+playback_speed = 0.75
+method_call_mode = 1
+anims/PopUpAnim = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 962, 540 )
+current = true
+script = ExtResource( 35 )
+
+[connection signal="mouse_entered" from="CanvasLayer/UiController/ActionPanel/Move/MoveButton" to="CanvasLayer/UiController" method="_on_Button_mouse_entered" binds= [ "MoveBtn" ]]
+[connection signal="mouse_exited" from="CanvasLayer/UiController/ActionPanel/Move/MoveButton" to="CanvasLayer/UiController" method="_on_Button_mouse_exited" binds= [ "MoveBtn" ]]
+[connection signal="pressed" from="CanvasLayer/UiController/ActionPanel/Move/MoveButton" to="CanvasLayer/UiController" method="_on_ActionButton_pressed" binds= [ "MoveBtn" ]]
+[connection signal="mouse_entered" from="CanvasLayer/UiController/ActionPanel/Attack/AttackButton" to="CanvasLayer/UiController" method="_on_Button_mouse_entered" binds= [ "AttackBtn" ]]
+[connection signal="mouse_exited" from="CanvasLayer/UiController/ActionPanel/Attack/AttackButton" to="CanvasLayer/UiController" method="_on_Button_mouse_exited" binds= [ "AttackBtn" ]]
+[connection signal="pressed" from="CanvasLayer/UiController/ActionPanel/Attack/AttackButton" to="CanvasLayer/UiController" method="_on_ActionButton_pressed" binds= [ "Attackbtn" ]]
+[connection signal="pressed" from="CanvasLayer/UiController/ActionPanel/SkipUnitTurn/TextureButton" to="CanvasLayer/UiController" method="_on_SkipUnitTurn_mouse_entered"]
+[connection signal="timeout" from="CanvasLayer/UiController/TurnTimer/Timer" to="CanvasLayer/UiController/TurnTimer" method="ProccessTimer"]
+[connection signal="pressed" from="CanvasLayer/UiController/OptionsBtn/TextureButton" to="CanvasLayer/UiController" method="PauseGame"]
+[connection signal="pressed" from="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect/ResumeBtn" to="CanvasLayer/UiController/OptionsScreen" method="ResumeGame"]
+[connection signal="pressed" from="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect/ReturnToMenuBtn" to="CanvasLayer/UiController/OptionsScreen" method="QuitToMenu"]

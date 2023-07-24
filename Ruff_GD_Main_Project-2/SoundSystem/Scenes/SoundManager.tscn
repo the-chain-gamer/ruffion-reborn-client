@@ -1,0 +1,144 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://SoundSystem/Scripts/SoundManager.cs" type="Script" id=1]
+[ext_resource path="res://SoundSystem/UsedSounds/TurnChangeSound.wav" type="AudioStream" id=2]
+[ext_resource path="res://SoundSystem/Scripts/QueueSound.cs" type="Script" id=3]
+[ext_resource path="res://SoundSystem/UsedSounds/VsSound.wav" type="AudioStream" id=4]
+[ext_resource path="res://SoundSystem/UsedSounds/TeleportCardSound.wav" type="AudioStream" id=5]
+[ext_resource path="res://SoundSystem/UsedSounds/ExplosionSound.wav" type="AudioStream" id=6]
+[ext_resource path="res://SoundSystem/UsedSounds/TeleportSimple.wav" type="AudioStream" id=7]
+[ext_resource path="res://SoundSystem/UsedSounds/BgSound.wav" type="AudioStream" id=8]
+[ext_resource path="res://SoundSystem/UsedSounds/ButtonClickSound.wav" type="AudioStream" id=9]
+[ext_resource path="res://SoundSystem/UsedSounds/ButtonClickSound2.wav" type="AudioStream" id=10]
+[ext_resource path="res://SoundSystem/UsedSounds/AttackSound.wav" type="AudioStream" id=11]
+[ext_resource path="res://SoundSystem/UsedSounds/ShieldSound.wav" type="AudioStream" id=12]
+[ext_resource path="res://SoundSystem/UsedSounds/TelescopeSound.wav" type="AudioStream" id=13]
+[ext_resource path="res://SoundSystem/UsedSounds/BubbleSound.wav" type="AudioStream" id=14]
+[ext_resource path="res://SoundSystem/UsedSounds/HooksDestructorSound.wav" type="AudioStream" id=15]
+[ext_resource path="res://SoundSystem/UsedSounds/TrapSound.wav" type="AudioStream" id=16]
+[ext_resource path="res://SoundSystem/UsedSounds/GambleSound.wav" type="AudioStream" id=17]
+[ext_resource path="res://SoundSystem/UsedSounds/HitSound.wav" type="AudioStream" id=19]
+[ext_resource path="res://SoundSystem/UsedSounds/saundersSound.wav" type="AudioStream" id=20]
+[ext_resource path="res://SoundSystem/UsedSounds/CattenSound.wav" type="AudioStream" id=21]
+
+[node name="SoundManger" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+
+[node name="TurnChangeSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TurnChangeSound"]
+stream = ExtResource( 2 )
+
+[node name="VsSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VsSound"]
+stream = ExtResource( 4 )
+
+[node name="TeleportSimpleSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TeleportSimpleSound"]
+stream = ExtResource( 7 )
+
+[node name="TeleportCardSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TeleportCardSound"]
+stream = ExtResource( 5 )
+
+[node name="ExplosionSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ExplosionSound"]
+stream = ExtResource( 6 )
+
+[node name="ButtonSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ButtonSound"]
+stream = ExtResource( 9 )
+
+[node name="ButtonSound2" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ButtonSound2"]
+stream = ExtResource( 10 )
+
+[node name="AttackSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AttackSound"]
+stream = ExtResource( 11 )
+
+[node name="LalitoLaserSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LalitoLaserSound"]
+stream = ExtResource( 11 )
+
+[node name="ShieldSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ShieldSound"]
+stream = ExtResource( 12 )
+
+[node name="TelescopeSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TelescopeSound"]
+stream = ExtResource( 13 )
+
+[node name="BubbleSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BubbleSound"]
+stream = ExtResource( 14 )
+
+[node name="TrapSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TrapSound"]
+stream = ExtResource( 16 )
+
+[node name="DestructorSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DestructorSound"]
+stream = ExtResource( 15 )
+
+[node name="GambleSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GambleSound"]
+stream = ExtResource( 17 )
+
+[node name="HitSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HitSound"]
+stream = ExtResource( 19 )
+
+[node name="SmokeScreenSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SmokeScreenSound"]
+stream = ExtResource( 19 )
+
+[node name="SaundersSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SaundersSound"]
+stream = ExtResource( 20 )
+
+[node name="CattenSound" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CattenSound"]
+stream = ExtResource( 21 )

@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Hamza_work/addons/ShaderSecretsHelper/DemoScreen.gd" type="Script" id=1]
+[ext_resource path="res://Hamza_work/Demos/Outline/Outline3D/Outline3DScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Hamza_work/Shared/DemoInterface.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Hamza_work/Shared/Demo3DEnvironment.tscn" type="PackedScene" id=4]
+
+[node name="Outline3DDemo" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Outline3D" parent="." instance=ExtResource( 2 )]
+
+[node name="Demo3DEnvironment" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.299, -1.30133, 1.90826 )
+
+[node name="DemoInterface" parent="." instance=ExtResource( 3 )]

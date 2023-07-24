@@ -1,0 +1,100 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Hamza_work/Shaders/outline2D_outer.shader" type="Shader" id=1]
+[ext_resource path="res://Hamza_work/Demos/poodle3.png" type="Texture" id=2]
+[ext_resource path="res://Hamza_work/EffectsResources/effect_4.png" type="Texture" id=3]
+
+
+[sub_resource type="CanvasItemMaterial" id=25]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=26]
+offsets = PoolRealArray( 0, 0.563177, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=22]
+gradient = SubResource( 26 )
+
+[sub_resource type="Curve" id=27]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.704545 ), -1.02273, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=24]
+curve = SubResource( 27 )
+
+[sub_resource type="ParticlesMaterial" id=28]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = -57.64
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 1.5
+scale_curve = SubResource( 24 )
+color_ramp = SubResource( 22 )
+
+[sub_resource type="ShaderMaterial" id=29]
+shader = ExtResource( 1 )
+shader_param/line_color = Color( 0.921569, 0.0666667, 0.0666667, 0 )
+shader_param/line_thickness = 1.518
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 140, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 280, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 420, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 140, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 280, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 420, 136, 140, 136 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Whirl" type="Node2D"]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+modulate = Color( 5.78, 1.21922, 0, 1 )
+material = SubResource( 25 )
+position = Vector2( 1.65204, -1.07599 )
+scale = Vector2( 3, 0.9 )
+amount = 2
+process_material = SubResource( 28 )
+texture = ExtResource( 3 )
+
+[node name="blood particles2" type="AnimatedSprite" parent="."]
+material = SubResource( 29 )
+position = Vector2( 40.9999, -8 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 30 )
+frame = 6
+playing = true
+offset = Vector2( -14.6666, -17.3333 )
+flip_h = true

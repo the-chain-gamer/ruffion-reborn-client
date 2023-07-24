@@ -1,0 +1,171 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Hamza_work/Shaders/outline2D_outer.shader" type="Shader" id=1]
+[ext_resource path="res://Hamza_work/Demos/poodle3.png" type="Texture" id=2]
+[ext_resource path="res://Hamza_work/EffectsResources/sword.png" type="Texture" id=3]
+[ext_resource path="res://Hamza_work/EffectsResources/line.png" type="Texture" id=4]
+[ext_resource path="res://Hamza_work/EffectsResources/spotlight_8.png" type="Texture" id=5]
+
+[sub_resource type="ShaderMaterial" id=48]
+shader = ExtResource( 1 )
+shader_param/line_color = Color( 0.921569, 0.0666667, 0.0666667, 0 )
+shader_param/line_thickness = 1.518
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 140, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 280, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 420, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 140, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 280, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 420, 136, 140, 136 )
+
+[sub_resource type="SpriteFrames" id=49]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CanvasItemMaterial" id=50]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=51]
+offsets = PoolRealArray( 0, 0.104693, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=27]
+gradient = SubResource( 51 )
+
+[sub_resource type="Curve" id=52]
+min_value = 0.5
+max_value = 0.51
+_data = [ Vector2( 0, 0 ), 0.0, 4.0404, 0, 0, Vector2( 1, 0 ), -1.39147, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=29]
+width = 500
+curve = SubResource( 52 )
+
+[sub_resource type="ParticlesMaterial" id=53]
+emission_shape = 2
+emission_box_extents = Vector3( 40, 60, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 49.48
+gravity = Vector3( 0, -200, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.47
+scale_random = 0.14
+scale_curve = SubResource( 29 )
+color_ramp = SubResource( 27 )
+
+[sub_resource type="Curve" id=54]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.953409 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=44]
+curve = SubResource( 54 )
+
+[sub_resource type="ParticlesMaterial" id=55]
+emission_shape = 2
+emission_box_extents = Vector3( 30, 20, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -100, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 35.11
+scale = 0.1
+scale_random = 0.1
+scale_curve = SubResource( 44 )
+
+[sub_resource type="Curve" id=56]
+_data = [ Vector2( 0.00260756, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.609091 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=47]
+curve = SubResource( 56 )
+
+[sub_resource type="ParticlesMaterial" id=57]
+trail_divisor = 2
+trail_size_modifier = SubResource( 47 )
+emission_shape = 2
+emission_box_extents = Vector3( 50, 10, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 107.99
+gravity = Vector3( 0, -98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+
+[node name="Healing" type="Node2D"]
+
+[node name="healing" type="AnimatedSprite" parent="."]
+material = SubResource( 48 )
+position = Vector2( 14, 15.0863 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 49 )
+frame = 6
+playing = true
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+modulate = Color( 0.384314, 0.956863, 0.352941, 1 )
+show_behind_parent = true
+material = SubResource( 50 )
+position = Vector2( 14.7753, -12.8248 )
+scale = Vector2( 2.5, 2.5 )
+amount = 6
+explosiveness = 0.08
+local_coords = false
+process_material = SubResource( 53 )
+texture = ExtResource( 5 )
+
+[node name="Particles2D3" type="Particles2D" parent="."]
+modulate = Color( 0, 0.647059, 1, 1 )
+show_behind_parent = true
+material = SubResource( 50 )
+position = Vector2( 23.3038, 13.5358 )
+scale = Vector2( 2.5, 2.5 )
+amount = 2
+lifetime = 2.0
+explosiveness = 0.08
+local_coords = false
+process_material = SubResource( 55 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D4" type="Particles2D" parent="."]
+modulate = Color( 0, 0.647059, 1, 1 )
+show_behind_parent = true
+material = SubResource( 50 )
+position = Vector2( 34.1581, -202 )
+scale = Vector2( 2.5, 2.5 )
+amount = 3
+lifetime = 2.0
+explosiveness = 0.08
+visibility_rect = Rect2( 0, 0, 0, 0 )
+local_coords = false
+process_material = SubResource( 57 )
+texture = ExtResource( 4 )

@@ -1,0 +1,104 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Hamza_work/Demos/Outline/Outline2D/Outline.gd" type="Script" id=1]
+[ext_resource path="res://GridSystem/outline2D_inner_outer.shader" type="Shader" id=2]
+[ext_resource path="res://Hamza_work/Main_Rafay/Art/Characters/poodle_new/poodle3.png" type="Texture" id=3]
+
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/line_color = Color( 0.0823529, 0.690196, 0.92549, 0 )
+shader_param/line_thickness = 5.0
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 140, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 280, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 420, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 140, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 280, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 420, 136, 140, 136 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="OutlineBothDirections" type="Sprite"]
+material = SubResource( 1 )
+position = Vector2( 835, 492 )
+scale = Vector2( 0.644905, 0.644905 )
+texture = ExtResource( 3 )
+hframes = 3
+vframes = 6
+frame = 1
+region_enabled = true
+region_rect = Rect2( -3, -3, 426, 751 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+polygon = PoolVector2Array( -193.826, -322.529, -196.927, -356.642, -38.7644, -355.091, -41.8663, -111.644, -192.276, -108.544 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 265.155, -3.1012 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 10 )
+frame = 2
+playing = true
+script = ExtResource( 1 )
+line_color = Color( 0.976471, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="AnimatedSprite"]
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite"]
+position = Vector2( 63.5754, 125.6 )
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite/Area2D"]
+position = Vector2( 182.972, 130.252 )
+polygon = PoolVector2Array( -148.858, -278.077, -115.778, -262.571, -90.9685, -305.988, -90.4519, -216.053, -142.139, -222.772 )

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://CardSystem/Assets/Cards/2_Lalito.png" type="Texture" id=2]
+
+[node name="DragableCard" type="Control"]
+
+[node name="CardImage" type="TextureRect" parent="."]
+margin_right = 554.0
+margin_bottom = 389.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6

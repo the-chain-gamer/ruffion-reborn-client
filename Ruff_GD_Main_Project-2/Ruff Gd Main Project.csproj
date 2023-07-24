@@ -1,0 +1,19 @@
+<Project Sdk="Godot.NET.Sdk/3.3.0">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>RuffGdMainProject</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="GraphQL.Client" Version="6.0.0" />
+    <PackageReference Include="GraphQL.Client.Abstractions" Version="6.0.0" />
+    <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="6.0.0" />
+    <PackageReference Include="HexCore" Version="5.1.0" />
+    <!-- <PackageReference Include="JavaScriptEngineSwitcher.Jurassic" Version="3.21.0" /> -->
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="Websocket.Client" Version="4.5.0" />
+    <!-- <PackageReference Include="WebSocketSharp" Version="1.0.3-rc8" /> -->
+    <!-- <PackageReference Include="WebSocket4Net" Version="0.14.0" /> -->
+    <!-- <PackageReference Include="StrawberryShake" Version="14.0.0-tags-13-1-0-preview-5.1" /> -->
+  </ItemGroup>
+</Project>

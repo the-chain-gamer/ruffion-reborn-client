@@ -1,0 +1,286 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Godot;
+
+public class SubscriptionController : Node2D
+{
+    private WebSocketClient webSocketClient;
+    private readonly String URL = "ws://localhost:3000/graphql";
+    private readonly String[] supportedProtocols = new string[1]{"graphql-ws"};
+    private readonly Boolean multiplayer = false;
+
+    public override void _Ready()
+    {
+        webSocketClient = new WebSocketClient();
+        webSocketClient.Connect("connection_established", this, "OnWebSocketConnectionEstablished");
+        webSocketClient.Connect("connection_closed", this, "OnWebSocketConnectionClosed");
+        webSocketClient.Connect("data_received", this, "OnWebSocketDataReceived");
+    }
+    public void StartSubscriptions(string myAuthToken)
+    {
+        string urlWithHeaders = URL + "&auth_token=" + myAuthToken;
+        // Replace "YOUR_AUTH_TOKEN" with your actual auth token
+
+        // GD.Print("Connection Result: " + webSocketClient.ConnectToUrl(URL, supportedProtocols, multiplayer));
+        var connectionStatus = webSocketClient.ConnectToUrl(urlWithHeaders, supportedProtocols, multiplayer);
+        if (connectionStatus == Error.Ok)
+        {
+            GD.Print("WebSocket connection established");
+            // Perform any additional operations for a successful connection
+            OnWebSocketConnectionEstablished();
+        }
+        else
+        {
+            GD.Print("Failed to establish WebSocket connection: " + connectionStatus);
+            // Handle the connection error appropriately
+        }
+    }
+    public void SubscribeToGraphQLSubscription(string subscriptionQuery)
+    {
+        webSocketClient.EmitSignal("text", subscriptionQuery);
+    }
+    private void OnWebSocketConnectionEstablished()
+    {
+        GD.Print("Subscription connection established");
+        const string subscriptionQuery = @"
+            subscription {
+                gameUpdates {
+                    id
+                    name
+                    turnNo
+                    status
+                }
+            }";
+        SubscribeToGraphQLSubscription(subscriptionQuery);
+    }
+    private void OnWebSocketConnectionClosed(int code, string reason, bool wasClean)
+    {
+        GD.Print("WebSocket connection closed");
+    }
+    private void OnWebSocketDataReceived(string data)
+    {
+        GD.Print("Received data from WebSocket:", data);
+
+        // Parse the received data as needed
+        // Check if the received data indicates a successful response from the server
+        // For example, you might check if the data contains a specific property or value
+        // that indicates a successful response
+
+        // Example: Check if the received data contains a "subscriptionId" property
+        if (data.Contains("subscriptionId"))
+        {
+            GD.Print("Server successfully received the subscription query");
+            // Server received the query successfully, perform any necessary actions
+        }
+        else
+        {
+            GD.Print("Server failed to receive the subscription query");
+            // Server did not receive the query successfully, handle the error case
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Net.WebSockets;
+using System.Threading;
+using System.Text;
+using Godot;
+using System.Threading.Tasks;
+
+public class SubscriptionController : Node2D
+{
+    private ClientWebSocket webSocket;
+    private readonly Uri uri = new Uri("ws://localhost:3000/graphql");
+    private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
+    public async Task StartSubscriptionsAsync(string myAuthToken)
+    {
+        try
+        {
+            webSocket = new ClientWebSocket();
+            webSocket.Options.AddSubProtocol("graphql-ws");
+            webSocket.Options.SetRequestHeader("auth_token", myAuthToken);
+
+            await webSocket.ConnectAsync(uri, cancellationTokenSource.Token);
+            GD.Print("WebSocket connection established");
+
+            // Example subscription query
+            const string subscriptionQuery = @"
+                subscription {
+                    gameUpdates {
+                        id
+                        name
+                        turnNo
+                        status
+                    }
+                }";
+
+            // Call the SubscribeToGraphQLSubscription method with the subscription query
+            SubscribeToGraphQLSubscription(subscriptionQuery);
+            // Start listening for data from the server
+            _ = ReceiveDataFromWebSocket();
+        }
+        catch (Exception ex)
+        {
+            GD.Print("Failed to establish WebSocket connection: " + ex.Message);
+        }
+    }
+
+    private async Task ReceiveDataFromWebSocket()
+    {
+        var buffer = new byte[1024];
+
+        try
+        {
+            while (webSocket.State == WebSocketState.Open)
+            {
+                GD.Print("in ReceiveDataFromWebSocket: ");
+                var receiveResult = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), cancellationTokenSource.Token);
+
+                if (receiveResult.MessageType == WebSocketMessageType.Text)
+                {
+                    var data = Encoding.UTF8.GetString(buffer, 0, receiveResult.Count);
+                    GD.Print("Received data from WebSocket:", data);
+
+                    // Process the received data from the subscription
+                }
+                else
+                {
+                    GD.Print(receiveResult.CloseStatus + " \n " + receiveResult.CloseStatusDescription);
+                }
+            }
+
+            GD.Print("WebSocket connection closed");
+        }
+        catch (Exception ex)
+        {
+            GD.Print("Error receiving data from WebSocket: " + ex.Message);
+        }
+    }
+
+    public void SubscribeToGraphQLSubscription(string subscriptionQuery)
+    {
+        GD.Print("In SubscribeToGraphQLSubscription: ");
+        if (webSocket.State == WebSocketState.Open)
+        {
+            GD.Print("Sending SubscribeToGraphQLSubscription: ");
+            var data = Encoding.UTF8.GetBytes(subscriptionQuery);
+            webSocket.SendAsync(new ArraySegment<byte>(data), WebSocketMessageType.Text, true, cancellationTokenSource.Token);
+        }
+        else
+        {
+            GD.Print("WebSocket connection is not open");
+        }
+    }
+
+    public override void _ExitTree()
+    {
+        cancellationTokenSource.Cancel();
+
+        if (webSocket.State == WebSocketState.Open || webSocket.State == WebSocketState.Connecting)
+        {
+            webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Connection closed", CancellationToken.None).Wait();
+        }
+
+        webSocket.Dispose();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using System;
+using System.Threading.Tasks;
+using GraphQL;
+using GraphQL.Client.Abstractions.Websocket;
+using GraphQL.Client.Http;
+using WebSocketSharp;
+using Godot;
+using GraphQL.Client.Serializer.Newtonsoft;
+using Newtonsoft.Json;
+
+public class SubscriptionController : Node2D, IDisposable
+{
+    private WebSocket _webSocket;
+    private GraphQLHttpClient _httpClient;
+    private TaskCompletionSource<bool> _connectionCompletionSource;
+
+    public async Task ConnectAsync(string url, string httpEndpoint)
+    {
+        _webSocket = new WebSocket(url);
+        GD.Print(_webSocket);
+        _webSocket.OnOpen += WebSocket_OnOpen;
+        _webSocket.OnMessage += WebSocket_OnMessage;
+        _webSocket.OnClose += WebSocket_OnClose;
+        _webSocket.OnError += WebSocket_OnError;
+
+        _connectionCompletionSource = new TaskCompletionSource<bool>();
+
+        _webSocket.Connect();
+
+        // await _connectionCompletionSource.Task;
+
+        // var options = new GraphQLHttpClientOptions
+        // {
+        //     EndPoint = new Uri(httpEndpoint)
+        // };
+
+        // _httpClient = new GraphQLHttpClient(options,new NewtonsoftJsonSerializer());
+    }
+
+    // public async Task<string> ExecuteQueryAsync(string query)
+    // {
+    //     var request = new GraphQLRequest(query);
+    //     var response = await _httpClient.SendQueryAsync<dynamic>(request);
+    //     return response.Data.ToString();
+    // }
+
+    private void WebSocket_OnOpen(object sender, EventArgs e)
+    {
+        GD.Print("On OPEN => ");
+        _webSocket.Send(JsonConvert.SerializeObject(new
+        {
+            type = "connection_init",
+            payload = new {}
+        }));
+    }
+
+    private void WebSocket_OnMessage(object sender, MessageEventArgs e)
+    {
+        var message = e.Data;
+        // Handle WebSocket message received
+    }
+
+    private void WebSocket_OnClose(object sender, CloseEventArgs e)
+    {
+        _connectionCompletionSource.TrySetResult(false);
+    }
+
+    private void WebSocket_OnError(object sender, ErrorEventArgs e)
+    {
+        GD.Print("On ERROR  => " + e);
+        _connectionCompletionSource.TrySetException(e.Exception);
+    }
+
+    public void Dispose()
+    {
+        // _webSocket?.Dispose();
+        _httpClient?.Dispose();
+    }
+}
+

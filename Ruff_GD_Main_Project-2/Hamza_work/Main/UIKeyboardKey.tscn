@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Hamza_work/Main/keyboard_key_panel.tres" type="StyleBox" id=1]
+[ext_resource path="res://Hamza_work/Main/UI/fonts/KeyboardKeyFont.tres" type="DynamicFont" id=2]
+
+[node name="UIKeyboardKey" type="Label"]
+margin_right = 27.0
+margin_bottom = 31.0
+size_flags_vertical = 1
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

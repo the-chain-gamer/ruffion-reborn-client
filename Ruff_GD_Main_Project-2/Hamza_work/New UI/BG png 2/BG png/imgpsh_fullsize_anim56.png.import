@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/imgpsh_fullsize_anim56.png-5cbab9783096d192f9b46c5bb2897707.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Hamza_work/New UI/BG png 2/BG png/imgpsh_fullsize_anim56.png"
+dest_files=[ "res://.import/imgpsh_fullsize_anim56.png-5cbab9783096d192f9b46c5bb2897707.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

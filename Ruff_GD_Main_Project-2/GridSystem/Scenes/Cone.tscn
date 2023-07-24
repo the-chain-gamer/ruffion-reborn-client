@@ -1,0 +1,58 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://GridSystem/Scripts/Cone.cs" type="Script" id=1]
+[ext_resource path="res://GridSystem/Scenes/FloatingText.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_10_delay-0.1s.png" type="Texture" id=3]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_11_delay-0.1s.png" type="Texture" id=4]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_16_delay-0.1s.png" type="Texture" id=5]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_18_delay-0.1s.png" type="Texture" id=6]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_03_delay-0.1s.png" type="Texture" id=7]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_15_delay-0.1s.png" type="Texture" id=8]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_13_delay-0.1s.png" type="Texture" id=9]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_19_delay-0.1s.png" type="Texture" id=10]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_20_delay-0.1s.png" type="Texture" id=11]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_17_delay-0.1s.png" type="Texture" id=12]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_21_delay-0.1s.png" type="Texture" id=13]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_22_delay-0.1s.png" type="Texture" id=14]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_01_delay-0.1s.png" type="Texture" id=15]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_02_delay-0.1s.png" type="Texture" id=17]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_04_delay-0.1s.png" type="Texture" id=18]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_05_delay-0.1s.png" type="Texture" id=19]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_06_delay-0.1s.png" type="Texture" id=20]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_07_delay-0.1s.png" type="Texture" id=21]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_08_delay-0.1s.png" type="Texture" id=22]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_09_delay-0.1s.png" type="Texture" id=23]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_14_delay-0.1s.png" type="Texture" id=24]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_12_delay-0.1s.png" type="Texture" id=25]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_23_delay-0.1s.png" type="Texture" id=27]
+[ext_resource path="res://Hamza_work/NewDiscordEffects/BethanysRoadBlock/frame_24_delay-0.1s.png" type="Texture" id=28]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 28 ), ExtResource( 27 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 25 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 7 ), ExtResource( 17 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="Cone" type="Node2D"]
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -17.739 )
+frames = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite"]
+position = Vector2( -0.666667, -4.66667 )
+scale = Vector2( 0.136, 0.136 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite/Area2D"]
+polygon = PoolVector2Array( 0, -117.647, 51.4706, -36.7647, 73.5294, 102.941, 88.2353, 176.471, 132.353, 227.941, 102.941, 272.059, 7.35294, 301.471, -95.5882, 286.765, -139.706, 227.941, -95.5882, 176.471, -58.8235, 95.5882, -36.7647, -44.1177 )
+
+[node name="FloatingText" parent="." instance=ExtResource( 2 )]
+
+[connection signal="hide" from="." to="." method="OnDestroy"]
+[connection signal="input_event" from="AnimatedSprite/Area2D" to="." method="OnMouseDown"]
+[connection signal="mouse_entered" from="AnimatedSprite/Area2D" to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="AnimatedSprite/Area2D" to="." method="OnMouseExit"]

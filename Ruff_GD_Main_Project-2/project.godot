@@ -1,0 +1,129 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "AnimatedOutline",
+"language": "GDScript",
+"path": "res://Hamza_work/Demos/Outline/Outline3D/AnimatedOutline.gd"
+}, {
+"base": "Reference",
+"class": "Constants",
+"language": "GDScript",
+"path": "res://Hamza_work/Main/Constants.gd"
+}, {
+"base": "Control",
+"class": "DemoPickerUI",
+"language": "GDScript",
+"path": "res://Hamza_work/Main/DemoPickerUI.gd"
+}, {
+"base": "CanvasLayer",
+"class": "DemoScreen",
+"language": "GDScript",
+"path": "res://Hamza_work/addons/ShaderSecretsHelper/DemoScreen.gd"
+}, {
+"base": "MeshInstance",
+"class": "SmoothNormalsMeshInstance",
+"language": "GDScript",
+"path": "res://Hamza_work/Demos/Outline/Outline3D/SmoothNormalsMeshInstance.gd"
+}, {
+"base": "Camera",
+"class": "ToonCamera",
+"language": "GDScript",
+"path": "res://Hamza_work/addons/gdquest.toon-controller/Tools/ToonCamera.gd"
+}, {
+"base": "EditorInspectorPlugin",
+"class": "ToonInspector",
+"language": "GDScript",
+"path": "res://Hamza_work/addons/gdquest.toon-controller/ToonInspector.gd"
+}, {
+"base": "Node",
+"class": "ToonProxyBuilder",
+"language": "GDScript",
+"path": "res://Hamza_work/addons/gdquest.toon-controller/Tools/ToonProxyBuilder.gd"
+}, {
+"base": "Node",
+"class": "ToonSceneBuilder",
+"language": "GDScript",
+"path": "res://Hamza_work/addons/gdquest.toon-controller/Tools/ToonSceneBuilder.gd"
+}, {
+"base": "ViewportContainer",
+"class": "ToonViewportContainer",
+"language": "GDScript",
+"path": "res://Hamza_work/addons/gdquest.toon-controller/Tools/ToonViewportContainer.gd"
+} ]
+_global_script_class_icons={
+"AnimatedOutline": "",
+"Constants": "",
+"DemoPickerUI": "",
+"DemoScreen": "",
+"SmoothNormalsMeshInstance": "",
+"ToonCamera": "",
+"ToonInspector": "",
+"ToonProxyBuilder": "",
+"ToonSceneBuilder": "",
+"ToonViewportContainer": ""
+}
+
+[application]
+
+config/name="Ruff Gd Main Project"
+run/main_scene="res://GameStartUp/StartupScene.tscn"
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[mono]
+
+project/assembly_name="Ruff Gd Main Project"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+environment/default_environment="res://default_env.tres"
