@@ -71,7 +71,6 @@ namespace RuffGdMainProject.GridSystem
 
         public void OnTurnChanged(int pNum)
         {
-            GD.Print("$$$$$$$$$$$$$$$$$$$$$$$$$$ player NUM = "+pNum + " && myPlayerNum = " + MyPlayer.PlayerNumber);
             if(pNum == MyPlayer.PlayerNumber)
             {
                 if(Life >= 0)
@@ -89,7 +88,6 @@ namespace RuffGdMainProject.GridSystem
         public void DeathRoutine()
         {
             isDead = true;
-            GD.Print("Aaaa mar gyaaaaa!!!!!!");
             GridManager.GM.RemoveConeFromList(this);
             if (Cell != null)
             {

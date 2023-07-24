@@ -120,11 +120,9 @@ namespace RuffGdMainProject.GridSystem
         }
 
         private void CreateGrid(){
-            // GD.Print("Shawa Shawa!! it's Create Grid :)");
             var maxRows = 5;
             var maxCols = 7;
             int count = 0;
-            // GD.Print(" " + TilesList[count].RowNum);
 
 
             for(int row = 0; row < maxRows; row++) {
