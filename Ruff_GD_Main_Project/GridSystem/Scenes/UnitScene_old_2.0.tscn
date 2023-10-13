@@ -1,0 +1,662 @@
+[gd_scene load_steps=101 format=2]
+
+[ext_resource path="res://GridSystem/Scripts/Unit.cs" type="Script" id=1]
+[ext_resource path="res://GridSystem/Assets/Gameplay/mastiff-1.png" type="Texture" id=2]
+[ext_resource path="res://GridSystem/Scripts/ShaderTest.cs" type="Script" id=3]
+[ext_resource path="res://GridSystem/HighlightMat.tres" type="Material" id=4]
+[ext_resource path="res://CommonAssets/CharacterSprites/Poodle/poodle3.png" type="Texture" id=5]
+[ext_resource path="res://CommonAssets/CharacterSprites/Malamute/malamute3.png" type="Texture" id=6]
+[ext_resource path="res://CommonAssets/CharacterSprites/Shiba/shiba idle.png" type="Texture" id=7]
+[ext_resource path="res://CommonAssets/CharacterSprites/Beagle/beagle2.png" type="Texture" id=8]
+[ext_resource path="res://CommonAssets/CharacterSprites/Corgi/corgis2 .png" type="Texture" id=9]
+[ext_resource path="res://CommonAssets/CharacterSprites/GoldenR/golden retriver3 .png" type="Texture" id=10]
+[ext_resource path="res://CommonAssets/CharacterSprites/Hound/hound3.png" type="Texture" id=11]
+[ext_resource path="res://CommonAssets/CharacterSprites/Labrador/labrador4.png" type="Texture" id=12]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/LalitosLaser.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/CyrilsHatTrick.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/MarlonsSmokeBomb.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/KenzosSmolShield.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/PenelopesGamble.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/SmolSteinsBigHit.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/WizsSmolTelescope.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/ColonelSaunders.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/CrosbysSmokescreen.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/HooksDestructor.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/EffectPlayer.cs" type="Script" id=23]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/BubblesPicknDrop.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/PinkysSmolBrain.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Cards_UI/SCENES/ParticleScenes/Catten.tscn" type="PackedScene" id=26]
+
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 8 )
+region = Rect2( 120, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 8 )
+region = Rect2( 240, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 8 )
+region = Rect2( 360, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 8 )
+region = Rect2( 120, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 8 )
+region = Rect2( 240, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 8 )
+region = Rect2( 360, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 9 )
+region = Rect2( 120, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 9 )
+region = Rect2( 240, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 9 )
+region = Rect2( 360, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 9 )
+region = Rect2( 480, 0, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 9 )
+region = Rect2( 120, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 9 )
+region = Rect2( 240, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 9 )
+region = Rect2( 360, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 9 )
+region = Rect2( 480, 120, 120, 120 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 120, 116 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 10 )
+region = Rect2( 120, 0, 120, 116 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 10 )
+region = Rect2( 240, 0, 120, 116 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 10 )
+region = Rect2( 360, 0, 120, 116 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 116, 120, 116 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 10 )
+region = Rect2( 120, 116, 120, 116 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 10 )
+region = Rect2( 240, 116, 120, 116 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 10 )
+region = Rect2( 360, 116, 120, 116 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 11 )
+region = Rect2( 188, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 11 )
+region = Rect2( 376, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 11 )
+region = Rect2( 564, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 156, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 11 )
+region = Rect2( 188, 156, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 11 )
+region = Rect2( 376, 156, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 11 )
+region = Rect2( 564, 156, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 12 )
+region = Rect2( 140, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 12 )
+region = Rect2( 280, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 12 )
+region = Rect2( 420, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 12 )
+region = Rect2( 140, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 12 )
+region = Rect2( 280, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 12 )
+region = Rect2( 420, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 6 )
+region = Rect2( 188, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 6 )
+region = Rect2( 376, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 6 )
+region = Rect2( 564, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 156, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 6 )
+region = Rect2( 188, 156, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 6 )
+region = Rect2( 376, 156, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 6 )
+region = Rect2( 564, 156, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 188, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 376, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 564, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 752, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 940, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 1128, 0, 188, 156 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 5 )
+region = Rect2( 140, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 5 )
+region = Rect2( 280, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 5 )
+region = Rect2( 420, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 5 )
+region = Rect2( 140, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 5 )
+region = Rect2( 280, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 5 )
+region = Rect2( 420, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 125, 100 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 7 )
+region = Rect2( 125, 0, 125, 100 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 7 )
+region = Rect2( 250, 0, 125, 100 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 7 )
+region = Rect2( 375, 0, 125, 100 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 100, 125, 100 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 7 )
+region = Rect2( 125, 100, 125, 100 )
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 7 )
+region = Rect2( 250, 100, 125, 100 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 7 )
+region = Rect2( 375, 100, 125, 100 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "Beagle Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "Corgi Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "Golden Retriever Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ) ],
+"loop": true,
+"name": "Hound Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
+"loop": true,
+"name": "Labrador Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ) ],
+"loop": true,
+"name": "Malamute Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "Mastiff Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
+"loop": true,
+"name": "Poodle Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ) ],
+"loop": true,
+"name": "Shiba Idle",
+"speed": 5.0
+} ]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Body" type="AnimatedSprite" parent="."]
+material = ExtResource( 4 )
+position = Vector2( 0, -50 )
+scale = Vector2( 1.7, 1.7 )
+z_index = 2
+frames = SubResource( 8 )
+animation = "Beagle Idle"
+frame = 2
+playing = true
+flip_h = true
+script = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Body"]
+
+[node name="Large_Area_2D" type="Area2D" parent="Body"]
+visible = false
+scale = Vector2( 2.6594, 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Large_Area_2D"]
+polygon = PoolVector2Array( -9.98361, -25.0453, -0.537178, -22.8571, 9.66921, -30, 9.66921, -60, 16.8473, -75.136, 22.5615, -62.8571, 26.8589, -45.7143, 24.173, -14.2857, 18.8012, 21.4286, 18.2641, 44.2857, 9.35963, 67.9802, 3.74385, 60.8244, 4.29742, 24.2857, -3.22307, 24.2857, -6.44614, 44.2857, -15.5994, 57.2465, -17.4713, 35.779, -23.6358, 21.4286, -23.0987, -21.4286 )
+
+[node name="Medium_Area_2D" type="Area2D" parent="Body"]
+visible = false
+scale = Vector2( 2.6594, 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Medium_Area_2D"]
+polygon = PoolVector2Array( -9.98361, -25.0453, -0.537178, -22.8571, 9.66921, -30, 9.66921, -60, 16.8473, -75.136, 22.5615, -62.8571, 26.8589, -45.7143, 24.173, -14.2857, 18.8012, 21.4286, 18.2641, 44.2857, 9.35963, 67.9802, 3.74385, 60.8244, 4.29742, 24.2857, -3.22307, 24.2857, -6.44614, 44.2857, -15.5994, 57.2465, -17.4713, 35.779, -12.8923, 4.28571, -17.4713, -19.6785 )
+
+[node name="Small_Area_2D" type="Area2D" parent="Body"]
+visible = false
+scale = Vector2( 2.6594, 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Small_Area_2D"]
+scale = Vector2( 0.75, 0.655 )
+polygon = PoolVector2Array( -9.98361, -25.0453, 2.86495, -23.9913, 2.14871, -56.7067, 12.176, -74.1549, 17.1897, -58.8877, 18.6222, -47.9826, 17.1897, -17.4482, 12.8923, 28.3533, 12.176, 43.6205, 5.01366, 58.8877, -0.716237, 56.7067, 4.2691e-08, 28.3533, -4.29742, 23.9913, -6.44614, 50.1636, -12.176, 54.5256, -13.6085, 19.6292, -20.7709, 10.9051, -24.3521, -17.4482, -17.9059, -30.5344 )
+
+[node name="SmallDogParticles" type="Node2D" parent="."]
+
+[node name="LalitosLaser" type="Node2D" parent="SmallDogParticles"]
+position = Vector2( 22, -44 )
+
+[node name="EffectPlayer" parent="SmallDogParticles/LalitosLaser" instance=ExtResource( 13 )]
+position = Vector2( -4, 0 )
+script = ExtResource( 23 )
+
+[node name="CyrilsHatTrick" type="Node2D" parent="SmallDogParticles"]
+position = Vector2( 12, -63 )
+
+[node name="EffectPlayer" parent="SmallDogParticles/CyrilsHatTrick" instance=ExtResource( 14 )]
+
+[node name="KenzosSmolShield" type="Node2D" parent="SmallDogParticles"]
+
+[node name="EffectPlayer" parent="SmallDogParticles/KenzosSmolShield" instance=ExtResource( 16 )]
+position = Vector2( 46, -23 )
+script = ExtResource( 23 )
+
+[node name="MarlonsSmokeBomb" type="Node2D" parent="SmallDogParticles"]
+
+[node name="EffectPlayer" parent="SmallDogParticles/MarlonsSmokeBomb" instance=ExtResource( 15 )]
+position = Vector2( 106, -71 )
+script = ExtResource( 23 )
+
+[node name="PenelopesGamble" type="Node2D" parent="SmallDogParticles"]
+scale = Vector2( 1.59646, 1.59646 )
+
+[node name="EffectPlayer" parent="SmallDogParticles/PenelopesGamble" instance=ExtResource( 17 )]
+script = ExtResource( 23 )
+
+[node name="SmolSteinsBigHit" type="Node2D" parent="SmallDogParticles"]
+position = Vector2( 38, -29 )
+z_index = 1
+
+[node name="EffectPlayer" parent="SmallDogParticles/SmolSteinsBigHit" instance=ExtResource( 18 )]
+script = ExtResource( 23 )
+
+[node name="WizsSmolTelescope" type="Node2D" parent="SmallDogParticles"]
+position = Vector2( 56, -37 )
+
+[node name="EffectPlayer" parent="SmallDogParticles/WizsSmolTelescope" instance=ExtResource( 19 )]
+script = ExtResource( 23 )
+
+[node name="ColonelSaunders" type="Node2D" parent="SmallDogParticles"]
+position = Vector2( 36, -29 )
+
+[node name="EffectPlayer" parent="SmallDogParticles/ColonelSaunders" instance=ExtResource( 20 )]
+script = ExtResource( 23 )
+
+[node name="CrosbysSmokescreen" type="Node2D" parent="SmallDogParticles"]
+position = Vector2( 60, -17 )
+
+[node name="EffectPlayer" parent="SmallDogParticles/CrosbysSmokescreen" instance=ExtResource( 21 )]
+script = ExtResource( 23 )
+
+[node name="HooksDestructor" type="Node2D" parent="SmallDogParticles"]
+
+[node name="EffectPlayer" parent="SmallDogParticles/HooksDestructor" instance=ExtResource( 22 )]
+script = ExtResource( 23 )
+
+[node name="BubblesPicknDrop" type="Node2D" parent="SmallDogParticles"]
+
+[node name="EffectPlayer" parent="SmallDogParticles/BubblesPicknDrop" instance=ExtResource( 24 )]
+script = ExtResource( 23 )
+
+[node name="PinkysSmolBrain" type="Node2D" parent="SmallDogParticles"]
+
+[node name="EffectPlayer" parent="SmallDogParticles/PinkysSmolBrain" instance=ExtResource( 25 )]
+script = ExtResource( 23 )
+
+[node name="Catten" type="Node2D" parent="SmallDogParticles"]
+
+[node name="EffectPlayer" parent="SmallDogParticles/Catten" instance=ExtResource( 26 )]
+position = Vector2( 12, -72 )
+script = ExtResource( 23 )
+
+[node name="MediumDogParticles" type="Node2D" parent="."]
+
+[node name="LalitosLaser" type="Node2D" parent="MediumDogParticles"]
+position = Vector2( 41, -58 )
+
+[node name="EffectPlayer" parent="MediumDogParticles/LalitosLaser" instance=ExtResource( 13 )]
+position = Vector2( -10, 0 )
+script = ExtResource( 23 )
+
+[node name="CyrilsHatTrick" type="Node2D" parent="MediumDogParticles"]
+position = Vector2( 12, -63 )
+
+[node name="EffectPlayer" parent="MediumDogParticles/CyrilsHatTrick" instance=ExtResource( 14 )]
+position = Vector2( 6, -15 )
+
+[node name="KenzosSmolShield" type="Node2D" parent="MediumDogParticles"]
+
+[node name="EffectPlayer" parent="MediumDogParticles/KenzosSmolShield" instance=ExtResource( 16 )]
+position = Vector2( 57, -26 )
+script = ExtResource( 23 )
+
+[node name="MarlonsSmokeBomb" type="Node2D" parent="MediumDogParticles"]
+
+[node name="EffectPlayer" parent="MediumDogParticles/MarlonsSmokeBomb" instance=ExtResource( 15 )]
+position = Vector2( 112, -71 )
+script = ExtResource( 23 )
+
+[node name="PenelopesGamble" type="Node2D" parent="MediumDogParticles"]
+scale = Vector2( 1.59646, 1.59646 )
+
+[node name="EffectPlayer" parent="MediumDogParticles/PenelopesGamble" instance=ExtResource( 17 )]
+position = Vector2( -5.01109, 7.51663 )
+scale = Vector2( 1.30067, 1 )
+script = ExtResource( 23 )
+
+[node name="SmolSteinsBigHit" type="Node2D" parent="MediumDogParticles"]
+position = Vector2( 38, -29 )
+
+[node name="EffectPlayer" parent="MediumDogParticles/SmolSteinsBigHit" instance=ExtResource( 18 )]
+position = Vector2( 7, -10 )
+script = ExtResource( 23 )
+
+[node name="WizsSmolTelescope" type="Node2D" parent="MediumDogParticles"]
+position = Vector2( 56, -37 )
+
+[node name="EffectPlayer" parent="MediumDogParticles/WizsSmolTelescope" instance=ExtResource( 19 )]
+script = ExtResource( 23 )
+
+[node name="ColonelSaunders" type="Node2D" parent="MediumDogParticles"]
+position = Vector2( 36, -29 )
+
+[node name="EffectPlayer" parent="MediumDogParticles/ColonelSaunders" instance=ExtResource( 20 )]
+position = Vector2( 8, 4 )
+script = ExtResource( 23 )
+
+[node name="CrosbysSmokescreen" type="Node2D" parent="MediumDogParticles"]
+position = Vector2( 60, -17 )
+
+[node name="EffectPlayer" parent="MediumDogParticles/CrosbysSmokescreen" instance=ExtResource( 21 )]
+script = ExtResource( 23 )
+
+[node name="HooksDestructor" type="Node2D" parent="MediumDogParticles"]
+
+[node name="EffectPlayer" parent="MediumDogParticles/HooksDestructor" instance=ExtResource( 22 )]
+script = ExtResource( 23 )
+
+[node name="BubblesPicknDrop" type="Node2D" parent="MediumDogParticles"]
+
+[node name="EffectPlayer" parent="MediumDogParticles/BubblesPicknDrop" instance=ExtResource( 24 )]
+script = ExtResource( 23 )
+
+[node name="PinkysSmolBrain" type="Node2D" parent="MediumDogParticles"]
+
+[node name="EffectPlayer" parent="MediumDogParticles/PinkysSmolBrain" instance=ExtResource( 25 )]
+script = ExtResource( 23 )
+
+[node name="Catten" type="Node2D" parent="MediumDogParticles"]
+
+[node name="EffectPlayer" parent="MediumDogParticles/Catten" instance=ExtResource( 26 )]
+position = Vector2( 16, -85 )
+script = ExtResource( 23 )
+
+[node name="LargeDogParticles" type="Node2D" parent="."]
+
+[node name="LalitosLaser" type="Node2D" parent="LargeDogParticles"]
+position = Vector2( 41, -58 )
+
+[node name="EffectPlayer" parent="LargeDogParticles/LalitosLaser" instance=ExtResource( 13 )]
+position = Vector2( 7, -2 )
+script = ExtResource( 23 )
+
+[node name="CyrilsHatTrick" type="Node2D" parent="LargeDogParticles"]
+position = Vector2( 12, -63 )
+
+[node name="EffectPlayer" parent="LargeDogParticles/CyrilsHatTrick" instance=ExtResource( 14 )]
+position = Vector2( 18, -25 )
+
+[node name="KenzosSmolShield" type="Node2D" parent="LargeDogParticles"]
+
+[node name="EffectPlayer" parent="LargeDogParticles/KenzosSmolShield" instance=ExtResource( 16 )]
+position = Vector2( 69, -26 )
+script = ExtResource( 23 )
+
+[node name="MarlonsSmokeBomb" type="Node2D" parent="LargeDogParticles"]
+
+[node name="EffectPlayer" parent="LargeDogParticles/MarlonsSmokeBomb" instance=ExtResource( 15 )]
+position = Vector2( 112, -71 )
+script = ExtResource( 23 )
+
+[node name="PenelopesGamble" type="Node2D" parent="LargeDogParticles"]
+scale = Vector2( 1.59646, 1.59646 )
+
+[node name="EffectPlayer" parent="LargeDogParticles/PenelopesGamble" instance=ExtResource( 17 )]
+position = Vector2( -2.50554, 8.7694 )
+scale = Vector2( 1.30067, 1 )
+script = ExtResource( 23 )
+
+[node name="SmolSteinsBigHit" type="Node2D" parent="LargeDogParticles"]
+position = Vector2( 38, -29 )
+
+[node name="EffectPlayer" parent="LargeDogParticles/SmolSteinsBigHit" instance=ExtResource( 18 )]
+position = Vector2( 23, -14 )
+script = ExtResource( 23 )
+
+[node name="WizsSmolTelescope" type="Node2D" parent="LargeDogParticles"]
+position = Vector2( 56, -37 )
+
+[node name="EffectPlayer" parent="LargeDogParticles/WizsSmolTelescope" instance=ExtResource( 19 )]
+position = Vector2( 11, 2 )
+script = ExtResource( 23 )
+
+[node name="ColonelSaunders" type="Node2D" parent="LargeDogParticles"]
+position = Vector2( 36, -29 )
+
+[node name="EffectPlayer" parent="LargeDogParticles/ColonelSaunders" instance=ExtResource( 20 )]
+position = Vector2( 20, 5 )
+script = ExtResource( 23 )
+
+[node name="CrosbysSmokescreen" type="Node2D" parent="LargeDogParticles"]
+position = Vector2( 60, -17 )
+
+[node name="EffectPlayer" parent="LargeDogParticles/CrosbysSmokescreen" instance=ExtResource( 21 )]
+position = Vector2( 18, 0 )
+script = ExtResource( 23 )
+
+[node name="HooksDestructor" type="Node2D" parent="LargeDogParticles"]
+
+[node name="EffectPlayer" parent="LargeDogParticles/HooksDestructor" instance=ExtResource( 22 )]
+script = ExtResource( 23 )
+
+[node name="BubblesPicknDrop" type="Node2D" parent="LargeDogParticles"]
+
+[node name="EffectPlayer" parent="LargeDogParticles/BubblesPicknDrop" instance=ExtResource( 24 )]
+script = ExtResource( 23 )
+
+[node name="PinkysSmolBrain" type="Node2D" parent="LargeDogParticles"]
+
+[node name="EffectPlayer" parent="LargeDogParticles/PinkysSmolBrain" instance=ExtResource( 25 )]
+script = ExtResource( 23 )
+
+[node name="Catten" type="Node2D" parent="LargeDogParticles"]
+
+[node name="EffectPlayer" parent="LargeDogParticles/Catten" instance=ExtResource( 26 )]
+position = Vector2( 30, -94 )
+script = ExtResource( 23 )
+
+[connection signal="input_event" from="Body/Large_Area_2D" to="." method="OnMouseDown"]
+[connection signal="mouse_entered" from="Body/Large_Area_2D" to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="Body/Large_Area_2D" to="." method="OnMouseExit"]
+[connection signal="input_event" from="Body/Medium_Area_2D" to="." method="OnMouseDown"]
+[connection signal="mouse_entered" from="Body/Medium_Area_2D" to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="Body/Medium_Area_2D" to="." method="OnMouseExit"]
+[connection signal="input_event" from="Body/Small_Area_2D" to="." method="OnMouseDown"]
+[connection signal="mouse_entered" from="Body/Small_Area_2D" to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="Body/Small_Area_2D" to="." method="OnMouseExit"]

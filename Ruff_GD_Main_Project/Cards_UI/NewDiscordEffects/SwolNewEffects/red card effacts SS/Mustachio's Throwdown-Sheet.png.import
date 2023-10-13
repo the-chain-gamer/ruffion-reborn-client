@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Mustachio's Throwdown-Sheet.png-dd050d2f3ad200ef4cc8420876c4506b.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Cards_UI/NewDiscordEffects/SwolNewEffects/red card effacts SS/Mustachio's Throwdown-Sheet.png"
+dest_files=[ "res://.import/Mustachio's Throwdown-Sheet.png-dd050d2f3ad200ef4cc8420876c4506b.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

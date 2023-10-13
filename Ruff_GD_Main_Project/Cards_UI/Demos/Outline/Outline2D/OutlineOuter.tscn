@@ -1,0 +1,337 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://Cards_UI/Scripts/Essential GD Scripts/ForceFieldViewPort.gd" type="Script" id=1]
+[ext_resource path="res://Cards_UI/Shaders/outline2D_outer.shader" type="Shader" id=2]
+[ext_resource path="res://Cards_UI/Demos/poodle3.png" type="Texture" id=3]
+[ext_resource path="res://Cards_UI/EffectsResources/effect_4.png" type="Texture" id=4]
+[ext_resource path="res://Cards_UI/SCENES/force filed.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Cards_UI/EffectsResources/spotlight_8.png" type="Texture" id=6]
+[ext_resource path="res://Cards_UI/EffectsResources/rain drop.png" type="Texture" id=7]
+[ext_resource path="res://Cards_UI/SCENES/OutlineOwn.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Cards_UI/Demos/Outline/Outline2D/mouse_cursor.png" type="Texture" id=9]
+[ext_resource path="res://Cards_UI/Demos/Reflection2D/Reflection2D.gd" type="Script" id=10]
+[ext_resource path="res://Hamza_work/Main_Rafay/Art/GamePlay/newBG2.png" type="Texture" id=11]
+[ext_resource path="res://Cards_UI/EffectsResources/sword.png" type="Texture" id=12]
+[ext_resource path="res://Cards_UI/EffectsResources/line.png" type="Texture" id=13]
+
+
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/line_color = Color( 0.921569, 0.0666667, 0.0666667, 0 )
+shader_param/line_thickness = 1.518
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 140, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 280, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 420, 0, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 140, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 280, 136, 140, 136 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 420, 136, 140, 136 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CanvasItemMaterial" id=31]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=32]
+offsets = PoolRealArray( 0, 0.104693, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=27]
+gradient = SubResource( 32 )
+
+[sub_resource type="Curve" id=33]
+min_value = 0.5
+max_value = 0.51
+_data = [ Vector2( 0, 0 ), 0.0, 4.0404, 0, 0, Vector2( 1, 0 ), -1.39147, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=29]
+width = 500
+curve = SubResource( 33 )
+
+[sub_resource type="ParticlesMaterial" id=34]
+emission_shape = 2
+emission_box_extents = Vector3( 40, 60, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 49.48
+gravity = Vector3( 0, -200, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.47
+scale_random = 0.14
+scale_curve = SubResource( 29 )
+color_ramp = SubResource( 27 )
+
+[sub_resource type="Curve" id=43]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.953409 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=44]
+curve = SubResource( 43 )
+
+[sub_resource type="ParticlesMaterial" id=45]
+emission_shape = 2
+emission_box_extents = Vector3( 30, 20, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -100, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 35.11
+scale = 0.1
+scale_random = 0.1
+scale_curve = SubResource( 44 )
+
+[sub_resource type="Curve" id=46]
+_data = [ Vector2( 0.00260756, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.609091 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=47]
+curve = SubResource( 46 )
+
+[sub_resource type="ParticlesMaterial" id=48]
+trail_divisor = 2
+trail_size_modifier = SubResource( 47 )
+emission_shape = 2
+emission_box_extents = Vector3( 50, 10, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 107.99
+gravity = Vector3( 0, -98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+
+[sub_resource type="CanvasItemMaterial" id=35]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=36]
+offsets = PoolRealArray( 0, 0.563177, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=22]
+gradient = SubResource( 36 )
+
+[sub_resource type="Curve" id=37]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.704545 ), -1.02273, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=24]
+curve = SubResource( 37 )
+
+[sub_resource type="ParticlesMaterial" id=38]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = -57.64
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 1.5
+scale_curve = SubResource( 24 )
+color_ramp = SubResource( 22 )
+
+[sub_resource type="Shader" id=39]
+code = "shader_type canvas_item;
+
+uniform vec4 color :hint_color;
+uniform float reflection_intensity = 0.5;
+uniform sampler2D transition_gradient :hint_black;
+
+// Updated from GDScript
+uniform float scale_y = 1.0f;
+uniform float zoom_y = 1.0f;
+
+void fragment() {
+	float uv_size_ratio_v = SCREEN_PIXEL_SIZE.y / TEXTURE_PIXEL_SIZE.y;
+	vec2 uv_reflected = vec2(SCREEN_UV.x, SCREEN_UV.y + uv_size_ratio_v * UV.y * 2.0 * scale_y * zoom_y);
+
+	vec4 reflection_color = texture(SCREEN_TEXTURE, uv_reflected);
+	float transition = texture(transition_gradient, vec2(1.0 - UV.y, 1.0)).r;
+	COLOR = mix(color, reflection_color, transition * reflection_intensity);
+}"
+
+[sub_resource type="Gradient" id=40]
+offsets = PoolRealArray( 0.257485, 0.371257, 0.646707, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0843125, 0.0843125, 0.0843125, 1, 0.456693, 0.456693, 0.456693, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=41]
+gradient = SubResource( 40 )
+
+[sub_resource type="ShaderMaterial" id=42]
+shader = SubResource( 39 )
+shader_param/color = Color( 0.207843, 0.203922, 0.615686, 1 )
+shader_param/reflection_intensity = 1.0
+shader_param/scale_y = 5.0
+shader_param/zoom_y = 0.445449
+shader_param/transition_gradient = SubResource( 41 )
+
+[node name="OutlineOuter" type="Sprite"]
+material = SubResource( 1 )
+position = Vector2( 928, 549 )
+scale = Vector2( 0.644905, 0.644905 )
+region_enabled = true
+region_rect = Rect2( -19.6232, -16.3372, 464.135, 778.833 )
+
+[node name="NewBg2" type="Sprite" parent="."]
+modulate = Color( 0.337255, 0.337255, 0.337255, 1 )
+position = Vector2( 38.7654, -18.6074 )
+scale = Vector2( 1.85, 1.85 )
+texture = ExtResource( 11 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+polygon = PoolVector2Array( -144.602, -325.29, -73.6878, -320.857, -41.1855, -374.043, 50.4119, -326.767, 159.738, -300.174, 201.104, -229.26, 196.672, -130.276, 156.783, -75.6128, 56.3214, -65.2712, 149.396, -25.382, 207.014, 55.8738, 208.491, 140.084, 156.783, 194.747, 96.2106, 125.311, 97.688, 187.36, 125.758, 258.275, 82.9142, 268.616, 94.7332, 383.852, 62.231, 380.897, 25.2965, 276.003, -5.72842, 277.48, -44.1403, 383.852, -64.8236, 377.942, -66.3009, 267.139, -138.692, 234.637, -150.511, 193.27, -190.401, 187.36, -206.652, 131.22, -203.697, 82.4666, -147.557, -34.2462, -54.4819, -56.4069, -138.692, -69.7033, -200.742, -124.366, -221.426, -251.421 )
+
+[node name="healing" type="AnimatedSprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( 863.693, -23.2593 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 10 )
+frame = 2
+playing = true
+
+[node name="Particles2D2" type="Particles2D" parent="healing"]
+modulate = Color( 0.384314, 0.956863, 0.352941, 1 )
+show_behind_parent = true
+material = SubResource( 31 )
+position = Vector2( 0.258423, -9.30371 )
+scale = Vector2( 0.833333, 0.833333 )
+amount = 6
+explosiveness = 0.08
+local_coords = false
+process_material = SubResource( 34 )
+texture = ExtResource( 6 )
+
+[node name="Particles2D3" type="Particles2D" parent="healing"]
+modulate = Color( 0, 0.647059, 1, 1 )
+show_behind_parent = true
+material = SubResource( 31 )
+position = Vector2( 3.10126, -0.516846 )
+scale = Vector2( 0.833333, 0.833333 )
+amount = 2
+lifetime = 2.0
+explosiveness = 0.08
+local_coords = false
+process_material = SubResource( 45 )
+texture = ExtResource( 12 )
+
+[node name="Particles2D4" type="Particles2D" parent="healing"]
+modulate = Color( 0, 0.647059, 1, 1 )
+show_behind_parent = true
+material = SubResource( 31 )
+position = Vector2( 6.71936, -72.3621 )
+scale = Vector2( 0.833333, 0.833333 )
+amount = 3
+lifetime = 2.0
+explosiveness = 0.08
+visibility_rect = Rect2( 0, 0, 0, 0 )
+local_coords = false
+process_material = SubResource( 48 )
+texture = ExtResource( 13 )
+
+[node name="blood particles" type="AnimatedSprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( -502.4, -48.0691 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 10 )
+frame = 1
+playing = true
+
+[node name="Particles2D2" type="Particles2D" parent="blood particles"]
+modulate = Color( 1, 0, 0, 1 )
+show_behind_parent = true
+material = SubResource( 31 )
+position = Vector2( -6.20248, -20.158 )
+scale = Vector2( 0.833333, 0.833333 )
+amount = 6
+explosiveness = 0.08
+local_coords = false
+process_material = SubResource( 34 )
+texture = ExtResource( 7 )
+
+[node name="Force Field" type="Node2D" parent="."]
+position = Vector2( -995.495, -23.2593 )
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 1 )
+
+[node name="healing2" type="AnimatedSprite" parent="Force Field"]
+material = SubResource( 1 )
+position = Vector2( -19.6413, -11.3712 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 10 )
+frame = 1
+playing = true
+flip_h = true
+
+[node name="Viewport" type="Viewport" parent="Force Field"]
+size = Vector2( 500, 300 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Spatial" parent="Force Field/Viewport" instance=ExtResource( 5 )]
+
+[node name="Icon" type="Sprite" parent="Force Field"]
+position = Vector2( -18.6074, -3.1012 )
+
+[node name="whirl" type="Node2D" parent="."]
+position = Vector2( -244.997, -213.985 )
+
+[node name="Particles2D" type="Particles2D" parent="whirl"]
+modulate = Color( 5.78, 1.21922, 0, 1 )
+material = SubResource( 35 )
+position = Vector2( -569.076, 522.558 )
+scale = Vector2( 3, 0.9 )
+amount = 2
+process_material = SubResource( 38 )
+texture = ExtResource( 4 )
+
+[node name="blood particles2" type="AnimatedSprite" parent="whirl"]
+material = SubResource( 1 )
+position = Vector2( -573.728, 463.634 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 10 )
+playing = true
+flip_h = true
+
+[node name="outlineOwn" parent="." instance=ExtResource( 8 )]
+
+[node name="MirrorYPlane" type="Sprite" parent="."]
+material = SubResource( 42 )
+position = Vector2( 41.8666, 638.854 )
+scale = Vector2( 36.608, 2.918 )
+texture = ExtResource( 9 )
+script = ExtResource( 10 )

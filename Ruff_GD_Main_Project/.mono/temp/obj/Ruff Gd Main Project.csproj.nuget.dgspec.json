@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Godot\\Projects\\Ruff_main_GD\\Ruff_GD_Main_Project\\Ruff Gd Main Project.csproj": {}
+  },
+  "projects": {
+    "D:\\Godot\\Projects\\Ruff_main_GD\\Ruff_GD_Main_Project\\Ruff Gd Main Project.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Godot\\Projects\\Ruff_main_GD\\Ruff_GD_Main_Project\\Ruff Gd Main Project.csproj",
+        "projectName": "Ruff Gd Main Project",
+        "projectPath": "D:\\Godot\\Projects\\Ruff_main_GD\\Ruff_GD_Main_Project\\Ruff Gd Main Project.csproj",
+        "packagesPath": "C:\\Users\\ali.raza\\.nuget\\packages\\",
+        "outputPath": "D:\\Godot\\Projects\\Ruff_main_GD\\Ruff_GD_Main_Project\\.mono\\temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Users\\ali.raza\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ali.raza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ali.raza\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "GraphQL.Client": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "GraphQL.Client.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "GraphQL.Client.Serializer.Newtonsoft": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "HexCore": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            },
+            "Websocket.Client": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

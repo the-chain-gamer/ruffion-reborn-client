@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Mr. Stache's Gloves of Doom.png-505bc314f92740b7b44570d2b3a3e52f.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Cards_UI/Swol-Cards-Red/Mr. Stache's Gloves of Doom.png"
+dest_files=[ "res://.import/Mr. Stache's Gloves of Doom.png-505bc314f92740b7b44570d2b3a3e52f.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

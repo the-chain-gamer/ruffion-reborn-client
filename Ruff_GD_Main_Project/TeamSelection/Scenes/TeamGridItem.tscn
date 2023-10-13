@@ -1,0 +1,87 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://TeamSelection/Art/cardsCross.png" type="Texture" id=1]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/PolygonBg.png" type="Texture" id=2]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/StraightFrame.png" type="Texture" id=3]
+[ext_resource path="res://CommonAssets/CharacterSprites/Beagle/Beagle_profile.png" type="Texture" id=4]
+[ext_resource path="res://TeamSelection/Scripts/TeamGridItemUI.cs" type="Script" id=5]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/PolygonSide.png" type="Texture" id=6]
+[ext_resource path="res://Cards_UI/Fonts/upheavtt.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/Highlighted Card.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+font_data = ExtResource( 7 )
+
+[node name="TeamCharacter" type="TextureButton"]
+anchor_right = 0.087
+anchor_bottom = 0.17
+margin_right = -0.0400085
+margin_bottom = 0.399994
+rect_min_size = Vector2( 167, 184 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 8 )
+expand = true
+stretch_mode = 4
+script = ExtResource( 5 )
+
+[node name="Frame" type="TextureRect" parent="."]
+anchor_left = 0.198
+anchor_top = 0.158
+anchor_right = 0.731
+anchor_bottom = 0.696
+margin_left = -0.0659981
+margin_top = -0.0720005
+margin_right = -0.0770035
+margin_bottom = -0.0640106
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+stretch_mode = 5
+
+[node name="character Face Img" type="TextureRect" parent="Frame"]
+anchor_left = 0.213
+anchor_top = 0.263
+anchor_right = 0.753
+anchor_bottom = 0.747
+margin_left = 0.0429993
+margin_top = -0.0370007
+margin_right = -0.0169983
+margin_bottom = 0.0469971
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Highlighted" type="TextureRect" parent="Frame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -49.0
+margin_bottom = -59.0
+texture = ExtResource( 6 )
+
+[node name="Name" type="Label" parent="."]
+anchor_left = 0.078
+anchor_top = 0.766
+anchor_right = 0.892
+anchor_bottom = 0.848
+margin_left = -0.026
+margin_top = 0.0559998
+margin_right = 0.0359955
+margin_bottom = -0.0320129
+custom_fonts/font = SubResource( 1 )
+text = "corgi"
+align = 1
+valign = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+visible = false
+margin_left = 1.0
+margin_top = 6.0
+margin_right = 21.0
+margin_bottom = 26.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[connection signal="pressed" from="." to="." method="_on_TeamCharacter_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

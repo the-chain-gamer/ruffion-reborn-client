@@ -1,0 +1,284 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://GridSystem/Assets/Roboto_Mono/static/RobotoMono-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Vector 6-2.png" type="Texture" id=2]
+[ext_resource path="res://GridSystem/Assets/Gameplay/battlescreen_profileplayer 1.png" type="Texture" id=3]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Vector 6-1.png" type="Texture" id=4]
+[ext_resource path="res://GridSystem/Scripts/UnitVitalsUi.cs" type="Script" id=5]
+[ext_resource path="res://GridSystem/Assets/Gameplay/icons/Saunders.png" type="Texture" id=6]
+[ext_resource path="res://Cards_UI/Fonts/upheavtt.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://GridSystem/Assets/Gameplay/icons/Crosby.png" type="Texture" id=8]
+[ext_resource path="res://GridSystem/Assets/Gameplay/icons/Cyril.png" type="Texture" id=9]
+[ext_resource path="res://GridSystem/Assets/Gameplay/icons/Marlon.png" type="Texture" id=10]
+[ext_resource path="res://Cards_UI/Old Art/Art/UI/3_Sprites/ui/icons bar-15.png" type="Texture" id=11]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 741, 52 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 741, 52 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+resource_local_to_scene = true
+size = 24
+font_data = ExtResource( 7 )
+
+[node name="UnitVitals" type="Control"]
+anchor_right = 0.152
+anchor_bottom = 0.096
+margin_right = 0.159973
+margin_bottom = 0.32
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+script = ExtResource( 5 )
+
+[node name="HpBar" type="Control" parent="."]
+anchor_right = 0.99
+anchor_bottom = 0.661
+margin_right = -0.0300293
+margin_bottom = -0.0490036
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="hpBarBg" type="TextureRect" parent="HpBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="HpBar"]
+anchor_left = 0.028
+anchor_top = 0.087
+anchor_right = 0.969
+anchor_bottom = 0.348
+margin_left = -0.092
+margin_top = -0.00300026
+margin_right = -0.0410156
+margin_bottom = -0.012001
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+percent_visible = false
+
+[node name="HpLbl" type="Label" parent="HpBar"]
+self_modulate = Color( 0.121569, 0.321569, 0.411765, 1 )
+anchor_left = 0.028
+anchor_top = 0.072
+anchor_right = 1.0
+anchor_bottom = 0.391
+margin_left = -0.092
+margin_top = -0.968
+margin_bottom = 0.020998
+input_pass_on_modal_close_click = false
+custom_fonts/font = SubResource( 5 )
+text = "100"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="UnitNameLbl" type="Label" parent="HpBar"]
+self_modulate = Color( 0.121569, 0.321569, 0.411765, 1 )
+anchor_left = 0.072
+anchor_top = 0.571
+anchor_right = 0.76
+anchor_bottom = 0.886
+margin_left = 0.192001
+margin_top = -0.398998
+margin_right = 0.360001
+margin_bottom = -0.133999
+input_pass_on_modal_close_click = false
+custom_fonts/font = SubResource( 5 )
+text = "Player 1"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="BuffsUi" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="BuffsUi"]
+visible = false
+anchor_top = 1.875
+anchor_right = 7.05
+anchor_bottom = 2.7
+margin_left = 1.0
+margin_top = 0.999992
+texture = ExtResource( 11 )
+expand = true
+
+[node name="Saunder" type="Control" parent="BuffsUi"]
+margin_top = 73.0
+margin_right = 70.0
+margin_bottom = 113.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="TextureRect" type="TextureRect" parent="BuffsUi/Saunder"]
+anchor_right = 0.563
+anchor_bottom = 1.0
+margin_right = 2.775
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 7
+
+[node name="Label" type="Label" parent="BuffsUi/Saunder"]
+anchor_left = 0.44
+anchor_top = 0.175
+anchor_right = 0.787
+anchor_bottom = 0.825
+margin_right = -0.0250053
+input_pass_on_modal_close_click = false
+custom_fonts/font = SubResource( 6 )
+text = "2"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Cyril" type="Control" parent="BuffsUi"]
+margin_left = 71.0
+margin_top = 73.0
+margin_right = 141.0
+margin_bottom = 113.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="TextureRect" type="TextureRect" parent="BuffsUi/Cyril"]
+anchor_right = 0.563
+anchor_bottom = 1.0
+margin_right = -0.0400009
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 7
+
+[node name="Label" type="Label" parent="BuffsUi/Cyril"]
+anchor_left = 0.412
+anchor_top = 0.175
+anchor_right = 0.737
+anchor_bottom = 0.825
+margin_left = 0.0399971
+margin_right = 0.0399971
+custom_fonts/font = SubResource( 6 )
+text = "2"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Crosby" type="Control" parent="BuffsUi"]
+margin_left = 142.0
+margin_top = 73.0
+margin_right = 212.0
+margin_bottom = 113.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="TextureRect" type="TextureRect" parent="BuffsUi/Crosby"]
+anchor_right = 0.563
+anchor_bottom = 1.0
+margin_right = -0.0400009
+mouse_filter = 2
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 7
+
+[node name="Label" type="Label" parent="BuffsUi/Crosby"]
+anchor_left = 0.412
+anchor_top = 0.175
+anchor_right = 0.737
+anchor_bottom = 0.825
+margin_left = 0.0399971
+margin_right = 0.0399971
+custom_fonts/font = SubResource( 6 )
+text = "2"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Marlon" type="Control" parent="BuffsUi"]
+margin_left = 213.0
+margin_top = 73.0
+margin_right = 283.0
+margin_bottom = 113.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+
+[node name="TextureRect" type="TextureRect" parent="BuffsUi/Marlon"]
+anchor_right = 0.563
+anchor_bottom = 1.0
+margin_right = -0.0400009
+mouse_filter = 2
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 7
+
+[node name="Label" type="Label" parent="BuffsUi/Marlon"]
+anchor_left = 0.412
+anchor_top = 0.175
+anchor_right = 0.737
+anchor_bottom = 0.825
+margin_left = 0.0399971
+margin_right = 0.0399971
+custom_fonts/font = SubResource( 6 )
+text = "2"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="DefLbl" type="Label" parent="."]
+visible = false
+anchor_left = 0.247
+anchor_right = 0.972
+anchor_bottom = 0.421
+margin_left = -82.124
+margin_top = 142.859
+margin_right = -81.924
+margin_bottom = 142.864
+custom_fonts/font = SubResource( 6 )
+text = "DEF 20"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ApLbl" type="Label" parent="."]
+visible = false
+anchor_left = 0.247
+anchor_right = 0.972
+anchor_bottom = 0.421
+margin_left = -1.12401
+margin_top = 126.859
+margin_right = -0.924011
+margin_bottom = 126.864
+custom_fonts/font = SubResource( 6 )
+text = "AP 20"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ApLbl2" type="Label" parent="."]
+visible = false
+anchor_left = 0.247
+anchor_right = 0.972
+anchor_bottom = 0.421
+margin_left = 221.876
+margin_top = -5.141
+margin_right = 222.076
+margin_bottom = -5.136
+custom_fonts/font = SubResource( 6 )
+text = "Cloak 0"
+align = 1
+valign = 1
+uppercase = true

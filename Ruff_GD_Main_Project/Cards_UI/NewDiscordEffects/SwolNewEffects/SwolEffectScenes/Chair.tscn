@@ -1,0 +1,112 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Cards_UI/NewDiscordEffects/SwolNewEffects/trimmed Swol effects/chair-Sheet 1.png" type="Texture" id=1]
+[ext_resource path="res://Cards_UI/NewDiscordEffects/SwolNewEffects/trimmed Swol effects/chair-Sheet 2.png" type="Texture" id=2]
+[ext_resource path="res://CardSystem/Scripts/ChairToss.cs" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 81, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 162, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 243, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 324, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 405, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 486, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 567, 0, 81, 109 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 81, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 162, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 243, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 324, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 405, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 486, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 567, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 2 )
+region = Rect2( 648, 0, 81, 109 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 2 )
+region = Rect2( 729, 0, 81, 109 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="EffectPlayer" type="Node2D"]
+z_index = 2
+script = ExtResource( 3 )
+CuttofDistance = 90.0
+
+[node name="Start" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 2, -74 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 9 )
+frame = 2
+playing = true
+
+[node name="Stop" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 2, -74 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 20 )

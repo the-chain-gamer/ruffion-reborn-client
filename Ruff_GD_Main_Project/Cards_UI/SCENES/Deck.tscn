@@ -1,0 +1,526 @@
+[gd_scene load_steps=142 format=2]
+
+[ext_resource path="res://Cards_UI/Old Art/Fonts/upheavtt.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 117 (2).png" type="Texture" id=2]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 150.png" type="Texture" id=3]
+[ext_resource path="res://Cards_UI/Scripts/Same Scripts/CustomButtonHandler.cs" type="Script" id=4]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 120.png" type="Texture" id=5]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 121.png" type="Texture" id=6]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (3)/conceptskysectionshalf_2 1.png" type="Texture" id=7]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 118.png" type="Texture" id=8]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 119.png" type="Texture" id=9]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 122.png" type="Texture" id=10]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 139.png" type="Texture" id=11]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars38.png" type="Texture" id=12]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars57.png" type="Texture" id=13]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Card LIBRARY.png" type="Texture" id=14]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 117.png" type="Texture" id=15]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars12.png" type="Texture" id=16]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Group 123.png" type="Texture" id=17]
+[ext_resource path="res://Cards_UI/Scripts/CardSelectionManager.cs" type="Script" id=18]
+[ext_resource path="res://Cards_UI/Scripts/CardSorting.cs" type="Script" id=19]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars28.png" type="Texture" id=20]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars32.png" type="Texture" id=21]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars40.png" type="Texture" id=22]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars20.png" type="Texture" id=23]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars42.png" type="Texture" id=24]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars13.png" type="Texture" id=25]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars41.png" type="Texture" id=26]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars58.png" type="Texture" id=27]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars25.png" type="Texture" id=28]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars24.png" type="Texture" id=29]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars36.png" type="Texture" id=30]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars59.png" type="Texture" id=31]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars60.png" type="Texture" id=32]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars61.png" type="Texture" id=33]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars62.png" type="Texture" id=34]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars11.png" type="Texture" id=35]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars14.png" type="Texture" id=36]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars18.png" type="Texture" id=37]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars43.png" type="Texture" id=38]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars21.png" type="Texture" id=39]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars64.png" type="Texture" id=40]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars65.png" type="Texture" id=41]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars68.png" type="Texture" id=42]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars69.png" type="Texture" id=43]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars49.png" type="Texture" id=44]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars26.png" type="Texture" id=45]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars53.png" type="Texture" id=46]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars70.png" type="Texture" id=47]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars17.png" type="Texture" id=48]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars44.png" type="Texture" id=49]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars66.png" type="Texture" id=50]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars71.png" type="Texture" id=51]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars31.png" type="Texture" id=52]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars63.png" type="Texture" id=53]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars55.png" type="Texture" id=54]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars67.png" type="Texture" id=55]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars72.png" type="Texture" id=56]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars15.png" type="Texture" id=57]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars10.png" type="Texture" id=58]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars16.png" type="Texture" id=59]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars27.png" type="Texture" id=60]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars34.png" type="Texture" id=61]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars37.png" type="Texture" id=62]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars33.png" type="Texture" id=63]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars9.png" type="Texture" id=64]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars35.png" type="Texture" id=65]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars47.png" type="Texture" id=66]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars52.png" type="Texture" id=67]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars22.png" type="Texture" id=68]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars29.png" type="Texture" id=69]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars30.png" type="Texture" id=70]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars45.png" type="Texture" id=71]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars46.png" type="Texture" id=72]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars48.png" type="Texture" id=73]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars56.png" type="Texture" id=74]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars50.png" type="Texture" id=75]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars51.png" type="Texture" id=76]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars19.png" type="Texture" id=77]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars39.png" type="Texture" id=78]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars54.png" type="Texture" id=79]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars23.png" type="Texture" id=80]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars6.png" type="Texture" id=81]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars8.png" type="Texture" id=82]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars7.png" type="Texture" id=83]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars4.png" type="Texture" id=84]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars5.png" type="Texture" id=85]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars3.png" type="Texture" id=86]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars81.png" type="Texture" id=87]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars89.png" type="Texture" id=88]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars94.png" type="Texture" id=89]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars106.png" type="Texture" id=90]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars78.png" type="Texture" id=91]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars80.png" type="Texture" id=92]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars95.png" type="Texture" id=93]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars101.png" type="Texture" id=94]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars99.png" type="Texture" id=95]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars107.png" type="Texture" id=96]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars76.png" type="Texture" id=97]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars79.png" type="Texture" id=98]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars92.png" type="Texture" id=99]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars102.png" type="Texture" id=100]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars108.png" type="Texture" id=101]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars87.png" type="Texture" id=102]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars75.png" type="Texture" id=103]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars90.png" type="Texture" id=104]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars85.png" type="Texture" id=105]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars73.png" type="Texture" id=106]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars91.png" type="Texture" id=107]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars100.png" type="Texture" id=108]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars110.png" type="Texture" id=109]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars84.png" type="Texture" id=110]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars96.png" type="Texture" id=111]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars98.png" type="Texture" id=112]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars86.png" type="Texture" id=113]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/UI/Group 118.png" type="Texture" id=114]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/UI/Group 121.png" type="Texture" id=115]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/UI/Group 119.png" type="Texture" id=116]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/UI/Group 122.png" type="Texture" id=117]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/UI/Group 123.png" type="Texture" id=118]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/UI/Group 120.png" type="Texture" id=119]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/UI/Group 117.png" type="Texture" id=120]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/UI/Group 117 (2).png" type="Texture" id=121]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars103.png" type="Texture" id=122]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars82.png" type="Texture" id=123]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars111.png" type="Texture" id=124]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars109.png" type="Texture" id=125]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars97.png" type="Texture" id=126]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars105.png" type="Texture" id=127]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars88.png" type="Texture" id=128]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars93.png" type="Texture" id=129]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars83.png" type="Texture" id=130]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars104.png" type="Texture" id=131]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars74.png" type="Texture" id=132]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars77.png" type="Texture" id=133]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars1.png" type="Texture" id=134]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars2.png" type="Texture" id=135]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Add.png" type="Texture" id=136]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/green button.png" type="Texture" id=137]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/close.png" type="Texture" id=138]
+[ext_resource path="res://Cards_UI/New UI/Ruffion Reborn (4)/Addbuttondisabled.png" type="Texture" id=139]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 134 ), ExtResource( 135 ), ExtResource( 86 ), ExtResource( 84 ), ExtResource( 85 ), ExtResource( 81 ), ExtResource( 83 ), ExtResource( 82 ), ExtResource( 64 ), ExtResource( 58 ), ExtResource( 35 ), ExtResource( 16 ), ExtResource( 25 ), ExtResource( 36 ), ExtResource( 57 ), ExtResource( 59 ), ExtResource( 48 ), ExtResource( 37 ), ExtResource( 77 ), ExtResource( 23 ), ExtResource( 39 ), ExtResource( 68 ), ExtResource( 80 ), ExtResource( 29 ), ExtResource( 28 ), ExtResource( 45 ), ExtResource( 60 ), ExtResource( 20 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 52 ), ExtResource( 21 ), ExtResource( 63 ), ExtResource( 61 ), ExtResource( 65 ), ExtResource( 30 ), ExtResource( 62 ), ExtResource( 12 ), ExtResource( 78 ), ExtResource( 22 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 38 ), ExtResource( 49 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 66 ), ExtResource( 73 ), ExtResource( 44 ), ExtResource( 75 ), ExtResource( 76 ), ExtResource( 67 ), ExtResource( 46 ), ExtResource( 79 ), ExtResource( 54 ), ExtResource( 74 ), ExtResource( 13 ), ExtResource( 27 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 53 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 50 ), ExtResource( 55 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 47 ), ExtResource( 51 ), ExtResource( 56 ), ExtResource( 106 ), ExtResource( 132 ), ExtResource( 103 ), ExtResource( 97 ), ExtResource( 133 ), ExtResource( 91 ), ExtResource( 98 ), ExtResource( 92 ), ExtResource( 87 ), ExtResource( 123 ), ExtResource( 130 ), ExtResource( 110 ), ExtResource( 105 ), ExtResource( 113 ), ExtResource( 102 ), ExtResource( 128 ), ExtResource( 88 ), ExtResource( 104 ), ExtResource( 107 ), ExtResource( 99 ), ExtResource( 129 ), ExtResource( 89 ), ExtResource( 93 ), ExtResource( 111 ), ExtResource( 126 ), ExtResource( 112 ), ExtResource( 95 ), ExtResource( 108 ), ExtResource( 94 ), ExtResource( 100 ), ExtResource( 122 ), ExtResource( 131 ), ExtResource( 127 ), ExtResource( 90 ), ExtResource( 96 ), ExtResource( 101 ), ExtResource( 125 ), ExtResource( 109 ), ExtResource( 124 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 25
+font_data = ExtResource( 1 )
+
+[node name="DeckPanel" type="CanvasLayer"]
+layer = 2
+script = ExtResource( 4 )
+
+[node name="DeckControlNode" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 18 )
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="DeckControlNode"]
+position = Vector2( 960.5, 541 )
+scale = Vector2( 1.201, 1.122 )
+frames = SubResource( 2 )
+frame = 32
+speed_scale = 2.0
+playing = true
+
+[node name="Background" type="TextureRect" parent="DeckControlNode"]
+visible = false
+anchor_right = 1.001
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -1.0
+margin_right = -1536.92
+margin_bottom = -830.0
+rect_scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="DeckControlNode/Background"]
+anchor_left = 0.049
+anchor_top = 0.042
+anchor_right = 0.25
+anchor_bottom = 0.086
+margin_left = 0.183998
+margin_top = -0.0720005
+margin_right = 240.0
+margin_bottom = 26.424
+rect_scale = Vector2( 0.242598, 0.268291 )
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 1
+
+[node name="Control" type="Control" parent="DeckControlNode"]
+anchor_top = 0.153
+anchor_right = 1.001
+anchor_bottom = 1.0
+margin_right = 0.0799561
+margin_bottom = -12.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Zoom" type="Control" parent="DeckControlNode/Control"]
+anchor_top = -0.169
+anchor_right = 1.004
+anchor_bottom = 0.997
+margin_top = -0.433563
+margin_right = -16.6879
+margin_bottom = 3.9483
+
+[node name="ButtonsPanelBG" type="TextureRect" parent="DeckControlNode/Control"]
+visible = false
+margin_left = 54.0
+margin_top = -24.24
+margin_right = 318.0
+margin_bottom = 595.76
+expand = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ButtonsPanelFrame" type="TextureRect" parent="DeckControlNode/Control/ButtonsPanelBG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -2.0
+expand = true
+stretch_mode = 1
+
+[node name="AllCardsHolderBG" type="TextureRect" parent="DeckControlNode/Control"]
+anchor_left = 0.049
+anchor_top = 0.031
+anchor_right = 0.759
+anchor_bottom = 0.929
+margin_left = -0.177994
+margin_top = 0.0144405
+margin_right = -4.79797
+margin_bottom = -1.66406
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AllCardsHolderFrame" type="TextureRect" parent="DeckControlNode/Control/AllCardsHolderBG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame"]
+anchor_left = 0.04
+anchor_top = 0.189
+anchor_right = 0.962
+anchor_bottom = 0.961
+margin_left = 0.600002
+margin_top = 0.098999
+margin_right = -0.320068
+margin_bottom = 0.550964
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="GridContainer" type="GridContainer" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/ScrollContainer"]
+margin_right = 1200.0
+margin_bottom = 2300.0
+rect_min_size = Vector2( 1200, 2300 )
+custom_constants/vseparation = 250
+custom_constants/hseparation = 400
+columns = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame"]
+margin_left = 65.0
+margin_top = 57.76
+margin_right = 1305.0
+margin_bottom = 152.76
+rect_clip_content = true
+custom_constants/separation = 20
+script = ExtResource( 19 )
+
+[node name="All CArds" type="TextureButton" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer"]
+margin_top = 12.0
+margin_right = 160.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 160, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 15 )
+texture_hover = ExtResource( 120 )
+expand = true
+stretch_mode = 4
+
+[node name="Smarts" type="TextureButton" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer"]
+margin_left = 180.0
+margin_top = 12.0
+margin_right = 340.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 160, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 114 )
+expand = true
+stretch_mode = 4
+
+[node name="Science" type="TextureButton" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer"]
+margin_left = 360.0
+margin_top = 12.0
+margin_right = 520.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 160, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 9 )
+texture_hover = ExtResource( 116 )
+expand = true
+stretch_mode = 4
+
+[node name="Sorcery" type="TextureButton" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer"]
+margin_left = 540.0
+margin_top = 12.0
+margin_right = 700.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 160, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 119 )
+expand = true
+stretch_mode = 4
+
+[node name="Speed" type="TextureButton" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer"]
+margin_left = 720.0
+margin_top = 12.0
+margin_right = 880.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 160, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 115 )
+expand = true
+stretch_mode = 4
+
+[node name="Defend" type="TextureButton" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer"]
+margin_left = 900.0
+margin_top = 12.0
+margin_right = 1060.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 160, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 10 )
+texture_hover = ExtResource( 117 )
+expand = true
+stretch_mode = 4
+
+[node name="Strength" type="TextureButton" parent="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer"]
+margin_left = 1080.0
+margin_top = 12.0
+margin_right = 1240.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 160, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+texture_hover = ExtResource( 118 )
+expand = true
+stretch_mode = 4
+
+[node name="DeckHolderBG" type="TextureRect" parent="DeckControlNode/Control"]
+anchor_left = 0.787
+anchor_top = 0.039
+anchor_right = 0.977
+anchor_bottom = 0.926
+margin_left = 0.385864
+margin_top = -0.207642
+margin_right = 465.206
+margin_bottom = 1020.04
+rect_scale = Vector2( 0.440001, 0.440001 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="DeckHolderFrame" type="TextureRect" parent="DeckControlNode/Control/DeckHolderBG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -0.00012207
+margin_bottom = -218.996
+expand = true
+stretch_mode = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DeckControlNode/Control/DeckHolderBG/DeckHolderFrame"]
+anchor_left = 0.06
+anchor_top = 0.026
+anchor_right = 0.942
+anchor_bottom = 1.006
+margin_left = 0.199997
+margin_top = -0.652
+margin_right = 0.140015
+margin_bottom = -0.612061
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeckControlNode/Control/DeckHolderBG/DeckHolderFrame/ScrollContainer"]
+size_flags_horizontal = 5
+custom_constants/separation = 170
+alignment = 1
+
+[node name="DoneButton" type="TextureButton" parent="DeckControlNode/Control/DeckHolderBG"]
+visible = false
+anchor_left = 0.099
+anchor_top = 0.906
+anchor_right = 0.942
+anchor_bottom = 0.961
+margin_left = -0.302017
+margin_top = 1.39087
+margin_right = 0.00787354
+margin_bottom = 1.23608
+rect_min_size = Vector2( 150, 100 )
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 121 )
+expand = true
+stretch_mode = 4
+
+[node name="Line" type="TextureRect" parent="DeckControlNode/Control"]
+anchor_top = -0.069
+anchor_right = 1.0
+anchor_bottom = -0.051
+margin_left = 94.0
+margin_top = 14.0504
+margin_right = 33.0
+margin_bottom = 13.8008
+rect_scale = Vector2( 0.943569, 1.0012 )
+expand = true
+stretch_mode = 5
+
+[node name="BackButton" type="Control" parent="DeckControlNode"]
+margin_left = 1638.0
+margin_top = 51.0
+margin_right = 1909.0
+margin_bottom = 142.0
+
+[node name="DeckBack" type="TextureButton" parent="DeckControlNode/BackButton"]
+anchor_top = -0.154
+anchor_right = 0.9
+anchor_bottom = 0.557
+margin_top = 0.0140009
+margin_right = 0.0999908
+margin_bottom = 2.313
+expand = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="DeckControlNode/BackButton/DeckBack"]
+self_modulate = Color( 0.482353, 1, 0.968627, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -78.9999
+margin_bottom = -21.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 1 )
+text = "Back"
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CardZoomPanel" type="Control" parent="DeckControlNode"]
+visible = false
+anchor_right = 0.984
+anchor_bottom = 0.997
+margin_right = 19.72
+margin_bottom = 10.24
+
+[node name="TextureRect" type="TextureRect" parent="DeckControlNode/CardZoomPanel"]
+margin_left = 97.0
+margin_top = 195.0
+margin_right = 1453.0
+margin_bottom = 1003.0
+texture = ExtResource( 11 )
+expand = true
+
+[node name="ZoomButtons" type="Control" parent="DeckControlNode/CardZoomPanel/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 0.978
+margin_right = -3.0
+margin_bottom = 0.259949
+
+[node name="AddButton" type="TextureButton" parent="DeckControlNode/CardZoomPanel/TextureRect"]
+margin_left = 259.0
+margin_top = 686.0
+margin_right = 519.0
+margin_bottom = 747.0
+texture_normal = ExtResource( 136 )
+texture_pressed = ExtResource( 137 )
+texture_disabled = ExtResource( 139 )
+expand = true
+
+[node name="CancelButton" type="TextureButton" parent="DeckControlNode/CardZoomPanel/TextureRect"]
+margin_left = 874.0
+margin_top = 686.0
+margin_right = 1134.0
+margin_bottom = 747.0
+texture_normal = ExtResource( 138 )
+texture_pressed = ExtResource( 137 )
+expand = true
+
+[connection signal="pressed" from="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer/All CArds" to="." method="AllCards"]
+[connection signal="pressed" from="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer/Smarts" to="." method="_on_Smarts_pressed"]
+[connection signal="pressed" from="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer/Science" to="." method="_on_Science_pressed"]
+[connection signal="pressed" from="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer/Sorcery" to="." method="_on_Sorcery_pressed"]
+[connection signal="pressed" from="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer/Speed" to="." method="_on_Speed_pressed"]
+[connection signal="pressed" from="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer/Defend" to="." method="_on_Defend_pressed"]
+[connection signal="pressed" from="DeckControlNode/Control/AllCardsHolderBG/AllCardsHolderFrame/HBoxContainer/Strength" to="." method="_on_Strength_pressed"]
+[connection signal="pressed" from="DeckControlNode/Control/DeckHolderBG/DoneButton" to="." method="_on_DoneButton_pressed"]
+[connection signal="pressed" from="DeckControlNode/BackButton/DeckBack" to="." method="_on_DeckBack_pressed"]
+[connection signal="pressed" from="DeckControlNode/CardZoomPanel/TextureRect/AddButton" to="DeckControlNode" method="_on_AddButton_pressed"]
+[connection signal="pressed" from="DeckControlNode/CardZoomPanel/TextureRect/CancelButton" to="DeckControlNode" method="_on_CancelButton_pressed"]

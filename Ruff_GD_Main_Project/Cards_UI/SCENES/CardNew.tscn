@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Cards_UI/CartridgesRobo/1_cartridgeModSmolrobo.png" type="Texture" id=1]
+[ext_resource path="res://Cards_UI/Scripts/CardButtonUI.cs" type="Script" id=2]
+[ext_resource path="res://Cards_UI/Shaders/outline2D_outer.shader" type="Shader" id=3]
+[ext_resource path="res://Cards_UI/Demos/Outline/Outline2D/OutlineTextureRect.gd" type="Script" id=4]
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/line_color = Color( 0.921569, 0.0666667, 0.0666667, 0 )
+shader_param/line_thickness = 9.896
+
+[node name="Control" type="Control"]
+script = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 1058.0
+margin_bottom = 749.0
+rect_scale = Vector2( 0.379, 0.379 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand = true
+stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="TextureButton"]
+material = SubResource( 10 )
+anchor_left = 0.003
+anchor_right = 1.0
+anchor_bottom = 0.983
+margin_left = -0.54
+margin_bottom = 0.194946
+texture = ExtResource( 1 )
+expand = true
+script = ExtResource( 4 )
+line_color = Color( 1, 0.537255, 0, 1 )
+
+[node name="Tween" type="Tween" parent="TextureButton/TextureRect"]
+
+[node name="Name" type="Label" parent="TextureButton"]
+visible = false
+anchor_left = 0.264
+anchor_top = 0.243
+anchor_right = 0.506
+anchor_bottom = 0.297
+margin_left = -0.519989
+margin_top = 0.094986
+margin_right = -50.0801
+margin_bottom = 0.00498962
+rect_scale = Vector2( 1.21109, 1 )
+text = "xvcvxcvxvxcvxcv"
+
+[node name="Description" type="Label" parent="TextureButton"]
+visible = false
+anchor_left = 0.535
+anchor_top = 0.36
+anchor_right = 0.749
+anchor_bottom = 0.636
+margin_left = -0.300049
+margin_top = 0.399994
+margin_right = -168.82
+margin_bottom = -132.06
+rect_scale = Vector2( 3.00505, 2.34744 )
+text = "asda"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Cards_UI/CartridgesRobo/1_cartridgeModSmolrobo.png" type="Texture" id=1]
+[ext_resource path="res://CardSystem/Scripts/CardData.cs" type="Script" id=2]
+
+[node name="Control" type="Control"]
+margin_right = 421.0
+margin_bottom = 294.0
+script = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.354553, 0.354553 )
+texture_normal = ExtResource( 1 )

@@ -1,0 +1,166 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://Cards_UI/NewDiscordEffects/New loop effects/Smolsteins Big Hit 2 png.png" type="Texture" id=1]
+[ext_resource path="res://Cards_UI/NewDiscordEffects/New loop effects/Smolsteins Big Hit 3 png.png" type="Texture" id=2]
+[ext_resource path="res://Cards_UI/NewDiscordEffects/New loop effects/Smolsteins Big Hit 1 png.png" type="Texture" id=3]
+[ext_resource path="res://CardSystem/Scripts/BigHitEffectPlayer.cs" type="Script" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 125, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 250, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 375, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 500, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 625, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 750, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 3 )
+region = Rect2( 875, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 3 )
+region = Rect2( 1000, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 3 )
+region = Rect2( 1125, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 3 )
+region = Rect2( 1250, 0, 125, 97 )
+
+[sub_resource type="SpriteFrames" id=107]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=88]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=89]
+atlas = ExtResource( 1 )
+region = Rect2( 125, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=90]
+atlas = ExtResource( 1 )
+region = Rect2( 250, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=91]
+atlas = ExtResource( 1 )
+region = Rect2( 375, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=92]
+atlas = ExtResource( 1 )
+region = Rect2( 500, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=93]
+atlas = ExtResource( 1 )
+region = Rect2( 625, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=94]
+atlas = ExtResource( 1 )
+region = Rect2( 750, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=95]
+atlas = ExtResource( 1 )
+region = Rect2( 875, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=96]
+atlas = ExtResource( 1 )
+region = Rect2( 1000, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=97]
+atlas = ExtResource( 1 )
+region = Rect2( 1125, 0, 125, 97 )
+
+[sub_resource type="SpriteFrames" id=108]
+animations = [ {
+"frames": [ SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ), SubResource( 96 ), SubResource( 97 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=99]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=100]
+atlas = ExtResource( 2 )
+region = Rect2( 125, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=101]
+atlas = ExtResource( 2 )
+region = Rect2( 250, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=102]
+atlas = ExtResource( 2 )
+region = Rect2( 375, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=103]
+atlas = ExtResource( 2 )
+region = Rect2( 500, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=104]
+atlas = ExtResource( 2 )
+region = Rect2( 625, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=105]
+atlas = ExtResource( 2 )
+region = Rect2( 750, 0, 125, 97 )
+
+[sub_resource type="AtlasTexture" id=106]
+atlas = ExtResource( 2 )
+region = Rect2( 875, 0, 125, 97 )
+
+[sub_resource type="SpriteFrames" id=109]
+animations = [ {
+"frames": [ SubResource( 99 ), SubResource( 100 ), SubResource( 101 ), SubResource( 102 ), SubResource( 103 ), SubResource( 104 ), SubResource( 105 ), SubResource( 106 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="BigHit" type="Node2D"]
+z_index = 10
+script = ExtResource( 4 )
+CuttofDistance = 120.0
+
+[node name="Start" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 97, -62 )
+frames = SubResource( 107 )
+
+[node name="Loop" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 97, -62 )
+frames = SubResource( 108 )
+
+[node name="Stop" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 97, -62 )
+frames = SubResource( 109 )

@@ -1,0 +1,125 @@
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.pdb
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\HexCore.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.AssemblyReference.cache
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.GeneratedMSBuildEditorConfig.editorconfig
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfoInputs.cache
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfo.cs
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CoreCompileInputs.cache
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CopyComplete
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.pdb
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Client.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.Websocket.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Client.Serializer.Newtonsoft.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Primitives.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\Newtonsoft.Json.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Buffers.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Net.WebSockets.Client.Managed.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Numerics.Vectors.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Reactive.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Threading.Tasks.Extensions.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.pdb
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.Websocket.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Serializer.Newtonsoft.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Primitives.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\HexCore.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Newtonsoft.Json.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Buffers.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Net.WebSockets.Client.Managed.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Numerics.Vectors.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Reactive.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Threading.Channels.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Threading.Tasks.Extensions.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Websocket.Client.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.AssemblyReference.cache
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.GeneratedMSBuildEditorConfig.editorconfig
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfoInputs.cache
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfo.cs
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CoreCompileInputs.cache
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CopyComplete
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.pdb
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.AssemblyReference.cache
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfoInputs.cache
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfo.cs
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CoreCompileInputs.cache
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.pdb
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.pdb
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.Websocket.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Serializer.Newtonsoft.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Primitives.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\HexCore.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Newtonsoft.Json.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Buffers.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Net.WebSockets.Client.Managed.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Numerics.Vectors.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Reactive.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Threading.Channels.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Threading.Tasks.Extensions.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Websocket.Client.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CopyComplete
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.pdb
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.Websocket.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Client.Serializer.Newtonsoft.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\GraphQL.Primitives.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\HexCore.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Newtonsoft.Json.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Buffers.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Net.WebSockets.Client.Managed.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Numerics.Vectors.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Reactive.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Threading.Channels.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\System.Threading.Tasks.Extensions.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\bin\ExportDebug\Websocket.Client.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.AssemblyReference.cache
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.GeneratedMSBuildEditorConfig.editorconfig
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfoInputs.cache
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfo.cs
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CoreCompileInputs.cache
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CopyComplete
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.dll
+D:\Ruff_main_GD\Ruff_GD_Main_Project-2\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.pdb
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Threading.Channels.dll
+D:\Godot\Projects\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\Websocket.Client.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\Ruff Gd Main Project.pdb
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Client.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Client.Abstractions.Websocket.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Client.Serializer.Newtonsoft.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\GraphQL.Primitives.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\HexCore.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\Newtonsoft.Json.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Buffers.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Net.WebSockets.Client.Managed.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Numerics.Vectors.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Reactive.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Threading.Channels.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\System.Threading.Tasks.Extensions.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\bin\ExportDebug\Websocket.Client.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.AssemblyReference.cache
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfoInputs.cache
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.AssemblyInfo.cs
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CoreCompileInputs.cache
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.csproj.CopyComplete
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.dll
+C:\Users\mugha\Desktop\Do Not Sync This\Ruff_main_GD\Ruff_GD_Main_Project\.mono\temp\obj\ExportDebug\Ruff Gd Main Project.pdb

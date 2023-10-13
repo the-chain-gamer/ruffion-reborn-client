@@ -1,0 +1,921 @@
+[gd_scene load_steps=139 format=2]
+
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/Select team.png" type="Texture" id=1]
+[ext_resource path="res://Cards_UI/Scripts/Same Scripts/CustomButtonHandler.cs" type="Script" id=2]
+[ext_resource path="res://TeamSelection/Scripts/CharacterSelectionManager.cs" type="Script" id=3]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/SeparatingLine.png" type="Texture" id=4]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/Bg.png" type="Texture" id=5]
+[ext_resource path="res://TeamSelection/Fonts/upheavtt.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Cards_UI/Fonts/upheavtt.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Cards_UI/Old Art/Fonts/upheavtt.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-03.png" type="Texture" id=9]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-01.png" type="Texture" id=10]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-02.png" type="Texture" id=11]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/ConfirmButton.png" type="Texture" id=12]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars38.png" type="Texture" id=13]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars57.png" type="Texture" id=14]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars12.png" type="Texture" id=15]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars28.png" type="Texture" id=16]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars32.png" type="Texture" id=17]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterSelected.png" type="Texture" id=18]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars40.png" type="Texture" id=19]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/Select Your Characters.png" type="Texture" id=20]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars20.png" type="Texture" id=21]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars42.png" type="Texture" id=22]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars13.png" type="Texture" id=23]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars41.png" type="Texture" id=24]
+[ext_resource path="res://TeamSelection/Art/Versus Screen/LineDown.png" type="Texture" id=25]
+[ext_resource path="res://TeamSelection/Art/Versus Screen/VS.png" type="Texture" id=26]
+[ext_resource path="res://TeamSelection/Art/Versus Screen/LineUp.png" type="Texture" id=27]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars58.png" type="Texture" id=28]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars25.png" type="Texture" id=30]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars24.png" type="Texture" id=32]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars36.png" type="Texture" id=33]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars59.png" type="Texture" id=52]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars60.png" type="Texture" id=53]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars61.png" type="Texture" id=54]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars62.png" type="Texture" id=129]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars11.png" type="Texture" id=130]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars14.png" type="Texture" id=131]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars18.png" type="Texture" id=132]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars43.png" type="Texture" id=133]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars21.png" type="Texture" id=134]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars64.png" type="Texture" id=135]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars65.png" type="Texture" id=136]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars68.png" type="Texture" id=137]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars69.png" type="Texture" id=138]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars49.png" type="Texture" id=139]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars26.png" type="Texture" id=140]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars53.png" type="Texture" id=141]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars70.png" type="Texture" id=142]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars17.png" type="Texture" id=143]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars44.png" type="Texture" id=144]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars66.png" type="Texture" id=145]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars71.png" type="Texture" id=146]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars31.png" type="Texture" id=147]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars63.png" type="Texture" id=148]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars55.png" type="Texture" id=149]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars67.png" type="Texture" id=150]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars72.png" type="Texture" id=151]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars15.png" type="Texture" id=152]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars10.png" type="Texture" id=153]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars16.png" type="Texture" id=154]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars27.png" type="Texture" id=155]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars34.png" type="Texture" id=156]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars37.png" type="Texture" id=157]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars33.png" type="Texture" id=158]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars9.png" type="Texture" id=159]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars35.png" type="Texture" id=160]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars47.png" type="Texture" id=161]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars52.png" type="Texture" id=162]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars22.png" type="Texture" id=163]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars29.png" type="Texture" id=164]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars30.png" type="Texture" id=165]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars45.png" type="Texture" id=166]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars46.png" type="Texture" id=167]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars48.png" type="Texture" id=168]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars56.png" type="Texture" id=169]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars50.png" type="Texture" id=170]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars51.png" type="Texture" id=171]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars19.png" type="Texture" id=172]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars39.png" type="Texture" id=173]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars54.png" type="Texture" id=174]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars23.png" type="Texture" id=175]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars6.png" type="Texture" id=176]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars8.png" type="Texture" id=177]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars7.png" type="Texture" id=178]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars4.png" type="Texture" id=179]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars5.png" type="Texture" id=180]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars3.png" type="Texture" id=181]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars81.png" type="Texture" id=182]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars89.png" type="Texture" id=183]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars94.png" type="Texture" id=184]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars106.png" type="Texture" id=185]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars78.png" type="Texture" id=186]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars80.png" type="Texture" id=187]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars95.png" type="Texture" id=188]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars101.png" type="Texture" id=189]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars99.png" type="Texture" id=190]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars107.png" type="Texture" id=191]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars76.png" type="Texture" id=192]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars79.png" type="Texture" id=193]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars92.png" type="Texture" id=194]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars102.png" type="Texture" id=195]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars108.png" type="Texture" id=196]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars87.png" type="Texture" id=197]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars75.png" type="Texture" id=198]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars90.png" type="Texture" id=199]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars85.png" type="Texture" id=200]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars73.png" type="Texture" id=201]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars91.png" type="Texture" id=202]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars100.png" type="Texture" id=203]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars110.png" type="Texture" id=204]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars84.png" type="Texture" id=205]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars96.png" type="Texture" id=206]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars98.png" type="Texture" id=207]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars86.png" type="Texture" id=208]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars103.png" type="Texture" id=209]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars82.png" type="Texture" id=210]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars111.png" type="Texture" id=211]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars109.png" type="Texture" id=212]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars97.png" type="Texture" id=213]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars105.png" type="Texture" id=214]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars88.png" type="Texture" id=215]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars93.png" type="Texture" id=216]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars83.png" type="Texture" id=217]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars104.png" type="Texture" id=218]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars74.png" type="Texture" id=219]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars77.png" type="Texture" id=220]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars1.png" type="Texture" id=221]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars2.png" type="Texture" id=222]
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 221 ), ExtResource( 222 ), ExtResource( 181 ), ExtResource( 179 ), ExtResource( 180 ), ExtResource( 176 ), ExtResource( 178 ), ExtResource( 177 ), ExtResource( 159 ), ExtResource( 153 ), ExtResource( 130 ), ExtResource( 15 ), ExtResource( 23 ), ExtResource( 131 ), ExtResource( 152 ), ExtResource( 154 ), ExtResource( 143 ), ExtResource( 132 ), ExtResource( 172 ), ExtResource( 21 ), ExtResource( 134 ), ExtResource( 163 ), ExtResource( 175 ), ExtResource( 32 ), ExtResource( 30 ), ExtResource( 140 ), ExtResource( 155 ), ExtResource( 16 ), ExtResource( 164 ), ExtResource( 165 ), ExtResource( 147 ), ExtResource( 17 ), ExtResource( 158 ), ExtResource( 156 ), ExtResource( 160 ), ExtResource( 33 ), ExtResource( 157 ), ExtResource( 13 ), ExtResource( 173 ), ExtResource( 19 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 133 ), ExtResource( 144 ), ExtResource( 166 ), ExtResource( 167 ), ExtResource( 161 ), ExtResource( 168 ), ExtResource( 139 ), ExtResource( 170 ), ExtResource( 171 ), ExtResource( 162 ), ExtResource( 141 ), ExtResource( 174 ), ExtResource( 149 ), ExtResource( 169 ), ExtResource( 14 ), ExtResource( 28 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ), ExtResource( 129 ), ExtResource( 148 ), ExtResource( 135 ), ExtResource( 136 ), ExtResource( 145 ), ExtResource( 150 ), ExtResource( 137 ), ExtResource( 138 ), ExtResource( 142 ), ExtResource( 146 ), ExtResource( 151 ), ExtResource( 201 ), ExtResource( 219 ), ExtResource( 198 ), ExtResource( 192 ), ExtResource( 220 ), ExtResource( 186 ), ExtResource( 193 ), ExtResource( 187 ), ExtResource( 182 ), ExtResource( 210 ), ExtResource( 217 ), ExtResource( 205 ), ExtResource( 200 ), ExtResource( 208 ), ExtResource( 197 ), ExtResource( 215 ), ExtResource( 183 ), ExtResource( 199 ), ExtResource( 202 ), ExtResource( 194 ), ExtResource( 216 ), ExtResource( 184 ), ExtResource( 188 ), ExtResource( 206 ), ExtResource( 213 ), ExtResource( 207 ), ExtResource( 190 ), ExtResource( 203 ), ExtResource( 189 ), ExtResource( 195 ), ExtResource( 209 ), ExtResource( 218 ), ExtResource( 214 ), ExtResource( 185 ), ExtResource( 191 ), ExtResource( 196 ), ExtResource( 212 ), ExtResource( 204 ), ExtResource( 211 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 25
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 13
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 45
+extra_spacing_top = 25
+extra_spacing_bottom = 20
+font_data = ExtResource( 7 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "PlayerSelectionPanelAnim"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -500, 206 ), Vector2( 600, 206 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player2Grid:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2000, 738 ), Vector2( 675, 738 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.66 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 20, 20 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.66 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 499, 140 ), Vector2( 954, 510 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.66 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineUp:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineDown:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/Select Party2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/joiningRoom:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 782, 206 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player2Grid:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 693, 738 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 954, 510 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineDown:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineUp:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineDown:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control:rect_rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/Select Party2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/joiningRoom:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("VersusScreenBg/VersusBG/Control:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "VsBars"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("VersusScreenBg/VersusBG/Control:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("VersusScreenBg/Select Party2/dot1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VersusScreenBg/Select Party2/dot2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VersusScreenBg/Select Party2/dot3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "loopDots"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("VersusScreenBg/Select Party2/dot1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VersusScreenBg/Select Party2/dot2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VersusScreenBg/Select Party2/dot3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="PlayerSelection" type="CanvasLayer"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="PlayerSelectionControlNode" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = -2.0
+margin_right = 2.0
+margin_bottom = -2.0
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="PlayerSelectionControlNode"]
+position = Vector2( 960.5, 541 )
+scale = Vector2( 1.201, 1.122 )
+frames = SubResource( 10 )
+frame = 53
+speed_scale = 2.0
+playing = true
+
+[node name="PlayerSelectionBG" type="TextureRect" parent="PlayerSelectionControlNode"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+
+[node name="Line" type="TextureRect" parent="PlayerSelectionControlNode"]
+anchor_top = 0.09
+anchor_right = 1.0
+anchor_bottom = 0.108
+margin_left = 76.0
+margin_top = -0.200005
+margin_right = -110.0
+margin_bottom = 0.360001
+texture = ExtResource( 4 )
+stretch_mode = 5
+
+[node name="CharacterContainer" type="GridContainer" parent="PlayerSelectionControlNode"]
+columns = 5
+
+[node name="ButtonsParent" type="Control" parent="PlayerSelectionControlNode"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TextureRect1" type="TextureRect" parent="PlayerSelectionControlNode/ButtonsParent"]
+margin_left = 635.08
+margin_top = 147.04
+margin_right = 795.08
+margin_bottom = 325.04
+texture = ExtResource( 18 )
+
+[node name="TextureRect2" type="TextureRect" parent="PlayerSelectionControlNode/ButtonsParent"]
+margin_left = 825.08
+margin_top = 147.04
+margin_right = 985.08
+margin_bottom = 325.04
+texture = ExtResource( 18 )
+
+[node name="TextureRect3" type="TextureRect" parent="PlayerSelectionControlNode/ButtonsParent"]
+margin_left = 1015.08
+margin_top = 147.04
+margin_right = 1175.08
+margin_bottom = 325.04
+texture = ExtResource( 18 )
+
+[node name="TeamCharacter" type="GridContainer" parent="PlayerSelectionControlNode"]
+anchor_left = 0.049
+anchor_top = 0.163
+anchor_right = 0.524
+anchor_bottom = 0.694
+margin_left = 541.0
+margin_top = -29.0
+margin_right = 341.0
+margin_bottom = -300.0
+rect_min_size = Vector2( 160, 178 )
+custom_constants/vseparation = 30
+custom_constants/hseparation = 30
+columns = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="BackToMainBtn" type="TextureButton" parent="PlayerSelectionControlNode"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -230.0
+margin_top = 8.0
+margin_right = -133.0
+margin_bottom = 48.0
+rect_scale = Vector2( 1.61453, 1.92153 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="PlayerSelectionControlNode/BackToMainBtn"]
+self_modulate = Color( 0.482353, 1, 0.968627, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "Back"
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Select Party" type="TextureButton" parent="PlayerSelectionControlNode"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -1817.0
+margin_top = 35.0
+margin_right = -1720.0
+margin_bottom = 75.0
+expand = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PlayerSelectionControlNode/Select Party"]
+visible = false
+anchor_left = -0.175
+anchor_top = -0.125
+anchor_right = 2.805
+anchor_bottom = 1.237
+margin_left = -0.0249996
+margin_right = -40.085
+margin_bottom = -17.48
+rect_scale = Vector2( 1.16099, 1.47259 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Select Party"
+
+[node name="TextureRect" type="TextureRect" parent="PlayerSelectionControlNode/Select Party"]
+margin_left = -12.6459
+margin_top = 2.06444
+margin_right = 266.354
+margin_bottom = 42.0644
+texture = ExtResource( 1 )
+
+[node name="SelectYourCharacterLabel" type="TextureRect" parent="PlayerSelectionControlNode"]
+margin_left = 740.0
+margin_top = 473.0
+margin_right = 1113.0
+margin_bottom = 513.0
+texture = ExtResource( 20 )
+
+[node name="allCharacterScroll" type="ScrollContainer" parent="PlayerSelectionControlNode"]
+margin_left = 204.0
+margin_top = 720.0
+margin_right = 1921.0
+margin_bottom = 1028.0
+scroll_vertical_enabled = false
+
+[node name="allCharacter" type="HBoxContainer" parent="PlayerSelectionControlNode/allCharacterScroll"]
+
+[node name="ConfirmationButton" type="TextureButton" parent="PlayerSelectionControlNode"]
+visible = false
+margin_left = 760.0
+margin_top = 964.0
+margin_right = 1064.0
+margin_bottom = 1032.0
+texture_normal = ExtResource( 12 )
+
+[node name="VersusScreenBg" type="Control" parent="PlayerSelectionControlNode"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VersusBG" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+position = Vector2( 960.5, 541 )
+scale = Vector2( 1.201, 1.122 )
+frames = SubResource( 10 )
+frame = 52
+speed_scale = 2.0
+playing = true
+
+[node name="Player1Parent" type="Control" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+anchor_left = 0.299
+anchor_top = 0.187
+anchor_right = 0.669
+anchor_bottom = 0.437
+margin_left = 207.92
+margin_top = 4.03999
+margin_right = 207.52
+margin_bottom = 4.03998
+
+[node name="CharacterDog1" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent"]
+anchor_left = 0.047
+anchor_top = 0.09
+anchor_right = 0.267
+anchor_bottom = 0.892
+margin_left = -0.0960007
+margin_top = 0.0199986
+margin_right = -7.65282
+margin_bottom = -0.0240021
+texture = ExtResource( 18 )
+
+[node name="CharacterDog2" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent"]
+anchor_left = 0.378
+anchor_top = 0.09
+anchor_right = 0.597
+anchor_bottom = 0.896
+margin_left = -0.304016
+margin_top = 0.0199986
+margin_right = -7.09274
+margin_bottom = 0.0880585
+texture = ExtResource( 18 )
+
+[node name="CharacterDog3" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent"]
+anchor_left = 0.72
+anchor_top = 0.09
+anchor_right = 0.94
+anchor_bottom = 0.901
+margin_left = 0.039978
+margin_top = 0.0199986
+margin_right = -8.43628
+margin_bottom = -0.0219116
+texture = ExtResource( 18 )
+
+[node name="Control" type="Control" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+margin_left = 957.0
+margin_top = 509.0
+margin_right = 997.0
+margin_bottom = 549.0
+rect_pivot_offset = Vector2( 20, 20 )
+
+[node name="LineDown" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control"]
+margin_left = -34.0
+margin_top = 42.0
+margin_right = -3.0
+margin_bottom = 74.0
+texture = ExtResource( 25 )
+
+[node name="LineUp" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 45.0
+margin_top = -36.0
+margin_right = 76.0
+margin_bottom = -3.0
+texture = ExtResource( 27 )
+
+[node name="VsImage" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 954.0
+margin_top = 510.0
+margin_right = 998.0
+margin_bottom = 550.0
+texture = ExtResource( 26 )
+stretch_mode = 1
+
+[node name="Label1" type="Label" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+margin_left = 838.0
+margin_top = 90.0
+margin_right = 1048.0
+margin_bottom = 176.0
+custom_fonts/font = SubResource( 3 )
+text = "Enemy"
+align = 1
+
+[node name="Label2" type="Label" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+margin_left = 840.0
+margin_top = 918.0
+margin_right = 1031.0
+margin_bottom = 1004.0
+custom_fonts/font = SubResource( 3 )
+text = "You"
+align = 1
+
+[node name="Player2Grid" type="GridContainer" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+anchor_left = 0.315
+anchor_top = 0.619
+anchor_right = 0.688
+anchor_bottom = 0.86
+margin_left = 88.2
+margin_top = 69.48
+margin_right = 809.2
+margin_bottom = 329.48
+rect_min_size = Vector2( 160, 178 )
+custom_constants/vseparation = 30
+custom_constants/hseparation = 30
+columns = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Player1Grid" type="GridContainer" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+anchor_left = 0.331
+anchor_top = 0.141
+anchor_right = 0.654
+anchor_bottom = 0.349
+margin_left = -0.520081
+margin_top = -0.279999
+margin_right = 0.319946
+margin_bottom = 0.0799866
+rect_min_size = Vector2( 160, 178 )
+custom_constants/vseparation = 30
+custom_constants/hseparation = 30
+columns = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="joiningRoom" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+visible = false
+anchor_left = 0.047
+anchor_top = 0.044
+anchor_right = 0.231
+anchor_bottom = 0.079
+margin_left = -0.240005
+margin_top = -0.520004
+margin_right = -0.52002
+margin_bottom = -0.320007
+texture = ExtResource( 11 )
+expand = true
+
+[node name="Line2" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
+anchor_left = 0.04
+anchor_top = 0.09
+anchor_right = 0.967
+anchor_bottom = 0.105
+margin_left = -0.800003
+margin_top = -0.200005
+margin_right = -0.640137
+margin_bottom = -0.400002
+texture = ExtResource( 4 )
+stretch_mode = 5
+
+[node name="Select Party2" type="TextureButton" parent="PlayerSelectionControlNode/VersusScreenBg"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -1817.0
+margin_top = 35.0
+margin_right = -1550.0
+margin_bottom = 75.0
+expand = true
+stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/Select Party2"]
+anchor_left = -0.049
+anchor_top = 0.15
+anchor_right = 1.85
+anchor_bottom = 1.275
+margin_left = 0.0830002
+margin_right = 0.0501404
+texture = ExtResource( 9 )
+expand = true
+
+[node name="dot1" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/Select Party2"]
+visible = false
+anchor_left = 1.869
+anchor_top = 0.85
+anchor_right = 1.944
+anchor_bottom = 1.275
+margin_left = -0.0230103
+margin_right = -0.0480347
+margin_bottom = 0.999996
+texture = ExtResource( 10 )
+expand = true
+
+[node name="dot2" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/Select Party2"]
+visible = false
+anchor_left = 2.0
+anchor_top = 0.85
+anchor_right = 2.075
+anchor_bottom = 1.3
+margin_right = -0.0250244
+texture = ExtResource( 10 )
+expand = true
+
+[node name="dot3" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/Select Party2"]
+visible = false
+anchor_left = 2.124
+anchor_top = 0.85
+anchor_right = 2.191
+anchor_bottom = 1.3
+margin_left = -0.108032
+margin_right = 2.00293
+texture = ExtResource( 10 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSelectionControlNode"]
+root_node = NodePath("../..")
+playback_speed = 2.0
+anims/PlayerSelectionPanelAnim = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="BarsRotationLoop" type="AnimationPlayer" parent="PlayerSelectionControlNode"]
+autoplay = "VsBars"
+anims/RESET = SubResource( 6 )
+anims/VsBars = SubResource( 7 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="PlayerSelectionControlNode"]
+autoplay = "loopDots"
+anims/RESET = SubResource( 11 )
+anims/loopDots = SubResource( 12 )
+
+[connection signal="pressed" from="PlayerSelectionControlNode/BackToMainBtn" to="." method="_BackToMainFromPlayerSelection"]
+[connection signal="pressed" from="PlayerSelectionControlNode/ConfirmationButton" to="PlayerSelectionControlNode" method="_on_ConfirmationButton_pressed"]
