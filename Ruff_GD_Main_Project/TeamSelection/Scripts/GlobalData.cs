@@ -31,16 +31,16 @@ public class GlobalData
     }
     public void AddToList()
     {
-        CharacterList.Add(new UnitData(1, BREED.MEDIUM, SUB_BREED.BEAGLE, "Beagle",
+        CharacterList.Add(new UnitData(1, BREED.SMALL, SUB_BREED.BEAGLE, "Beagle",
                 "res://CommonAssets/CharacterSprites/Beagle/Beagle_profile.png",
                 "res://CommonAssets/CharacterSprites/Beagle/beagle2.png"));
-        CharacterList.Add(new UnitData(2, BREED.LARGE, SUB_BREED.CORGI, "Corgi",
+        CharacterList.Add(new UnitData(2, BREED.SMALL, SUB_BREED.CORGI, "Corgi",
                 "res://CommonAssets/CharacterSprites/Corgi/Corgi_profile.png",
                 "res://CommonAssets/CharacterSprites/Corgi/corgis2 .png"));
         CharacterList.Add(new UnitData(3, BREED.MEDIUM, SUB_BREED.GOLDENRETRIEVER, "Golden",
                 "res://CommonAssets/CharacterSprites/GoldenR/GoldenRetriever_profile.png",
                 "res://CommonAssets/CharacterSprites/GoldenR/golden retriver3 .png"));
-        CharacterList.Add(new UnitData(4, BREED.SMALL, SUB_BREED.LABRADOR, "Labrador",
+        CharacterList.Add(new UnitData(4, BREED.MEDIUM, SUB_BREED.LABRADOR, "Labrador",
                 "res://CommonAssets/CharacterSprites/Labrador/Labrador_profile.png",
                 "res://CommonAssets/CharacterSprites/Labrador/labrador4.png"));
         CharacterList.Add(new UnitData(5, BREED.MEDIUM, SUB_BREED.POODLE, "Poodle",

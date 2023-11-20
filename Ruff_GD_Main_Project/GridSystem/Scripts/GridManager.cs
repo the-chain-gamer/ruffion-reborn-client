@@ -45,7 +45,6 @@ namespace RuffGdMainProject.GridSystem
             CM = GetNode<CardsManager>("CardsManager");
             UiController = GetNode<CanvasLayer>("CanvasLayer").GetChild<GameplayUiController>(0);
             camShake = GetNode<CameraShake>("Camera2D");
-            // GD.Print("GetNode<CanvasLayer>('CanvasLayer').GetChild<GameplayUiController>(0) = " + GetNode<CanvasLayer>("CanvasLayer").GetChild<GameplayUiController>(0));
             await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
             TilesList = new List<Tile>();
             ActiveRoadBlocks = new List<Cone>();
@@ -94,17 +93,49 @@ namespace RuffGdMainProject.GridSystem
             // Update profile pictures and show cards
             UiController.UpdateProfilePic(1, player1.MyUnits[0]);
             UiController.UpdateProfilePic(2, player2.MyUnits[0]);
+             List<Unit> player1RemainingUnits = new List<Unit>();
+            if (player1.MyUnits.Count == 3)
+            {
+                player1RemainingUnits.Add(player1.MyUnits[1]);
+                player1RemainingUnits.Add(player1.MyUnits[2]);
+                UiController.UpdateUnitsProfilePic(1, player1RemainingUnits);
+            }
+            else if (player1.MyUnits.Count == 2)
+            {
+                player1RemainingUnits.Add(player1.MyUnits[1]);
+                UiController.UpdateUnitsProfilePic(1, player1RemainingUnits);
+            }
+
+             List<Unit> player2RemainingUnits = new List<Unit>();
+            if (player2.MyUnits.Count == 3)
+            {
+                player2RemainingUnits.Add(player2.MyUnits[1]);
+                player2RemainingUnits.Add(player2.MyUnits[2]);
+                UiController.UpdateUnitsProfilePic(2, player2RemainingUnits);
+            }
+            else if (player1.MyUnits.Count == 2)
+            {
+                player2RemainingUnits.Add(player2.MyUnits[1]);
+                UiController.UpdateUnitsProfilePic(2, player2RemainingUnits);
+            }
+
             UiController.Init();
+            
+
             await ToSignal(GetTree().CreateTimer(3f), "timeout");
-             SoundManager.Instance.PlaySoundByName("PlayerSpawnSound");
+            SoundManager.Instance.PlaySoundByName("PlayerSpawnSound");
+            
+            UiController.PlayCardAnimation();
             if(player1.IsLocalPlayer)
             {
                 UiController.UpdateNameLbls(1);
+                CM.LoadCardDeck(player1);
                 StartFirstTurn(player1);
             }
             else
             {
                 UiController.UpdateNameLbls(2);
+                CM.LoadCardDeck(player2);
                 StartFirstTurn(player2);
             }
 
@@ -112,8 +143,6 @@ namespace RuffGdMainProject.GridSystem
 
         private void StartFirstTurn(Player player)
         {
-            CM.LoadCardDeck(player);
-            CM.ShowRandomCardsInContainer();
             TM.StartTurns();
         }
 
@@ -122,9 +151,7 @@ namespace RuffGdMainProject.GridSystem
             var maxCols = 7;
             int count = 0;
 
-
             for(int row = 0; row < maxRows; row++) {
-                // GD.Print("row " + row);
                 if(row == 1 || row == 3){
                     maxCols = 6;
                 }
@@ -133,7 +160,6 @@ namespace RuffGdMainProject.GridSystem
                 }
 
                 for(int col = 0; col < maxCols; col++) {
-                    // GD.Print("col " + col);
                     TilesList[count].RowNum = row;
                     TilesList[count].ColNum = col;
                     TilesList[count].TileNo = count+1;
@@ -146,7 +172,6 @@ namespace RuffGdMainProject.GridSystem
 
         private void CreateGraph() {
 
-            // GD.Print("it's Create GRAPH :) :)");
             List<CellState> cellStates = new List<CellState>();
             foreach (var item in TilesList)
             {
@@ -155,6 +180,7 @@ namespace RuffGdMainProject.GridSystem
             }
             HexGridGraph = new Graph(cellStates, movementTypes);
         }
+
         private List<Tile> VisualizePath(Coordinate2D start, Coordinate2D goal, List<Coordinate2D> lst) {
             ResetGridVisuals();
             lst.Add(start);
@@ -164,7 +190,6 @@ namespace RuffGdMainProject.GridSystem
             {
                 var p = TilesList.Find(x => x.ColNum.Equals(item.X) && x.RowNum.Equals(item.Y));
                 tiles.Add(p);
-                // p.MarkAsReachable();
             }
             return tiles;
         }
@@ -191,7 +216,6 @@ namespace RuffGdMainProject.GridSystem
             {
                 var p = TilesList.Find(x => x.ColNum.Equals(item.X) && x.RowNum.Equals(item.Y));
                 cost += p.MovementCost;
-                // p.MarkAsReachable();
             }
             return cost;
         }
@@ -204,20 +228,16 @@ namespace RuffGdMainProject.GridSystem
         }
 
         public Tile GetTilePos(int tileId){
-            // GD.Print("TilesList[tileId] NODE = " + (TilesList[tileId-1]));
-            return TilesList[tileId-1];//TilesList[tileId].GetOwner<Node2D>().Position;
+            return TilesList[tileId-1];
         }
 
         public void OnUnitSelected(Tile unitTile, Unit unit = null){
-            // var pos = new Coordinate2D(unitTile.ColNum, unitTile.RowNum, OffsetTypes.OddRowsRight);
-            // var neighbors = HexGridGraph.GetNeighbors(pos, unit == null);
             VisualizeMovementRange();
             CanSelectCell = true;
         }
         public void BlockTile(Tile tile, Unit unit){
             HexGridGraph.BlockCells(new Coordinate2D(tile.ColNum, tile.RowNum, OffsetTypes.OddRowsRight));
             tile.CurrentUnit = unit;
-            tile.MarkAsHighlighted();
             tile.ActivatePlayerhighlight(unit.MyPlayer.IsLocalPlayer);
             tile.IsTaken = true;
         }
@@ -225,8 +245,7 @@ namespace RuffGdMainProject.GridSystem
         public void BlockTile(Tile tile, Cone cone){
             HexGridGraph.BlockCells(new Coordinate2D(tile.ColNum, tile.RowNum, OffsetTypes.OddRowsRight));
             tile.CurrentCone = cone;
-            tile.MarkAsHighlighted();
-            tile.ActivatePlayerhighlight(cone.MyPlayer.IsLocalPlayer);
+            tile.MarkAsDeHighlighted();
             tile.IsTaken = true;
         }
 
@@ -262,7 +281,6 @@ namespace RuffGdMainProject.GridSystem
                 var path = HexGridGraph.GetShortestPath(unitPos, targetPos, movementType);
                 totalCost = PathMovementCost(unitPos, targetPos, path);
             }
-            // GD.Print("TOTAL MOVEMENT COST = " + totalCost);
             if (HexGridGraph.IsWithinMovementRange(unitPos, targetPos, SelectedUnit.MovementPoints, movementType))
             {
                 SelectedUnit.ConsumeMovementPoints(totalCost);
@@ -270,30 +288,19 @@ namespace RuffGdMainProject.GridSystem
                 unt.Tile = targetCell.TileNo;
                 UnitDataModel[] array = {unt};
                 _ = StartupScript.Startup.Multiplayer.MoveUnit(array);
-                // SelectedUnit.Cell.TileNo = tmpNo;
-                // SelectedUnit.Move(targetCell, totalCost);
             }
         }
 
         //multiplayer move
         public void MoveUnits(PlayerDataModel current)
         {
-            GD.Print("MOVING UNITS @@@@");
             var player = TM.GetPlayerByID(current.ID);
-            GD.Print("Player that we want to move belongs to playr " + player.PlayerNumber);
-            GD.Print("Current Player Unit[0] tile  = " + current.Assets.Dogs[0].Tile);
-            GD.Print("Current Player Unit[1] tile  = " + current.Assets.Dogs[1].Tile);
-            GD.Print("Current Player Unit[2] tile  = " + current.Assets.Dogs[2].Tile);
-
             foreach (var u in player.MyUnits)
             {
-                GD.Print("UnitID = " + u.UnitId + " Tile = " + u.Cell.TileNo);
                 var tmp = current.Assets.Dogs.Find(x => x.DogId == u.UnitId.ToString());
-                GD.Print("Iterating in loop}}}}}}}}} ");
-                GD.Print("Target tile = " + tmp.Tile);
+
                 if(tmp.Tile != -1 && tmp.Tile != u.Cell.TileNo)
                 {
-                    GD.Print("Moving my unit now ^^^^ ");
                     u.Move(GetTileFromNumber(tmp.Tile));
                     break;
                 }
@@ -311,7 +318,41 @@ namespace RuffGdMainProject.GridSystem
             }
             foreach (var t in rangeTiles)
             {
-                t.MarkAsReachable();
+                if(!t.IsTaken)
+                {
+                    t.MarkAsReachable();
+                }
+            }
+        }
+
+        public void VisualizeAttackRange(Unit myUnit)
+        {
+            var selectedUnitTile = myUnit?.Cell;
+            if (selectedUnitTile == null) return;
+
+            var unitPos = new Coordinate2D(selectedUnitTile.ColNum, selectedUnitTile.RowNum, OffsetTypes.OddRowsRight);
+            var attackRange = GetUnitAttackRangeValue(myUnit);
+
+            var rangeTiles = HexGridGraph.GetRange(unitPos, attackRange)
+                .Select(item => TilesList.FirstOrDefault(x => x.ColNum == item.X && x.RowNum == item.Y))
+                .Where(tile => tile != null);
+
+            foreach (var tile in rangeTiles)
+            {
+                bool hasEnemyUnit = tile.CurrentUnit != null && tile.CurrentUnit.MyPlayer.PlayerNumber != myUnit.MyPlayer.PlayerNumber;
+                bool hasEnemyCone = tile.CurrentCone != null && tile.CurrentCone.MyPlayer.PlayerNumber != myUnit.MyPlayer.PlayerNumber;
+
+                if (hasEnemyUnit || hasEnemyCone)
+                {
+                    tile.MarkAsEnemy();
+                }
+                else
+                {
+                    if(!tile.IsTaken)
+                    {
+                        tile.MarkAsReachable();
+                    }
+                }
             }
         }
 
@@ -342,9 +383,23 @@ namespace RuffGdMainProject.GridSystem
             {
                 var p = TilesList.Find(x => x.ColNum.Equals(item.X) && x.RowNum.Equals(item.Y));
                 tiles.Add(p);
-                // p.MarkAsReachable();
             }
             return tiles;
+        }
+
+        public bool IsEnemyInAttackRange(Unit enemy)
+        {
+            var myUnit = TM.GetCurrentUnit();
+            var unitTile = myUnit.Cell; // Using ?. to handle null reference
+            var enemyTile = enemy.Cell; // Using ?. to handle null reference
+
+            if (unitTile == null || enemyTile == null) return false;
+
+            var myPos = new Coordinate2D(unitTile.ColNum, unitTile.RowNum, OffsetTypes.OddRowsRight);
+            var enemyPos = new Coordinate2D(enemyTile.ColNum, enemyTile.RowNum, OffsetTypes.OddRowsRight);
+            var neighbors = HexGridGraph.GetRange(myPos, GetUnitAttackRangeValue(TM.GetCurrentUnit()));
+
+            return neighbors.Contains(enemyPos);
         }
 
         public bool IsEnemyNearMe()
@@ -373,6 +428,27 @@ namespace RuffGdMainProject.GridSystem
             
             return false;
         }
+
+        public int GetUnitAttackRangeValue(Unit unit)
+        {
+            int range;
+
+            switch (unit.data.UnitBreed)
+            {
+                case BREED.SMALL:
+                    range = 3;
+                    break;
+                case BREED.MEDIUM:
+                    range = 2;
+                    break;
+                default:
+                    range = 1;
+                    break;
+            }
+
+            return range;
+        }
+
 
         private bool NoUnitFound(Tile p, Tile unitTile)
         {
@@ -428,9 +504,7 @@ namespace RuffGdMainProject.GridSystem
         public void AddRoadBlock(Tile spawnTile, Player myPlayer, bool isMultiplayerRequest = false)
         {
             //spawn Cone Scene
-            GD.Print("****************** Adding Cone **************");
             var cone = (Cone)ConeScene.Instance();
-            GD.Print("****************** Instance Cone **************");
             GetNode<Node2D>("TilesParent").GetChild(0).AddChild(cone);
             ActiveRoadBlocks.Add(cone);
             cone.Init(myPlayer, spawnTile, 10);
@@ -479,7 +553,6 @@ namespace RuffGdMainProject.GridSystem
 
         public void CheckConeLife(int playerNum)
         {
-            // GD.Print("CheckConeLife");
             if(ActiveRoadBlocks.Count > 0)
             {
                 foreach (var item in ActiveRoadBlocks)

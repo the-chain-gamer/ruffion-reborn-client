@@ -19,7 +19,6 @@ namespace RuffGdMainProject.UiSystem
 
             CardCategory = data.CardSubType;
 
-
             var texture = GD.Load(data.CardImagePath);
             GetNode("TextureButton").GetNode<TextureRect>("TextureRect").Texture = (Texture)texture;
         }
@@ -35,7 +34,6 @@ namespace RuffGdMainProject.UiSystem
 
         public void _on_TextureButton1_pressed()
         {
-            GD.Print("Button Pressed");
             SoundManager.Instance.PlaySoundByName("ButtonSound2");
             CardSelectionManager.instance.RemoveFromDeck(CardID);
             GetNode<Control>("TextureButton").GetParent().QueueFree();
@@ -44,9 +42,7 @@ namespace RuffGdMainProject.UiSystem
 
         public void _on_TextureButton_pressed()
         {
-            GD.Print("Entered on Button");
             SoundManager.Instance.PlaySoundByName("ButtonSound2");
-            //  GetNode<Control>("TextureButton").RectScale = new Vector2(0.5f, 0.5f);
             CardSelectionManager.instance.CardZoomIn(CardID);
         }
 

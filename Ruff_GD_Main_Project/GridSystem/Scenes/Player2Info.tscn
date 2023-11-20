@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://GridSystem/Fonts/new_dynamicfont2.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GridSystem/Scripts/PlayerInfo.cs" type="Script" id=2]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Vector 6-1.png" type="Texture" id=3]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Vector 6-2.png" type="Texture" id=4]
+[ext_resource path="res://GridSystem/Assets/Gameplay/spark 1.png" type="Texture" id=5]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Group 107.png" type="Texture" id=6]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Avatar (1).png" type="Texture" id=7]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Rectangle 24.png" type="Texture" id=8]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Health-Bar.png" type="Texture" id=9]
+
+[sub_resource type="StyleBoxTexture" id=72]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 741, 52 )
+
+[sub_resource type="StyleBoxTexture" id=70]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 741, 52 )
+
+[node name="Player2Info" type="Control"]
+anchor_left = 0.777
+anchor_top = 0.035
+anchor_right = 0.973
+anchor_bottom = 0.174
+margin_left = 0.383057
+margin_top = 0.200005
+margin_right = 119.325
+margin_bottom = 48.365
+rect_scale = Vector2( 0.76, 0.76 )
+rect_clip_content = true
+mouse_filter = 2
+input_pass_on_modal_close_click = false
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 2 )
+
+[node name="TurnHighlight" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.117647 )
+anchor_right = 1.07
+anchor_bottom = 1.258
+margin_right = -0.140076
+margin_bottom = -0.0728455
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+
+[node name="NameBg" type="TextureRect" parent="."]
+light_mask = 512
+anchor_left = 0.142
+anchor_top = 0.287
+anchor_right = 0.64
+anchor_bottom = 0.708
+margin_left = -0.0687752
+margin_top = 0.0575256
+margin_right = 0.0252075
+margin_bottom = -0.0414734
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 1
+
+[node name="PLabel" type="Label" parent="NameBg"]
+self_modulate = Color( 0.235294, 0.847059, 0.803922, 1 )
+anchor_left = 0.027
+anchor_top = 0.18
+anchor_right = 0.966
+anchor_bottom = 0.82
+margin_left = 0.00399995
+margin_right = 0.0319977
+custom_fonts/font = ExtResource( 1 )
+text = "Player 2"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="ProfileBg" type="TextureRect" parent="."]
+light_mask = 512
+anchor_left = 0.522
+anchor_right = 1.02
+anchor_bottom = 1.168
+margin_left = -0.0340118
+margin_right = 0.059967
+margin_bottom = 0.00798035
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 1
+
+[node name="ProfilePic" type="TextureRect" parent="ProfileBg"]
+anchor_left = 0.29
+anchor_top = 0.172
+anchor_right = 0.716
+anchor_bottom = 0.641
+margin_left = 0.086647
+margin_top = -0.362358
+margin_right = -0.0637512
+margin_bottom = 0.0149536
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Spark" type="TextureRect" parent="."]
+light_mask = 512
+anchor_left = 0.646
+anchor_top = 0.697
+anchor_right = 0.778
+anchor_bottom = 1.008
+margin_left = 0.137985
+margin_top = -0.0480042
+margin_right = -0.0660095
+margin_bottom = -0.0570068
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Player2Hp" type="TextureRect" parent="."]
+anchor_left = 0.404
+anchor_top = 0.751
+anchor_right = 0.856
+anchor_bottom = 0.816
+margin_left = -108.274
+margin_top = -6.80679
+margin_right = -108.132
+margin_bottom = 2.30469
+texture = ExtResource( 9 )
+expand = true
+flip_h = true
+flip_v = true
+
+[node name="UnitProgressBar" type="ProgressBar" parent="."]
+margin_left = 102.338
+margin_top = 146.053
+margin_right = 271.338
+margin_bottom = 160.053
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_styles/fg = SubResource( 72 )
+custom_styles/bg = SubResource( 70 )
+value = 100.0
+percent_visible = false

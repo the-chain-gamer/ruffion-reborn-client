@@ -22,7 +22,6 @@ public class MainSceneHandler : CanvasLayer
         GetNode("MainPanel").GetNode<Control>("MainPanelControlNode").Hide();
         GetNode("DeckPanel").GetNode<Control>("DeckControlNode").Hide();
         GetNode("PlayerSelection").GetNode<Control>("PlayerSelectionControlNode").Hide();
-        //GetNode("GamePlay").GetNode<Node2D>("GamePlayParent").Hide();
     }
     public void _on_MainPanel_PlayBtnPressed()
     {
@@ -52,7 +51,6 @@ public class MainSceneHandler : CanvasLayer
     public void _on_MainPanel_DeckBtnPressed()
     {
         SoundManager.Instance.PlaySoundByName("ButtonSound");
-        GD.Print("DECK PRESSED");
         HideALL();
         GetNode("DeckPanel").GetNode<Control>("DeckControlNode").Show();
     }
@@ -69,6 +67,5 @@ public class MainSceneHandler : CanvasLayer
         SoundManager.Instance.PlaySoundByName("ButtonSound");
         HideALL();
         GetNode("GamePlay").GetNode<Node2D>("GamePlayParent").Hide();
-        //$GamePlay/GameplayManager.SpawnPlayers()
     }
 }

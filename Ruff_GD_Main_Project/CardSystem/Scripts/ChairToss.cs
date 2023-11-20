@@ -30,8 +30,6 @@ public class ChairToss : EffectAnimPlayer
             GlobalPosition += Velocity * delta;
 
             float distanceToTargetX = GlobalPosition.DistanceTo(TargetPosition);
-            // float distanceToTargetX = Math.Abs(TargetPosition.x - GlobalPosition.x);
-            GD.Print("distanceToTarget = " + distanceToTargetX);
             if (distanceToTargetX <= CuttofDistance)  // Adjust epsilon value as needed
             {
                 Velocity = Vector2.Zero;

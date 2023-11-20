@@ -20,7 +20,6 @@ namespace RuffGdMainProject.UiSystem
         {
             isZeroCard = isZero;
             Data = data;
-            // GD.Print("CARD IDDDD: " + data.CardID);
             CardID = data.CardID;
             if(!isZero)
             {
@@ -37,15 +36,12 @@ namespace RuffGdMainProject.UiSystem
                 if (canDrag)
                 {
                     tempCard.RectPosition = new Vector2(GetGlobalMousePosition().x - (CardImage.RectSize.x / 2), GetGlobalMousePosition().y - (CardImage.RectSize.y / 2));
-                    // GD.Print("DRAgggginggggggg");
                 }
                 else if(!canDrag && tempCard != null)
                 {
                     tempCard.QueueFree();
                     tempCard = null;
-                    // GD.Print("DROPPPPPPPPEDDDDDDDDDDDDDDDDDDDDDD");
                     GridManager.GM.CM.DropCard(this);
-                    //QueueFree();
                 }
             }
         }
@@ -55,18 +51,25 @@ namespace RuffGdMainProject.UiSystem
             {
                 if (mouseButton.IsPressed() && mouseButton.ButtonIndex == (int)ButtonList.Left)
                 {
-                    if(Data.ManaCost <= GridManager.GM.TM.GetCurrentPlayerTotalMana() && !isGreyedOut)
+                    if(GridManager.GM.TM.IsLocalPlayerTurn())
                     {
-                        canDrag = true;
-                        // GD.Print("DOWNNNNN");
-                        // GD.Print("GetCurrentPlayerTotalMana()= " + GridManager.GM.TM.GetCurrentPlayerTotalMana());
-                        //create a temp card
-                        SpawnDragableCards();
+                        if(Data.ManaCost <= GridManager.GM.TM.GetCurrentPlayerTotalMana() && !isGreyedOut)
+                        {
+                            canDrag = true;
+                            //create a temp card
+                            SpawnDragableCards();
+                        }
+                    }
+                    else
+                    {
+                        //show card in a window
+                        Logger.UiLogger.Log(Logger.LogLevel.INFO, Data.CardImagePath);
+                        GridManager.GM.UiController.ShowCard(Data.CardImagePath);
                     }
                 }
+
                 if(!mouseButton.IsPressed() && mouseButton.ButtonIndex == (int)ButtonList.Left)
                 {
-                    // GD.Print("GetCurrentPlayerTotalMana()= " + GridManager.GM.TM.GetCurrentPlayerTotalMana());
                     if(Data.ManaCost <= GridManager.GM.TM.GetCurrentPlayerTotalMana())
                     {
                         canDrag = false;
@@ -77,11 +80,12 @@ namespace RuffGdMainProject.UiSystem
         
         public void OnMouseEnter()
         {
-            
+            // GridManager.GM.VisualizeAttackRange(GridManager.GM.TM.GetCurrentUnit());
         }
 
-        public void OnMouseExit() {
-            
+        public void OnMouseExit()
+        {
+            // GridManager.GM.ResetGridVisuals();
         }
 
         public void SpawnDragableCards()

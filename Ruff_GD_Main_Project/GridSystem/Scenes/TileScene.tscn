@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GridSystem/Assets/Gameplay/Polygon 14.png" type="Texture" id=1]
 [ext_resource path="res://GridSystem/Scripts/Tile.cs" type="Script" id=2]
 [ext_resource path="res://GridSystem/Assets/Gameplay/Polygon 20.png" type="Texture" id=3]
 [ext_resource path="res://GridSystem/Assets/Gameplay/Polygon 18.png" type="Texture" id=4]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Polygon 20-2.png" type="Texture" id=5]
 
 [node name="HexTile" type="Node2D"]
 z_index = 1
@@ -26,7 +27,13 @@ position = Vector2( 0, -2.5 )
 scale = Vector2( 0.128824, 0.129098 )
 texture = ExtResource( 3 )
 
-[node name="PlayerSprite" type="Sprite" parent="."]
+[node name="FriendlySprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -2.5 )
+scale = Vector2( 0.128824, 0.129098 )
+texture = ExtResource( 5 )
+
+[node name="ActiveSprite" type="Sprite" parent="."]
 visible = false
 self_modulate = Color( 0.541176, 1, 0.411765, 1 )
 position = Vector2( 0, -2.5 )

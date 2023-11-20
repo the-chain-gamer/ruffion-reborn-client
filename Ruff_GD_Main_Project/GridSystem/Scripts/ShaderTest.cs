@@ -17,7 +17,6 @@ public class ShaderTest : AnimatedSprite
     public override void _Ready()
     {
         TweenObj = GetChild<Tween>(0);
-        // LineColor = new Color(255, 255, 255, 1);
         LineColor.a = 0f;
         OrigonalMat = Material;
     }
@@ -35,12 +34,10 @@ public class ShaderTest : AnimatedSprite
 
     public void OnMouseExit()
     {
-        // LineColor = new Color(0f, 0f, 0f, 0f);
         TweenObj.InterpolateMethod(this, "OutlineEffect",
             LineColor.a, 0f, 0.25f, Tween.TransitionType.Linear,
                 Tween.EaseType.Out, 0f);
         TweenObj.Start();
-        // LineColor = new Color(0f, 0f, 0f, 0f);
         
     }
 
@@ -49,6 +46,5 @@ public class ShaderTest : AnimatedSprite
         LineColor.a = value;
         var mat = ((ShaderMaterial)Material);
         mat.SetShaderParam("line_color", LineColor);
-        // GD.Print(mat.GetShaderParam("line_color"));
     }
 }

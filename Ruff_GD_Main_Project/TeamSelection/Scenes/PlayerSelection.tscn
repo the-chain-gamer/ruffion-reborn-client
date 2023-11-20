@@ -1,33 +1,27 @@
-[gd_scene load_steps=139 format=2]
+[gd_scene load_steps=126 format=2]
 
 [ext_resource path="res://TeamSelection/Art/CharacterSelection/Select team.png" type="Texture" id=1]
-[ext_resource path="res://Cards_UI/Scripts/Same Scripts/CustomButtonHandler.cs" type="Script" id=2]
+[ext_resource path="res://Cards_UI/Scripts/Main Menu/CustomButtonHandler.cs" type="Script" id=2]
 [ext_resource path="res://TeamSelection/Scripts/CharacterSelectionManager.cs" type="Script" id=3]
 [ext_resource path="res://TeamSelection/Art/CharacterSelection/SeparatingLine.png" type="Texture" id=4]
 [ext_resource path="res://TeamSelection/Art/CharacterSelection/Bg.png" type="Texture" id=5]
 [ext_resource path="res://TeamSelection/Fonts/upheavtt.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Cards_UI/Fonts/upheavtt.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://TeamSelection/Scenes/VSscreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Cards_UI/Old Art/Fonts/upheavtt.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-03.png" type="Texture" id=9]
-[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-01.png" type="Texture" id=10]
-[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-02.png" type="Texture" id=11]
 [ext_resource path="res://TeamSelection/Art/CharacterSelection/ConfirmButton.png" type="Texture" id=12]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars38.png" type="Texture" id=13]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars57.png" type="Texture" id=14]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars12.png" type="Texture" id=15]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars28.png" type="Texture" id=16]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars32.png" type="Texture" id=17]
-[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterSelected.png" type="Texture" id=18]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars40.png" type="Texture" id=19]
 [ext_resource path="res://TeamSelection/Art/CharacterSelection/Select Your Characters.png" type="Texture" id=20]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars20.png" type="Texture" id=21]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars42.png" type="Texture" id=22]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars13.png" type="Texture" id=23]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars41.png" type="Texture" id=24]
-[ext_resource path="res://TeamSelection/Art/Versus Screen/LineDown.png" type="Texture" id=25]
-[ext_resource path="res://TeamSelection/Art/Versus Screen/VS.png" type="Texture" id=26]
-[ext_resource path="res://TeamSelection/Art/Versus Screen/LineUp.png" type="Texture" id=27]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars58.png" type="Texture" id=28]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/Selected screen_new.png" type="Texture" id=29]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars25.png" type="Texture" id=30]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars24.png" type="Texture" id=32]
 [ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars36.png" type="Texture" id=33]
@@ -146,370 +140,6 @@ font_data = ExtResource( 8 )
 size = 13
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 45
-extra_spacing_top = 25
-extra_spacing_bottom = 20
-font_data = ExtResource( 7 )
-
-[sub_resource type="Animation" id=4]
-resource_name = "PlayerSelectionPanelAnim"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -500, 206 ), Vector2( 600, 206 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player2Grid:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 2000, 738 ), Vector2( 675, 738 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.66 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 20, 20 ), Vector2( 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.66 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 499, 140 ), Vector2( 954, 510 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.66 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineUp:self_modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.7, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineDown:self_modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0.7, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/Select Party2:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/joiningRoom:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 782, 206 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player2Grid:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 693, 738 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 954, 510 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineDown:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineUp:self_modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineDown:self_modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control:rect_rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/Select Party2:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/joiningRoom:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=6]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("VersusScreenBg/VersusBG/Control:rect_rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "VsBars"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("VersusScreenBg/VersusBG/Control:rect_rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
-
-[sub_resource type="Animation" id=11]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("VersusScreenBg/Select Party2/dot1:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("VersusScreenBg/Select Party2/dot2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("VersusScreenBg/Select Party2/dot3:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "loopDots"
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("VersusScreenBg/Select Party2/dot1:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("VersusScreenBg/Select Party2/dot2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("VersusScreenBg/Select Party2/dot3:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
 [node name="PlayerSelection" type="CanvasLayer"]
 script = ExtResource( 2 )
 __meta__ = {
@@ -529,7 +159,7 @@ script = ExtResource( 3 )
 position = Vector2( 960.5, 541 )
 scale = Vector2( 1.201, 1.122 )
 frames = SubResource( 10 )
-frame = 53
+frame = 78
 speed_scale = 2.0
 playing = true
 
@@ -555,39 +185,57 @@ stretch_mode = 5
 columns = 5
 
 [node name="ButtonsParent" type="Control" parent="PlayerSelectionControlNode"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.156
+anchor_top = 0.144
+anchor_right = 0.831
+anchor_bottom = 0.618
+margin_left = 0.47998
+margin_top = -0.520004
+margin_right = 0.47998
+margin_bottom = -0.439941
 
 [node name="TextureRect1" type="TextureRect" parent="PlayerSelectionControlNode/ButtonsParent"]
-margin_left = 635.08
-margin_top = 147.04
-margin_right = 795.08
-margin_bottom = 325.04
-texture = ExtResource( 18 )
+anchor_left = 0.045
+anchor_top = 0.027
+anchor_right = 0.336
+anchor_bottom = 0.906
+margin_left = -0.320004
+margin_top = 0.176
+margin_right = -0.456024
+margin_bottom = 0.127991
+texture = ExtResource( 29 )
 
 [node name="TextureRect2" type="TextureRect" parent="PlayerSelectionControlNode/ButtonsParent"]
-margin_left = 825.08
-margin_top = 147.04
-margin_right = 985.08
-margin_bottom = 325.04
-texture = ExtResource( 18 )
+anchor_left = 0.36
+anchor_top = 0.02
+anchor_right = 0.651
+anchor_bottom = 0.898
+margin_left = 0.439972
+margin_top = -0.240001
+margin_right = 0.303955
+margin_bottom = 0.223969
+texture = ExtResource( 29 )
 
 [node name="TextureRect3" type="TextureRect" parent="PlayerSelectionControlNode/ButtonsParent"]
-margin_left = 1015.08
-margin_top = 147.04
-margin_right = 1175.08
-margin_bottom = 325.04
-texture = ExtResource( 18 )
+anchor_left = 0.676
+anchor_top = 0.033
+anchor_right = 0.967
+anchor_bottom = 0.912
+margin_left = -0.0958862
+margin_top = -6.896
+margin_right = -0.231934
+margin_bottom = -6.944
+texture = ExtResource( 29 )
 
 [node name="TeamCharacter" type="GridContainer" parent="PlayerSelectionControlNode"]
-anchor_left = 0.049
-anchor_top = 0.163
-anchor_right = 0.524
-anchor_bottom = 0.694
-margin_left = 541.0
-margin_top = -29.0
-margin_right = 341.0
-margin_bottom = -300.0
+anchor_left = 0.185
+anchor_top = 0.148
+anchor_right = 0.81
+anchor_bottom = 0.592
+margin_left = -0.200012
+margin_top = 0.160004
+margin_right = -0.200073
+margin_bottom = -0.359985
 rect_min_size = Vector2( 160, 178 )
 custom_constants/vseparation = 30
 custom_constants/hseparation = 30
@@ -597,15 +245,17 @@ __meta__ = {
 }
 
 [node name="BackToMainBtn" type="TextureButton" parent="PlayerSelectionControlNode"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -230.0
-margin_top = 8.0
-margin_right = -133.0
-margin_bottom = 48.0
+anchor_left = 0.88
+anchor_top = 0.021
+anchor_right = 0.932
+anchor_bottom = 0.069
+margin_left = 0.399902
+margin_top = 0.319998
+margin_right = -38.4401
+margin_bottom = -24.52
 rect_scale = Vector2( 1.61453, 1.92153 )
 expand = true
-stretch_mode = 4
+stretch_mode = 5
 __meta__ = {
 "_edit_group_": true
 }
@@ -647,18 +297,30 @@ custom_fonts/font = SubResource( 8 )
 text = "Select Party"
 
 [node name="TextureRect" type="TextureRect" parent="PlayerSelectionControlNode/Select Party"]
-margin_left = -12.6459
-margin_top = 2.06444
-margin_right = 266.354
-margin_bottom = 42.0644
+anchor_left = -0.13
+anchor_top = 0.052
+anchor_right = 2.746
+anchor_bottom = 1.052
+margin_left = -0.0358992
+margin_top = -0.0155599
+margin_right = -0.00799561
+margin_bottom = -0.0156021
 texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
 
 [node name="SelectYourCharacterLabel" type="TextureRect" parent="PlayerSelectionControlNode"]
-margin_left = 740.0
-margin_top = 473.0
-margin_right = 1113.0
-margin_bottom = 513.0
+anchor_left = 0.345
+anchor_top = 0.602
+anchor_right = 0.607
+anchor_bottom = 0.652
+margin_left = -0.400024
+margin_top = -0.160034
+margin_right = 0.559937
+margin_bottom = -0.160034
 texture = ExtResource( 20 )
+expand = true
+stretch_mode = 6
 
 [node name="allCharacterScroll" type="ScrollContainer" parent="PlayerSelectionControlNode"]
 margin_left = 204.0
@@ -677,245 +339,8 @@ margin_right = 1064.0
 margin_bottom = 1032.0
 texture_normal = ExtResource( 12 )
 
-[node name="VersusScreenBg" type="Control" parent="PlayerSelectionControlNode"]
+[node name="VSScreen" parent="PlayerSelectionControlNode" instance=ExtResource( 7 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="VersusBG" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 5 )
-stretch_mode = 1
-
-[node name="AnimatedSprite4" type="AnimatedSprite" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-position = Vector2( 960.5, 541 )
-scale = Vector2( 1.201, 1.122 )
-frames = SubResource( 10 )
-frame = 52
-speed_scale = 2.0
-playing = true
-
-[node name="Player1Parent" type="Control" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-anchor_left = 0.299
-anchor_top = 0.187
-anchor_right = 0.669
-anchor_bottom = 0.437
-margin_left = 207.92
-margin_top = 4.03999
-margin_right = 207.52
-margin_bottom = 4.03998
-
-[node name="CharacterDog1" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent"]
-anchor_left = 0.047
-anchor_top = 0.09
-anchor_right = 0.267
-anchor_bottom = 0.892
-margin_left = -0.0960007
-margin_top = 0.0199986
-margin_right = -7.65282
-margin_bottom = -0.0240021
-texture = ExtResource( 18 )
-
-[node name="CharacterDog2" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent"]
-anchor_left = 0.378
-anchor_top = 0.09
-anchor_right = 0.597
-anchor_bottom = 0.896
-margin_left = -0.304016
-margin_top = 0.0199986
-margin_right = -7.09274
-margin_bottom = 0.0880585
-texture = ExtResource( 18 )
-
-[node name="CharacterDog3" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent"]
-anchor_left = 0.72
-anchor_top = 0.09
-anchor_right = 0.94
-anchor_bottom = 0.901
-margin_left = 0.039978
-margin_top = 0.0199986
-margin_right = -8.43628
-margin_bottom = -0.0219116
-texture = ExtResource( 18 )
-
-[node name="Control" type="Control" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-margin_left = 957.0
-margin_top = 509.0
-margin_right = 997.0
-margin_bottom = 549.0
-rect_pivot_offset = Vector2( 20, 20 )
-
-[node name="LineDown" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control"]
-margin_left = -34.0
-margin_top = 42.0
-margin_right = -3.0
-margin_bottom = 74.0
-texture = ExtResource( 25 )
-
-[node name="LineUp" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 45.0
-margin_top = -36.0
-margin_right = 76.0
-margin_bottom = -3.0
-texture = ExtResource( 27 )
-
-[node name="VsImage" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 954.0
-margin_top = 510.0
-margin_right = 998.0
-margin_bottom = 550.0
-texture = ExtResource( 26 )
-stretch_mode = 1
-
-[node name="Label1" type="Label" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-margin_left = 838.0
-margin_top = 90.0
-margin_right = 1048.0
-margin_bottom = 176.0
-custom_fonts/font = SubResource( 3 )
-text = "Enemy"
-align = 1
-
-[node name="Label2" type="Label" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-margin_left = 840.0
-margin_top = 918.0
-margin_right = 1031.0
-margin_bottom = 1004.0
-custom_fonts/font = SubResource( 3 )
-text = "You"
-align = 1
-
-[node name="Player2Grid" type="GridContainer" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-anchor_left = 0.315
-anchor_top = 0.619
-anchor_right = 0.688
-anchor_bottom = 0.86
-margin_left = 88.2
-margin_top = 69.48
-margin_right = 809.2
-margin_bottom = 329.48
-rect_min_size = Vector2( 160, 178 )
-custom_constants/vseparation = 30
-custom_constants/hseparation = 30
-columns = 3
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Player1Grid" type="GridContainer" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-anchor_left = 0.331
-anchor_top = 0.141
-anchor_right = 0.654
-anchor_bottom = 0.349
-margin_left = -0.520081
-margin_top = -0.279999
-margin_right = 0.319946
-margin_bottom = 0.0799866
-rect_min_size = Vector2( 160, 178 )
-custom_constants/vseparation = 30
-custom_constants/hseparation = 30
-columns = 3
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="joiningRoom" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-visible = false
-anchor_left = 0.047
-anchor_top = 0.044
-anchor_right = 0.231
-anchor_bottom = 0.079
-margin_left = -0.240005
-margin_top = -0.520004
-margin_right = -0.52002
-margin_bottom = -0.320007
-texture = ExtResource( 11 )
-expand = true
-
-[node name="Line2" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/VersusBG"]
-anchor_left = 0.04
-anchor_top = 0.09
-anchor_right = 0.967
-anchor_bottom = 0.105
-margin_left = -0.800003
-margin_top = -0.200005
-margin_right = -0.640137
-margin_bottom = -0.400002
-texture = ExtResource( 4 )
-stretch_mode = 5
-
-[node name="Select Party2" type="TextureButton" parent="PlayerSelectionControlNode/VersusScreenBg"]
-visible = false
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -1817.0
-margin_top = 35.0
-margin_right = -1550.0
-margin_bottom = 75.0
-expand = true
-stretch_mode = 4
-
-[node name="TextureRect" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/Select Party2"]
-anchor_left = -0.049
-anchor_top = 0.15
-anchor_right = 1.85
-anchor_bottom = 1.275
-margin_left = 0.0830002
-margin_right = 0.0501404
-texture = ExtResource( 9 )
-expand = true
-
-[node name="dot1" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/Select Party2"]
-visible = false
-anchor_left = 1.869
-anchor_top = 0.85
-anchor_right = 1.944
-anchor_bottom = 1.275
-margin_left = -0.0230103
-margin_right = -0.0480347
-margin_bottom = 0.999996
-texture = ExtResource( 10 )
-expand = true
-
-[node name="dot2" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/Select Party2"]
-visible = false
-anchor_left = 2.0
-anchor_top = 0.85
-anchor_right = 2.075
-anchor_bottom = 1.3
-margin_right = -0.0250244
-texture = ExtResource( 10 )
-expand = true
-
-[node name="dot3" type="TextureRect" parent="PlayerSelectionControlNode/VersusScreenBg/Select Party2"]
-visible = false
-anchor_left = 2.124
-anchor_top = 0.85
-anchor_right = 2.191
-anchor_bottom = 1.3
-margin_left = -0.108032
-margin_right = 2.00293
-texture = ExtResource( 10 )
-expand = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSelectionControlNode"]
-root_node = NodePath("../..")
-playback_speed = 2.0
-anims/PlayerSelectionPanelAnim = SubResource( 4 )
-anims/RESET = SubResource( 5 )
-
-[node name="BarsRotationLoop" type="AnimationPlayer" parent="PlayerSelectionControlNode"]
-autoplay = "VsBars"
-anims/RESET = SubResource( 6 )
-anims/VsBars = SubResource( 7 )
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="PlayerSelectionControlNode"]
-autoplay = "loopDots"
-anims/RESET = SubResource( 11 )
-anims/loopDots = SubResource( 12 )
 
 [connection signal="pressed" from="PlayerSelectionControlNode/BackToMainBtn" to="." method="_BackToMainFromPlayerSelection"]
 [connection signal="pressed" from="PlayerSelectionControlNode/ConfirmationButton" to="PlayerSelectionControlNode" method="_on_ConfirmationButton_pressed"]

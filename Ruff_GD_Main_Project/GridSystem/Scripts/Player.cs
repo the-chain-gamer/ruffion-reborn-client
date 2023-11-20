@@ -27,7 +27,6 @@ namespace RuffGdMainProject.GridSystem
         public Unit CurrentUnit { get; private set; }
         public List<Unit> MyUnits;
         private PackedScene unitPrefab;
-        // private List<UnitData> myUnitsData;
 
         public override void _Ready(){
             IsLocalPlayer = false;
@@ -49,8 +48,7 @@ namespace RuffGdMainProject.GridSystem
                 var unit = (Unit)unitPrefab.Instance();
                 tilesParent.GetChild(0).AddChild(unit);
                 MyUnits.Add(unit);
-                // GD.Print("DOG ID  = " + unitLst[i].DogId);
-                // GD.Print("DOG Data  = " + myUnitsData[i].UnitID);
+                
                 UnitData search = GlobalData.GD.CharacterList.Find(x => x.UnitID.Equals(Convert.ToInt32(unitLst[i].DogId)));
                 Logger.UiLogger.Log(Logger.LogLevel.INFO, "Search Dog ID = " + search.UnitID);
                 unit.Init(this, GridManager.GM.GetTilePos(SpawnPos[i]), search);
@@ -64,6 +62,7 @@ namespace RuffGdMainProject.GridSystem
             foreach(Unit u in MyUnits)
             {
                 u.Reset();
+                u.MarkAsFriendly();
             }
             IsMyTurn = true;
             var lst = MyUnits.FindAll(x => !x.IsDead);
@@ -77,6 +76,7 @@ namespace RuffGdMainProject.GridSystem
             foreach(Unit u in MyUnits)
             {
                 u.Reset();
+                u.MarkAsEnemy();
             }
         }
 
@@ -85,14 +85,35 @@ namespace RuffGdMainProject.GridSystem
             GridManager.GM.CanSelectCell = false;
             GridManager.GM.CanSelectTarget = false;
             GridManager.GM.CM.ClearEverything();
-            // CurrentUnit.MarkAsFinished();
             CurrentUnit.Cell.MarkAsDeselected();
             GridManager.GM.ResetGridVisuals();
             CurrentUnit = newUnit;
             GridManager.GM.SelectedUnit = CurrentUnit;
-            // GridManager.GM.OnUnitSelected(CurrentUnit.Cell);
             CurrentUnit.MarkMyTurn(true);
             GridManager.GM.UiController.UpdateProfilePic(PlayerNumber, CurrentUnit);
+            int UnitIndex = MyUnits.IndexOf(CurrentUnit);
+            List<Unit> playerRemainingUnits = new List<Unit>();
+           
+
+            if (UnitIndex == 0)
+            {
+                playerRemainingUnits.Add(MyUnits[1]);
+                playerRemainingUnits.Add(MyUnits[2]);
+                GridManager.GM.UiController.UpdateUnitsProfilePic(PlayerNumber, playerRemainingUnits);
+            }
+            else if (UnitIndex == 1)
+            {
+                playerRemainingUnits.Add(MyUnits[0]);
+                playerRemainingUnits.Add(MyUnits[2]);
+                GridManager.GM.UiController.UpdateUnitsProfilePic(PlayerNumber, playerRemainingUnits);
+            }
+            else
+            {
+                playerRemainingUnits.Add(MyUnits[0]);
+                playerRemainingUnits.Add(MyUnits[1]);
+                GridManager.GM.UiController.UpdateUnitsProfilePic(PlayerNumber, playerRemainingUnits);
+            }
+            
             if(newUnit.MovementPoints <= 0)
             {
                 GridManager.GM.UiController.GreyoutButtons("MoveBtn", true);
@@ -106,7 +127,6 @@ namespace RuffGdMainProject.GridSystem
         public void SkipPlayerTurn()
         {
             GridManager.GM.CanSelectCell = false;
-            // GD.Print("Skipping Current Player's turn = ");
             GridManager.GM.TM.RequestChangeTurn();
         }
 
@@ -114,12 +134,10 @@ namespace RuffGdMainProject.GridSystem
         {
             GridManager.GM.CM.ClearEverything();
             IsMyTurn = false;
-            // GD.Print("OnTurnEnded() ) " + MyUnits[MyUnits.Count-1] + " 's turn = ");
             GridManager.GM.CheckConeLife(PlayerNumber);
             foreach (var u in MyUnits)
             {
                 u.MarkAsFinished();
-                // u.ConsumeCloak();
             }
         }
 

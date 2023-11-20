@@ -118,7 +118,7 @@ namespace RuffGdMainProject.GridSystem
             IsSmokescreenApplied = false;
             this.GetNode<AnimatedSprite>("Body").SetAnimation(animations[UnitId - 1]);
             this.GetNode<AnimatedSprite>("Body").GetNode<Area2D>(UnitName).Show();
-            Cell.ActivatePlayerhighlight(MyPlayer.IsLocalPlayer);
+            Cell.DeactivatePlayerHighlights();
         }
 
         public void TrapInplace(int trapVal)
@@ -159,7 +159,6 @@ namespace RuffGdMainProject.GridSystem
             IsConsumeableShieldApplied = true;
             ConsumeableShieldLife = life;
             ConsumeableShieldValue = val;
-            GD.Print("Consumeable SHield from UNIT = " + ConsumeableShieldValue);
             GridManager.GM.UiController.ShowDmgAtUnit(this, ConsumeableShieldLife, TextColorType.PowerUp);
         }
 
@@ -303,11 +302,10 @@ namespace RuffGdMainProject.GridSystem
             GridManager.GM.ResetGridVisuals();
             IsMoving = true;
             Cell = target;
-            GD.Print("Dog Position BEFORE = " + Position);
             await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
             SoundManager.Instance.PlaySoundByName("TeleportSimpleSound");
             Position = target.Position;
-            // target.UnMark();
+
             if(MyPlayer.IsLocalPlayer)
             {
                 if(GridManager.GM.CM.PickNDrop)
@@ -319,49 +317,45 @@ namespace RuffGdMainProject.GridSystem
                     target.MarkAsSelected();
                 }
             }
-            // if(cost == 0)
-            // {
-            //     UnMark(false);
-            // }
+
             IsMoving = false;
             await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
-            // UnMark(true);
-            GD.Print("Dog Position AFTER = " + Position);
         }
 
         public void OnMouseDown(Viewport viewport, InputEvent _event, int shape_idx)
         {
             if (_event is InputEventMouseButton mouseButton)
             {
-                GD.Print("Dog Tile No. = " + cell.TileNo);
                 if (MyPlayer.IsLocalPlayer && mouseButton.Pressed && MyPlayer.IsMyTurn)
                 {
                     MarkAsSelected();
+                    GridManager.GM.UiController.ShowSelectedUnitVitals(this);
                 }
                 else if(!MyPlayer.IsMyTurn && GridManager.GM.CanSelectTarget && ConsumableCloak == 0 && !MaskOfEEEEEE)
                 {
                     if(GridManager.GM.CM.CanPlaceCones) return;
                     GridManager.GM.CanSelectTarget = false;
 
-                    if(GridManager.GM.CM.CurrentCard.CardName.Equals("Basic Attack"))
+                    if(GridManager.GM.IsEnemyInAttackRange(this))
                     {
-                        if(GridManager.GM.IsNeigbourTile(cell))
+                        if(GridManager.GM.CM.CurrentCard.CardName.Equals("Basic Attack"))
                         {
+                            GridManager.GM.ResetGridVisuals();
                             MarkAsDefending();
+                        }
+                        else if(GridManager.GM.CM.PickNDrop)
+                        {
+                            MarkAsSelected(false, true);
                         }
                         else
                         {
-                            GridManager.GM.UiController.ShowMessage("Not in Range!");
+                            MarkAsDefending();
                         }
-                    }
-                    else if(GridManager.GM.CM.PickNDrop)
-                    {
-                        GD.Print("Bubble's Pick and Drop");
-                        MarkAsSelected(false, true);
                     }
                     else
                     {
-                        MarkAsDefending();
+                        GridManager.GM.UiController.ShowMessage("Not in Range!");
+                        GridManager.GM.UiController.ToggleCardsList(false);
                     }
                 }
             }
@@ -393,7 +387,6 @@ namespace RuffGdMainProject.GridSystem
         {
             GridManager.GM.SelectedUnit = this;
             GridManager.GM.CM.RequestApplyCard();
-            // GridManager.GM.CM.ApplyCard();
         }
 
         public async void DealDamage(float dmg, bool isAllyAttack = false)
@@ -446,8 +439,6 @@ namespace RuffGdMainProject.GridSystem
             {
                 IsDead = true;
                 OnDestroy();
-                // await ToSignal(GetTree().CreateTimer(1.75f), "timeout");
-                // this.GetNode<AnimatedSprite>("Body").Visible = false;
             }
         }
 
@@ -489,12 +480,14 @@ namespace RuffGdMainProject.GridSystem
         /// </summary>
         public void MarkAsFriendly()
         {
+            cell.MarkAsFriendly();
         }
         /// <summary>
-        /// Method mark units to indicate user that the unit is in range and can be attacked.
-        /// </summary
-        public void MarkAsReachableEnemy()
+        /// Method mark units as Enemy when it's Enemy's Turn.
+        /// </summary>
+        public void MarkAsEnemy()
         {
+            cell.MarkAsEnemy();
         }
         /// <summary>
         /// Method marks unit as currently selected, to distinguish it from other units.
@@ -502,31 +495,23 @@ namespace RuffGdMainProject.GridSystem
         public void MarkAsSelected(bool isForAttack = false, bool isForMove = false)
         {
             if(!GridManager.GM.CM.PickNDrop && !MyPlayer.IsLocalPlayer) return;
-            // this.GetNode<ShaderTest>("Body").OnMouseEnter(SelectedColor);
             if(isForAttack)
             {
                 GridManager.GM.OnUnitSelected(Cell, this);
             }
             else if(isForMove)
             {
-                GD.Print("Can't MOVE, Movement points  = " + MovementPoints);
                 if(TrappedInplace > 0 || MovementPoints <= 0) return;
-                //MyPlayer.SwitchUnit(this);
                 GridManager.GM.SelectedUnit = this;
-                GD.Print("Moving it");
                 GridManager.GM.OnUnitSelected(Cell);
             }
             else
             {
-                // if(TrappedInplace > 0) return;
                 MyPlayer.SwitchUnit(this);
-                // GridManager.GM.SelectedUnit = this;
-                // GridManager.GM.OnUnitSelected(Cell);
             }
         }
         public void Attack()
         {
-             GD.Print("MyPlayer.TotalMana = " + MyPlayer.TotalMana);
             if(MyPlayer.TotalMana <= 0)
             {
                 GridManager.GM.UiController.ShowMessage("Not Enough Mana");
@@ -538,6 +523,7 @@ namespace RuffGdMainProject.GridSystem
                     GridManager.GM.UiController.ShowMessage("Can't Attack");
                     return;
                 }
+                GridManager.GM.VisualizeAttackRange(this);
                 Card card = new Card();
                 card.SetCardData(new CardData(), true);
                 GridManager.GM.CM.DropCard(card);
@@ -574,8 +560,6 @@ namespace RuffGdMainProject.GridSystem
                     IsBlackSheep = false;
                 }
             }
-
-            // this.GetNode<AnimatedSprite>("Body").SelfModulate = new Color(1, 1, 1, 1f);
         }
 
         public void Reset()
@@ -586,13 +570,11 @@ namespace RuffGdMainProject.GridSystem
             GetNode<Node2D>("JockSmash").Hide();
             HasTakenTurn = false;
             IsMyTurn = false;
-            // DefenceFactor = 0;
             ConsumeCloak();
             MaskOfEEEEEE = false;
             GetNode<Node2D>("MaskOfEEEEE").Hide();
             IsHatTrick = false;
             MovementPoints = 2;
-            GD.Print("INCREASING MOVEMENT POINTS");
             ConsumableMovementPoints = 0;
             UnMark(false);
             ConsumeShield();
@@ -600,14 +582,6 @@ namespace RuffGdMainProject.GridSystem
         }
 
         public void MarkMyTurn(bool isSwitchingUnit = false){
-            // if(!isSwitchingUnit)
-            // {
-            //     if(TrappedInplace > 0)
-            //     {
-            //         ConsumeTrap();
-            //     }
-            // }
-
             HasTakenTurn = false;
             this.GetNode<ShaderTest>("Body").OnMouseEnter(SelectedColor);
             cell.MarkAsSelected();
@@ -629,7 +603,6 @@ namespace RuffGdMainProject.GridSystem
             if(TrappedInplace <= 0)
             {
                 TrappedInplace = 0;
-                GD.Print("Pinky's effect vanishing soon");
                 GetNode("SmallDogParticles").GetNode<Node2D>("PinkysSmolBrain").GetChild<EffectPlayer>(0).StopPinkyEffect();
                 GetNode("MediumDogParticles").GetNode<Node2D>("PinkysSmolBrain").GetChild<EffectPlayer>(0).StopPinkyEffect();
                 GetNode("LargeDogParticles").GetNode<Node2D>("PinkysSmolBrain").GetChild<EffectPlayer>(0).StopPinkyEffect();
@@ -643,15 +616,11 @@ namespace RuffGdMainProject.GridSystem
             if(!isMoving)
                 cell.MarkAsDeselected();
             this.GetNode<ShaderTest>("Body").OnMouseExit();
-            // this.GetNode<AnimatedSprite>("Body").SelfModulate = new Color(1, 1, 1, 1f);
-            // GridManager.GM.OnUnitSelected(Cell);
         }
 
         public async void KnockOut()
         {
             //Play HBL Takedown Effect
-            // GD.Print("GetNode = " + GetNode<Node2D>("HblTakedown").Name);
-            // GD.Print("GetNode = " + GetNode<Node2D>("HblTakedown").GetNode<AnimatedSprite>("AnimatedSprite").Name);
             GetNode<Node2D>("HblTakedown").GetNode<AnimatedSprite>("AnimatedSprite").Play();
             await ToSignal(GetTree().CreateTimer(3.0f), "timeout");
             DealDamage(HitPoints+1);
@@ -659,25 +628,25 @@ namespace RuffGdMainProject.GridSystem
 
         public async void InstantKnockOut()
         {
-            //Play HBL Takedown Effect
-            // GD.Print("GetNode = " + GetNode<Node2D>("HblTakedown").Name);
-            // GD.Print("GetNode = " + GetNode<Node2D>("HblTakedown").GetNode<AnimatedSprite>("AnimatedSprite").Name);
-            GetNode<Node2D>("HeartOfGlass").GetNode<AnimatedSprite>("AnimatedSprite").Show();
-            GetNode<Node2D>("HeartOfGlass").GetNode<AnimatedSprite>("AnimatedSprite").Play();
+            //Play Heart of Glass Effect
+            var anim = GetNode<Node2D>("HeartOfGlass").GetNode<AnimatedSprite>("AnimatedSprite");
+            anim.Show();
+            anim.Play();
             await ToSignal(GetTree().CreateTimer(4.0f), "timeout");
             DealDamage(HitPoints+1);
         }
 
          public async void ApplyWolfLairEffect(float dmg)
         {
-            GetNode<Node2D>("WolfLair").GetNode<AnimatedSprite>("AnimatedSprite").Frame = 0;
-            GetNode<Node2D>("WolfLair").GetNode<AnimatedSprite>("AnimatedSprite").Show();
-            GetNode<Node2D>("WolfLair").GetNode<AnimatedSprite>("AnimatedSprite").Play();
+            var anim = GetNode<Node2D>("WolfLair").GetNode<AnimatedSprite>("AnimatedSprite");
+            anim.Frame = 0;
+            anim.Show();
+            anim.Play();
             await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
             DealDamage(dmg);
             await ToSignal(GetTree().CreateTimer(2.0f), "timeout");
-            GetNode<Node2D>("WolfLair").GetNode<AnimatedSprite>("AnimatedSprite").Hide();
-            GetNode<Node2D>("WolfLair").GetNode<AnimatedSprite>("AnimatedSprite").Stop();
+            anim.Hide();
+            anim.Stop();
         }
 
         public void OnDestroy()
@@ -688,67 +657,6 @@ namespace RuffGdMainProject.GridSystem
             Cell.UnitDestroyed();
             GridManager.GM.UiController.HideUnitVitals();
             QueueFree();
-        }
-
-        private void FlipCardEffectOnUnit(Unit currentUnit)
-        {
-
-            if (currentUnit.UnitName == "Corgi" || currentUnit.UnitName == "Shiba" || currentUnit.UnitName == "Beagle" || currentUnit.UnitName == "Poodle")
-            {
-
-                //Lalito's Laser
-                // currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).Position = new Vector2(-580f, -24f);
-                currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(1).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(2).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(3).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(4).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(5).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(6).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(7).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(8).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(9).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(10).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(11).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(1).GetChild<Node2D>(12).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-            }
-            else if (currentUnit.UnitName == "Golden" || currentUnit.UnitName == "Labrador")
-            {
-                //Lalito's Laser
-                // currentUnit.GetChild(2).GetChild<Node2D>(0).GetChild<Node2D>(0).Position = new Vector2(-650f, 0f);
-                currentUnit.GetChild(2).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(1).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(2).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(3).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(4).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(5).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(6).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(7).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(8).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(9).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(10).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(11).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(2).GetChild<Node2D>(12).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-            }
-            else if (currentUnit.UnitName == "Malamute" || currentUnit.UnitName == "Mastiff" || currentUnit.UnitName == "Hound")
-            {
-                //Lalito's Laser
-                // currentUnit.GetChild(3).GetChild<Node2D>(0).GetChild<Node2D>(0).Position = new Vector2(-580f, -24f);
-                currentUnit.GetChild(3).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(1).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(2).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(3).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(4).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(5).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(6).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(7).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(8).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(9).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(10).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(11).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-                currentUnit.GetChild(3).GetChild<Node2D>(12).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale = new Vector2(-currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.x, currentUnit.GetChild(1).GetChild<Node2D>(0).GetChild<Node2D>(0).GetChild<AnimatedSprite>(0).Scale.y);
-            }
-           
         }
     }
 

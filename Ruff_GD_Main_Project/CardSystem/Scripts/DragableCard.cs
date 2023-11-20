@@ -19,7 +19,6 @@ namespace RuffGdMainProject.UiSystem
 
         public void SetCardData(CardData data)
         {
-            // GD.Print("CARD IDDDD: " + data.CardID);
             cardID = data.CardID;
             var texture = GD.Load<Texture>(data.CardImagePath);
             GetChild<TextureRect>(0).Texture = texture;
@@ -38,7 +37,6 @@ namespace RuffGdMainProject.UiSystem
                 {
                     tempNode = null;
                     GridManager.GM.CM.AddCardsInGrid(cardID);
-                    //GridManager.GM.CM.DropCard(this);
                     this.QueueFree();
                 }
             }

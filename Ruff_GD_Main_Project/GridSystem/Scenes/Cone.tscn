@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://GridSystem/Scripts/Cone.cs" type="Script" id=1]
 [ext_resource path="res://GridSystem/Scenes/FloatingText.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Cards_UI/NewDiscordEffects/BethanysRoadBlock/frame_21_delay-0.1s.png" type="Texture" id=13]
 [ext_resource path="res://Cards_UI/NewDiscordEffects/BethanysRoadBlock/frame_22_delay-0.1s.png" type="Texture" id=14]
 [ext_resource path="res://Cards_UI/NewDiscordEffects/BethanysRoadBlock/frame_01_delay-0.1s.png" type="Texture" id=15]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Cone_highlight.png" type="Texture" id=16]
 [ext_resource path="res://Cards_UI/NewDiscordEffects/BethanysRoadBlock/frame_02_delay-0.1s.png" type="Texture" id=17]
 [ext_resource path="res://Cards_UI/NewDiscordEffects/BethanysRoadBlock/frame_04_delay-0.1s.png" type="Texture" id=18]
 [ext_resource path="res://Cards_UI/NewDiscordEffects/BethanysRoadBlock/frame_05_delay-0.1s.png" type="Texture" id=19]
@@ -38,6 +39,13 @@ animations = [ {
 [node name="Cone" type="Node2D"]
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 1 )
+enemyColor = Color( 0.894118, 0.0901961, 0.0901961, 1 )
+allyColor = Color( 0.2, 0.701961, 0.0392157, 1 )
+
+[node name="Highlight" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
+scale = Vector2( 0.393333, 0.366666 )
+texture = ExtResource( 16 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -17.739 )

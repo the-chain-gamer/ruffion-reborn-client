@@ -1,24 +1,33 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://TeamSelection/Art/cardsCross.png" type="Texture" id=1]
 [ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/PolygonBg.png" type="Texture" id=2]
-[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/StraightFrame.png" type="Texture" id=3]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/dogSelected screen_new.png" type="Texture" id=3]
 [ext_resource path="res://CommonAssets/CharacterSprites/Beagle/Beagle_profile.png" type="Texture" id=4]
 [ext_resource path="res://TeamSelection/Scripts/TeamGridItemUI.cs" type="Script" id=5]
 [ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/PolygonSide.png" type="Texture" id=6]
 [ext_resource path="res://Cards_UI/Fonts/upheavtt.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/Highlighted Card.png" type="Texture" id=8]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterPrefab/selection huge-01.png" type="Texture" id=8]
+[ext_resource path="res://SoundSystem/MuteUI/Volume main-03.png" type="Texture" id=9]
+[ext_resource path="res://SoundSystem/MuteUI/Volume main-04.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
+size = 37
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 17
+use_filter = true
 font_data = ExtResource( 7 )
 
 [node name="TeamCharacter" type="TextureButton"]
-anchor_right = 0.087
-anchor_bottom = 0.17
-margin_right = -0.0400085
-margin_bottom = 0.399994
-rect_min_size = Vector2( 167, 184 )
+anchor_right = 0.196
+anchor_bottom = 0.417
+margin_right = -209.32
+margin_bottom = -266.36
+rect_min_size = Vector2( 377, 450 )
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 8 )
@@ -27,48 +36,57 @@ stretch_mode = 4
 script = ExtResource( 5 )
 
 [node name="Frame" type="TextureRect" parent="."]
-anchor_left = 0.198
-anchor_top = 0.158
-anchor_right = 0.731
-anchor_bottom = 0.696
-margin_left = -0.0659981
-margin_top = -0.0720005
-margin_right = -0.0770035
-margin_bottom = -0.0640106
+anchor_left = 0.31
+anchor_top = 0.089
+anchor_right = 0.679
+anchor_bottom = 0.431
+margin_left = 0.129997
+margin_top = -0.0499992
+margin_right = 0.0169983
+margin_bottom = 0.0499878
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 2 )
 stretch_mode = 5
 
 [node name="character Face Img" type="TextureRect" parent="Frame"]
-anchor_left = 0.213
-anchor_top = 0.263
-anchor_right = 0.753
-anchor_bottom = 0.747
-margin_left = 0.0429993
-margin_top = -0.0370007
-margin_right = -0.0169983
-margin_bottom = 0.0469971
+anchor_left = 0.165
+anchor_top = 0.221
+anchor_right = 0.799
+anchor_bottom = 0.792
+margin_left = 0.0649986
+margin_top = -0.0340042
+margin_right = -0.0610046
+margin_bottom = 0.0319901
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
 [node name="Highlighted" type="TextureRect" parent="Frame"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -49.0
-margin_bottom = -59.0
+anchor_left = -0.029
+anchor_top = 0.006
+anchor_right = 1.016
+anchor_bottom = 1.027
+margin_left = 0.0310001
+margin_top = 0.076
+margin_right = -24.224
+margin_bottom = -26.158
+rect_scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
 
 [node name="Name" type="Label" parent="."]
-anchor_left = 0.078
-anchor_top = 0.766
-anchor_right = 0.892
-anchor_bottom = 0.848
-margin_left = -0.026
-margin_top = 0.0559998
-margin_right = 0.0359955
-margin_bottom = -0.0320129
+anchor_left = 0.058
+anchor_top = 0.48
+anchor_right = 0.918
+anchor_bottom = 0.564
+margin_left = 0.133999
+margin_top = 1.0
+margin_right = -0.0860291
+margin_bottom = 0.199997
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
 custom_fonts/font = SubResource( 1 )
 text = "corgi"
 align = 1
@@ -82,6 +100,188 @@ margin_right = 21.0
 margin_bottom = 26.0
 texture_normal = ExtResource( 1 )
 expand = true
+
+[node name="StatsControl" type="Control" parent="."]
+margin_left = 1.0
+margin_top = 262.0
+margin_right = 373.0
+margin_bottom = 444.0
+
+[node name="StrenghtProgress" type="TextureProgress" parent="StatsControl"]
+anchor_left = 0.277
+anchor_top = 0.17
+anchor_right = 0.481
+anchor_bottom = 0.225
+margin_left = -0.0440063
+margin_top = 0.0599995
+margin_right = 70.068
+margin_bottom = 9.05
+rect_scale = Vector2( 0.52, 0.52 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+max_value = 6.0
+texture_under = ExtResource( 10 )
+texture_progress = ExtResource( 9 )
+
+[node name="SizeProgress" type="TextureProgress" parent="StatsControl"]
+anchor_left = 0.277
+anchor_top = 0.385
+anchor_right = 0.481
+anchor_bottom = 0.439
+margin_left = -0.0440063
+margin_top = -0.0700073
+margin_right = 70.068
+margin_bottom = 9.102
+rect_scale = Vector2( 0.52, 0.52 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+max_value = 6.0
+texture_under = ExtResource( 10 )
+texture_progress = ExtResource( 9 )
+
+[node name="SpeedProgress" type="TextureProgress" parent="StatsControl"]
+anchor_left = 0.277
+anchor_top = 0.61
+anchor_right = 0.481
+anchor_bottom = 0.664
+margin_left = -0.0440063
+margin_top = -0.0200043
+margin_right = 70.068
+margin_bottom = 9.15199
+rect_scale = Vector2( 0.52, 0.52 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+max_value = 6.0
+texture_under = ExtResource( 10 )
+texture_progress = ExtResource( 9 )
+
+[node name="ScienceProgress" type="TextureProgress" parent="StatsControl"]
+anchor_left = 0.766
+anchor_top = 0.61
+anchor_right = 0.97
+anchor_bottom = 0.664
+margin_left = 0.0479736
+margin_top = -0.0200043
+margin_right = 70.16
+margin_bottom = 9.15199
+rect_scale = Vector2( 0.52, 0.52 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+max_value = 6.0
+texture_under = ExtResource( 10 )
+texture_progress = ExtResource( 9 )
+
+[node name="SorcaryProgress" type="TextureProgress" parent="StatsControl"]
+anchor_left = 0.766
+anchor_top = 0.385
+anchor_right = 0.97
+anchor_bottom = 0.439
+margin_left = 0.0479736
+margin_top = -0.0700073
+margin_right = 70.16
+margin_bottom = 9.102
+rect_scale = Vector2( 0.52, 0.52 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+max_value = 6.0
+texture_under = ExtResource( 10 )
+texture_progress = ExtResource( 9 )
+
+[node name="SmartProgress" type="TextureProgress" parent="StatsControl"]
+anchor_left = 0.766
+anchor_top = 0.17
+anchor_right = 0.97
+anchor_bottom = 0.225
+margin_left = 0.0479736
+margin_top = 0.0599995
+margin_right = 70.16
+margin_bottom = 9.05
+rect_scale = Vector2( 0.52, 0.52 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+max_value = 6.0
+texture_under = ExtResource( 10 )
+texture_progress = ExtResource( 9 )
+
+[node name="StrenghtLabel" type="Label" parent="StatsControl"]
+anchor_left = 0.046
+anchor_top = 0.132
+anchor_right = 0.255
+anchor_bottom = 0.247
+margin_left = -0.112001
+margin_top = -0.0240002
+margin_right = 0.139992
+margin_bottom = 0.0459976
+custom_colors/font_color_shadow = Color( 0.290196, 0.290196, 0.290196, 1 )
+custom_constants/shadow_offset_x = 1
+custom_fonts/font = SubResource( 2 )
+text = "Strenght"
+valign = 1
+
+[node name="SizeLabel" type="Label" parent="StatsControl"]
+anchor_left = 0.046
+anchor_top = 0.357
+anchor_right = 0.199
+anchor_bottom = 0.473
+margin_left = -0.112001
+margin_top = 0.0259933
+margin_right = -0.0280075
+margin_bottom = -0.0860062
+custom_fonts/font = SubResource( 2 )
+text = "Size"
+valign = 1
+
+[node name="SpeedLabel" type="Label" parent="StatsControl"]
+anchor_left = 0.046
+anchor_top = 0.582
+anchor_right = 0.199
+anchor_bottom = 0.698
+margin_left = -0.112001
+margin_top = 0.0759964
+margin_right = -0.0280075
+margin_bottom = -0.0360031
+custom_fonts/font = SubResource( 2 )
+text = "Speed"
+valign = 1
+
+[node name="SmartLabel" type="Label" parent="StatsControl"]
+anchor_left = 0.554
+anchor_top = 0.132
+anchor_right = 0.707
+anchor_bottom = 0.247
+margin_left = -0.0880127
+margin_top = -0.0240002
+margin_right = -0.0039978
+margin_bottom = 0.0459976
+custom_fonts/font = SubResource( 2 )
+text = "Smart"
+valign = 1
+
+[node name="SorcaryLabel" type="Label" parent="StatsControl"]
+anchor_left = 0.554
+anchor_top = 0.357
+anchor_right = 0.745
+anchor_bottom = 0.473
+margin_left = -0.0880127
+margin_top = 0.0259933
+margin_right = -14.14
+margin_bottom = -0.0860062
+custom_fonts/font = SubResource( 2 )
+text = "Sorcary"
+valign = 1
+
+[node name="ScienceLabel" type="Label" parent="StatsControl"]
+anchor_left = 0.554
+anchor_top = 0.582
+anchor_right = 0.739
+anchor_bottom = 0.698
+margin_left = -0.0880127
+margin_top = 0.0759964
+margin_right = -11.908
+margin_bottom = -0.0360031
+custom_fonts/font = SubResource( 2 )
+text = "Science"
+valign = 1
 
 [connection signal="pressed" from="." to="." method="_on_TeamCharacter_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

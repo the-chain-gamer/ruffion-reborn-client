@@ -44,7 +44,6 @@ namespace RuffGdMainProject.GridSystem
 
         public void RequestChangeTurn()
         {
-            // int localPlayer = Players.Find(x => x.IsLocalPlayer).PlayerNumber;
             if(IsLocalPlayerTurn())
             {
                 _ = StartupScript.Startup.Multiplayer.SkipTurnRequest();
@@ -59,29 +58,24 @@ namespace RuffGdMainProject.GridSystem
             if(totalTurns == 1)
                 CurrentPlayerNumber = player.PlayerNumber;
             
-            // GridManager.GM.CanSelectCell = false;
             GridManager.GM.CM.ClearEverything();
-            //Need to change it. it currently show 0 on first turn and also doesn't show timer on start turn
-            GD.Print("Current Player is == = = = = " + CurrentPlayerNumber);
-            GD.Print("Next Player from server is == = = = = " + player.PlayerNumber);
+
             //Reset Grid Visuals and Highlights
             GridManager.GM.ResetGridVisuals();
             //Reset All Units
             Players[CurrentPlayerNumber - 1].OnTurnEnded();
             
             //check if it is my turn?
-            // if(CurrentPlayerNumber == player.PlayerNumber) return;
             CurrentPlayerNumber = player.PlayerNumber;
             MatchTotalTurns = totalTurns;
 
-            if (MatchTotalTurns > 24 || AllUnitsDead())
+            if (MatchTotalTurns > 10 || AllUnitsDead())
             {
                 // Game ended
                 ProcessGameEndResult();
             }
             else
             {
-                // Players[CurrentPlayerNumber - 1].OnTurnEnded();
                 GridManager.GM.CanSelectTarget = false;
                 // Emit the turn change signal
                 EmitSignal("TurnChangeSignal", CurrentPlayerNumber, currentTurn, MatchTotalTurns);
@@ -97,7 +91,6 @@ namespace RuffGdMainProject.GridSystem
             if (p1UnitsAlive > p2UnitsAlive)
             {
                 // Player 1 won
-                // GridManager.GM.UiController.GameEnded("Player 1 Won!");
                 winner = Players[0].PlayerNumber;
             }
             else if (p2UnitsAlive > p1UnitsAlive)
@@ -130,7 +123,7 @@ namespace RuffGdMainProject.GridSystem
                 }
                 else
                 {
-                    GridManager.GM.UiController.GameEnded("It's a Draw...");
+                    GridManager.GM.UiController.GameEnded("It's a Draw...", false);
                     return;
                 }
             }
@@ -146,11 +139,11 @@ namespace RuffGdMainProject.GridSystem
         {
             if(winner == GetPlayerByID(StartupScript.Startup.Multiplayer.PlayerId).PlayerNumber)
             {
-                GridManager.GM.UiController.GameEnded("You Win!");
+                GridManager.GM.UiController.GameEnded("You Win!", false);
             }
             else
             {
-                GridManager.GM.UiController.GameEnded("You Lose...");
+                GridManager.GM.UiController.GameEnded("You Lose...", true);
             }
         }
 
@@ -192,7 +185,6 @@ namespace RuffGdMainProject.GridSystem
         // Consume mana from the current player
         public void ConsumeMana(int mana)
         {
-            GD.Print("Consuming Mana from TM = " + mana);
             Players[CurrentPlayerNumber - 1].ConsumeMana(mana);
         }
 
@@ -221,13 +213,5 @@ namespace RuffGdMainProject.GridSystem
             else
                 return Players[0];
         }
-
-        // public Player GetOpponentPlayer(string id)
-        // {
-        //     if (CurrentPlayerNumber == 1)
-        //         return Players[1];
-        //     else
-        //         return Players[0];
-        // }
     }
 }

@@ -30,10 +30,7 @@ public class EffectAnimPlayer : Node2D
     {
         unit = myUnt;
         enemy = target;
-        // TargetPosition = target.GetNode<Node2D>("Test").GlobalPosition;
         TargetPosition = target.Cell.GlobalPosition;
-
-        // TargetPosition.y += 10f;
         
         start.Frame = 0;
         start.Show();

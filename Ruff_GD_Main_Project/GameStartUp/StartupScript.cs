@@ -46,8 +46,6 @@ namespace RuffGdMainProject.GameScene
             PlayerData.CardsDeck = DB.GetCardDataModel();
             PlayerData.MyUnits = GlobalData.GD.GetUnitDataModel();
             _ = Multiplayer.SearchForRooms(PlayerData);
-            // Hide the MainMenuScene with delay
-            // HideWithDelay();
         }
 
         public async void HideWithDelay(SubscriptionData data)
@@ -64,7 +62,7 @@ namespace RuffGdMainProject.GameScene
             game.SpawnPlayers(data.GameUpdates.Player1, data.GameUpdates.Player2);
         }
 
-        public void LoadOppnantImgs(PlayerDataModel player1, PlayerDataModel player2)
+        public void LoadOpponentImgs(PlayerDataModel player1, PlayerDataModel player2)
         {
             var playerSelection = main.GetNode<CustomButtonHandler>("PlayerSelection").GetNode<CharacterSelectionManager>("PlayerSelectionControlNode");
             var lst = new List<UnitDataModel>();
@@ -78,8 +76,7 @@ namespace RuffGdMainProject.GameScene
             }
             foreach (var item in lst)
             {
-                GD.Print("Other Player Dog Id = " + item.DogId);
-                playerSelection.ShowOpponantCharacters(Convert.ToInt32(item.DogId), item.DogName);
+                playerSelection.ShowOpponentCharacters(Convert.ToInt32(item.DogId), item.DogName);
             }
             CharacterSelectionManager.instance.PlayersJoined();
         }
@@ -110,7 +107,7 @@ namespace RuffGdMainProject.GameScene
         {
             if(!GridManager.GM.TM.IsGameOver)
             {
-                GridManager.GM.UiController.GameEnded("You Won!");
+                GridManager.GM.UiController.GameEnded("You Won!", false);
             }
             await ToSignal(GetTree().CreateTimer(5.0f), "timeout");
             GridManager.GM.GetTree().Paused = false;

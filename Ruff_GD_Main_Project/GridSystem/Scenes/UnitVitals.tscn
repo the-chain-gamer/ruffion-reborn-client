@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://GridSystem/Assets/Roboto_Mono/static/RobotoMono-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://GridSystem/Assets/Gameplay/Vector 6-2.png" type="Texture" id=2]
+[ext_resource path="res://GridSystem/Assets/Gameplay/Vector 6-2 (1).png" type="Texture" id=2]
 [ext_resource path="res://GridSystem/Assets/Gameplay/battlescreen_profileplayer 1.png" type="Texture" id=3]
 [ext_resource path="res://GridSystem/Assets/Gameplay/Vector 6-1.png" type="Texture" id=4]
 [ext_resource path="res://GridSystem/Scripts/UnitVitalsUi.cs" type="Script" id=5]
@@ -21,6 +21,7 @@ texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 741, 52 )
 
 [sub_resource type="DynamicFont" id=5]
+use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=6]
@@ -54,6 +55,7 @@ expand = true
 stretch_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="HpBar"]
+self_modulate = Color( 0.0431373, 1, 0.129412, 1 )
 anchor_left = 0.028
 anchor_top = 0.087
 anchor_right = 0.969
@@ -70,7 +72,7 @@ value = 100.0
 percent_visible = false
 
 [node name="HpLbl" type="Label" parent="HpBar"]
-self_modulate = Color( 0.121569, 0.321569, 0.411765, 1 )
+visible = false
 anchor_left = 0.028
 anchor_top = 0.072
 anchor_right = 1.0
@@ -96,6 +98,8 @@ margin_top = -0.398998
 margin_right = 0.360001
 margin_bottom = -0.133999
 input_pass_on_modal_close_click = false
+custom_colors/font_color_shadow = Color( 0.717647, 0.717647, 0.717647, 1 )
+custom_constants/shadow_offset_x = 1
 custom_fonts/font = SubResource( 5 )
 text = "Player 1"
 align = 1

@@ -23,15 +23,17 @@ namespace RuffGdMainProject.GridSystem
         
         private Sprite PathSprite;
         private Sprite HighlightSprite;
-        private Sprite PlayerTileSprite;
-        private Sprite EnemyTileSprite;
+        private Sprite ActiveSprite;
+        private Sprite FriendlySprite;
+        private Sprite EnemySprite;
 
         public override void _Ready()
         {
-            PathSprite = GetChild<Sprite>(4);
-            HighlightSprite = GetChild<Sprite>(1);
-            PlayerTileSprite = GetChild<Sprite>(2);
-            EnemyTileSprite = GetChild<Sprite>(3);
+            PathSprite = GetNode<Sprite>("PathSprite");
+            HighlightSprite = GetNode<Sprite>("HighlightSprite");
+            ActiveSprite = GetNode<Sprite>("ActiveSprite");
+            FriendlySprite = GetNode<Sprite>("FriendlySprite");
+            EnemySprite = GetNode<Sprite>("EnemySprite");
         }
 
 
@@ -39,7 +41,6 @@ namespace RuffGdMainProject.GridSystem
         {
             if (!isHighlighted && !IsTaken)
             {
-                // GD.Print("Enter");
                 MarkAsHighlighted();
             }
         }
@@ -49,13 +50,11 @@ namespace RuffGdMainProject.GridSystem
             {
                 if (mouseButton.Pressed && GridManager.GM.CanSelectCell && !IsTaken)
                 {
-                    // GD.Print("Down");
                     if(GridManager.GM.CM.PickNDrop)
                     {
                         GridManager.GM.CanSelectCell=false;
                         GridManager.GM.CM.ApplyPickNDrop(GridManager.GM.SelectedUnit, TileNo);
                     }
-                    // else if()
                     else
                     {
                         GridManager.GM.MoveToTarget(this);
@@ -65,19 +64,14 @@ namespace RuffGdMainProject.GridSystem
                 {
                     if (mouseButton.Pressed)
                     {
-                        GD.Print("Place Cones on tile");
                         GridManager.GM.AddRoadBlock(this, GridManager.GM.TM.GetCurrentPlayer());
                     }
                 }
             }
-            else
-            {
-                // GD.Print(IsTaken);
-            }
         }
         protected void OnMouseExit()
         {
-            UnMark();
+            MarkAsDeHighlighted();
         }
         public bool isDigAllowed = false;
 
@@ -86,16 +80,14 @@ namespace RuffGdMainProject.GridSystem
         /// </summary>
         public void MarkAsReachable(){
             isReachable=true;
-            this.PathSprite.Show();
+            PathSprite.Show();
         }
         /// <summary>
         /// Method marks the cell as a part of a path.
         /// </summary>
         public void MarkAsPath(bool isPath){
             if(isPath){
-                // GD.Print("it's a path tile now!!");
                 this.PathSprite.Show();
-                // ishighlighted = true;
             }
             else {
                 this.PathSprite.Hide();
@@ -106,19 +98,38 @@ namespace RuffGdMainProject.GridSystem
         /// Method marks the cell as highlighted. It gets called when the mouse is over the cell.
         /// </summary>
         public void MarkAsHighlighted(){
-            this.HighlightSprite.Show();
+            HighlightSprite.Show();
             isHighlighted = true;
         }
 
+        public void MarkAsDeHighlighted(){
+            HighlightSprite.Hide();
+            isHighlighted = false;
+        }
+
+        public void MarkAsFriendly(){
+            FriendlySprite.Show();
+            ActiveSprite.Hide();
+        }
+
+        public void MarkAsEnemy(){
+            EnemySprite.Show();
+            ActiveSprite.Hide();
+        }
+
         public void MarkAsSelected(){
-            this.PathSprite.Show();
-            this.HighlightSprite.Hide();
+            ActiveSprite.Show();
+            HighlightSprite.Hide();
+            FriendlySprite.Hide();
+            PathSprite.Hide();
             isHighlighted = false;
         }
 
         public void MarkAsDeselected(){
-            this.PathSprite.Hide();
-            this.HighlightSprite.Show();
+            PathSprite.Hide();
+            ActiveSprite.Hide();
+            FriendlySprite.Visible = CurrentUnit?.IsMyTurn ==  true;
+            EnemySprite.Hide();
             isHighlighted = true;
         }
 
@@ -128,23 +139,27 @@ namespace RuffGdMainProject.GridSystem
         public void UnMark(){
             if(!IsTaken) {
                 if(isHighlighted){
-                    // GD.Print("Unmark");
                     this.HighlightSprite.Hide();
                     isHighlighted = false;
+                    EnemySprite.Hide();
                 }
                 else if(isReachable){
-                    // GD.Print("Unmark");
                     this.PathSprite.Hide();
                     isReachable = false;
+                    EnemySprite.Hide();
                 }
+            }
+            else
+            {
+                EnemySprite.Hide();
             }
         }
 
         public void UnitDestroyed()
         {
             IsTaken = false;
-            PlayerTileSprite.Hide();
-            EnemyTileSprite.Hide();
+            ActiveSprite.Hide();
+            EnemySprite.Hide();
             CurrentCone = null;
             CurrentUnit = null;
             isHighlighted = false;
@@ -156,14 +171,18 @@ namespace RuffGdMainProject.GridSystem
 
         public void ActivatePlayerhighlight(bool isPlayer)
         {
-            PlayerTileSprite.Visible = isPlayer;
-            EnemyTileSprite.Visible = !isPlayer;
+            ActiveSprite.Visible = isPlayer;
+        }
+
+        public void ActivateEnemyHighlights()
+        {
+            EnemySprite.Visible = true;
         }
 
         public void DeactivatePlayerHighlights()
         {
-            PlayerTileSprite.Hide();
-            EnemyTileSprite.Hide();
+            ActiveSprite.Hide();
+            EnemySprite.Hide();
         }
     }
 }

@@ -34,10 +34,6 @@ namespace RuffGdMainProject.UiSystem
         {
             // Reset timer values based on the player ID
             seconds = 30;
-            /*  if (playerId == 1)
-                  prefix = "Player1 Turn: 00:";
-              else
-                  prefix = "Player2 Turn: 00:";*/
             if (playerId == 1)
                 prefix = "";
             else

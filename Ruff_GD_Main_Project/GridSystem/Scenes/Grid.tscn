@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://GridSystem/Scripts/GridManager.cs" type="Script" id=1]
 [ext_resource path="res://GridSystem/Scenes/TileScene.tscn" type="PackedScene" id=2]
@@ -21,7 +21,7 @@
 [ext_resource path="res://GridSystem/Assets/Gameplay/player-nameplate (1).png" type="Texture" id=19]
 [ext_resource path="res://GridSystem/Assets/Gameplay/player-nameplate.png" type="Texture" id=20]
 [ext_resource path="res://GridSystem/Assets/Gameplay/Group 117 (1).png" type="Texture" id=21]
-[ext_resource path="res://GridSystem/Assets/Gameplay/Group 131.png" type="Texture" id=22]
+[ext_resource path="res://Cards_UI/Main/UI/fonts/KeyboardKeyFont.tres" type="DynamicFont" id=22]
 [ext_resource path="res://GridSystem/Scripts/PlayerInfo.cs" type="Script" id=23]
 [ext_resource path="res://GridSystem/Scripts/OptionsScreen.cs" type="Script" id=24]
 [ext_resource path="res://GridSystem/Assets/Gameplay/Frame.png" type="Texture" id=25]
@@ -31,8 +31,7 @@
 [ext_resource path="res://GridSystem/Fonts/timerFonts.tres" type="DynamicFont" id=29]
 [ext_resource path="res://GridSystem/Assets/Gameplay/Rectangle 24.png" type="Texture" id=30]
 [ext_resource path="res://GridSystem/Assets/Gameplay/New Gameplay elements/plant3.png" type="Texture" id=31]
-[ext_resource path="res://GridSystem/Assets/Gameplay/New Gameplay elements/mana new.png" type="Texture" id=32]
-[ext_resource path="res://Cards_UI/Cards New/cartridgeNetherstoneMod_copy.png" type="Texture" id=33]
+[ext_resource path="res://GridSystem/Assets/Gameplay/RBG mana point-13.png" type="Texture" id=32]
 [ext_resource path="res://CardSystem/Scripts/CardsManager.cs" type="Script" id=34]
 [ext_resource path="res://GridSystem/Scripts/CameraShake.cs" type="Script" id=35]
 [ext_resource path="res://GridSystem/Assets/Gameplay/New Gameplay elements/plant 2.png" type="Texture" id=36]
@@ -45,6 +44,17 @@
 [ext_resource path="res://GridSystem/Assets/Gameplay/New Gameplay elements/timer green.png" type="Texture" id=43]
 [ext_resource path="res://Cards_UI/Fonts/Fonts/Roboto_Mono/static/RobotoMono-Bold.ttf" type="DynamicFontData" id=44]
 [ext_resource path="res://GridSystem/Assets/Gameplay/New Gameplay elements/skip botton select.png" type="Texture" id=45]
+[ext_resource path="res://ManaUI/Scenes/ManaUi.tscn" type="PackedScene" id=46]
+[ext_resource path="res://GridSystem/Scenes/Unit2ProfileBg3.tscn" type="PackedScene" id=47]
+[ext_resource path="res://GridSystem/Scenes/Unit1ProfileBg.tscn" type="PackedScene" id=48]
+[ext_resource path="res://GridSystem/Scenes/Unit1ProfileBg2.tscn" type="PackedScene" id=49]
+[ext_resource path="res://GridSystem/Scenes/Unit2ProfileBg4.tscn" type="PackedScene" id=50]
+[ext_resource path="res://GridSystem/Scenes/UnitProgressBar_2.tscn" type="PackedScene" id=51]
+[ext_resource path="res://GridSystem/Scenes/UnitProgressBar.tscn" type="PackedScene" id=52]
+[ext_resource path="res://CardSystem/Scenes/CardZoomPanel.tscn" type="PackedScene" id=53]
+[ext_resource path="res://GridSystem/Assets/Gameplay/attack_hover.png" type="Texture" id=54]
+[ext_resource path="res://GridSystem/Assets/Gameplay/move_hover.png" type="Texture" id=55]
+[ext_resource path="res://GridSystem/Assets/Gameplay/skip_hover.png" type="Texture" id=56]
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 39 )
@@ -254,10 +264,6 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=69]
-size = 30
-font_data = ExtResource( 44 )
-
 [sub_resource type="DynamicFont" id=4]
 size = 30
 font_data = ExtResource( 44 )
@@ -265,6 +271,7 @@ font_data = ExtResource( 44 )
 [sub_resource type="DynamicFont" id=68]
 size = 30
 outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
 font_data = ExtResource( 44 )
 
 [sub_resource type="Animation" id=6]
@@ -334,6 +341,37 @@ tracks/2/keys = {
 "values": [ Vector2( -650, 248 ) ]
 }
 
+[sub_resource type="Animation" id=70]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UiController/CardList:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1000, 892 ) ]
+}
+
+[sub_resource type="Animation" id=71]
+resource_name = "forGameplayGrid"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("UiController/CardList:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7, 1.5, 2.3, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1500, 892 ), Vector2( -1500, 892 ), Vector2( -1500, 892 ), Vector2( 450, 892 ), Vector2( 309.839, 892 ) ]
+}
+
 [node name="Grid" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -351,25 +389,25 @@ texture = ExtResource( 14 )
 [node name="Plant1" type="AnimatedSprite" parent="GameplayBG"]
 position = Vector2( -132.669, -187.932 )
 frames = SubResource( 19 )
-frame = 9
+frame = 3
 playing = true
 
 [node name="Plant2" type="AnimatedSprite" parent="GameplayBG"]
 position = Vector2( -56.9721, -180.757 )
 frames = SubResource( 31 )
-frame = 9
+frame = 3
 playing = true
 
 [node name="screenSmall1" type="AnimatedSprite" parent="GameplayBG"]
 position = Vector2( 19.5219, -165.611 )
 frames = SubResource( 43 )
-frame = 9
+frame = 3
 playing = true
 
 [node name="Screen2" type="AnimatedSprite" parent="GameplayBG"]
 position = Vector2( 106.375, -168.401 )
 frames = SubResource( 67 )
-frame = 9
+frame = 3
 playing = true
 
 [node name="Sprite" type="Sprite" parent="GameplayBG"]
@@ -589,7 +627,7 @@ margin_top = 0.0229998
 margin_right = -0.0399933
 margin_bottom = -0.0230026
 custom_fonts/font = ExtResource( 28 )
-text = "Player 1"
+text = "Alpha 321"
 align = 1
 valign = 1
 uppercase = true
@@ -628,6 +666,8 @@ margin_bottom = 0.019722
 texture = ExtResource( 9 )
 expand = true
 stretch_mode = 6
+
+[node name="UnitProgressBar" parent="CanvasLayer/UiController/Player1Info" instance=ExtResource( 52 )]
 
 [node name="Player2Info" type="Control" parent="CanvasLayer/UiController"]
 anchor_left = 0.777
@@ -679,7 +719,7 @@ anchor_bottom = 0.82
 margin_left = 0.00399995
 margin_right = 0.0319977
 custom_fonts/font = ExtResource( 28 )
-text = "Player 2"
+text = "Bravo 569"
 align = 1
 valign = 1
 uppercase = true
@@ -723,6 +763,18 @@ margin_bottom = -0.0570068
 texture = ExtResource( 9 )
 expand = true
 stretch_mode = 6
+
+[node name="UnitProgressBar" parent="CanvasLayer/UiController/Player2Info" instance=ExtResource( 51 )]
+modulate = Color( 0.0784314, 0.913725, 0.156863, 1 )
+self_modulate = Color( 0.0784314, 0.913725, 0.156863, 1 )
+
+[node name="Unit1ProfileBg" parent="CanvasLayer/UiController" instance=ExtResource( 48 )]
+
+[node name="Unit1ProfileBg2" parent="CanvasLayer/UiController" instance=ExtResource( 49 )]
+
+[node name="Unit2ProfileBg3" parent="CanvasLayer/UiController" instance=ExtResource( 47 )]
+
+[node name="Unit2ProfileBg4" parent="CanvasLayer/UiController" instance=ExtResource( 50 )]
 
 [node name="TurnTimer" type="Control" parent="CanvasLayer/UiController"]
 pause_mode = 1
@@ -815,7 +867,7 @@ grow_horizontal = 2
 rect_pivot_offset = Vector2( 21, 40 )
 texture_normal = ExtResource( 16 )
 texture_pressed = ExtResource( 15 )
-texture_hover = ExtResource( 15 )
+texture_hover = ExtResource( 55 )
 expand = true
 stretch_mode = 5
 
@@ -854,7 +906,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource( 17 )
 texture_pressed = ExtResource( 18 )
-texture_hover = ExtResource( 18 )
+texture_hover = ExtResource( 54 )
 expand = true
 stretch_mode = 5
 
@@ -887,7 +939,8 @@ anchor_bottom = 0.958
 margin_top = 2.0
 margin_bottom = 0.0400085
 texture_normal = ExtResource( 41 )
-texture_hover = ExtResource( 45 )
+texture_pressed = ExtResource( 45 )
+texture_hover = ExtResource( 56 )
 expand = true
 stretch_mode = 5
 
@@ -908,83 +961,62 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="OptionsBtn" type="Control" parent="CanvasLayer/UiController"]
-visible = false
-anchor_top = 0.428
-anchor_right = 0.041
-anchor_bottom = 0.506
-margin_top = 0.759979
-margin_right = -0.761002
-margin_bottom = 0.519958
-mouse_filter = 2
-input_pass_on_modal_close_click = false
-
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UiController/OptionsBtn"]
-anchor_right = 0.887
-anchor_bottom = 1.0
-margin_right = 0.0459976
-texture_normal = ExtResource( 22 )
-expand = true
-stretch_mode = 5
-
 [node name="Mana" type="Control" parent="CanvasLayer/UiController"]
 anchor_left = 0.015
 anchor_top = 0.731
 anchor_right = 0.168
 anchor_bottom = 0.974
-margin_left = -32.815
+margin_left = -36.8
 margin_top = 42.52
-margin_right = -32.728
-margin_bottom = 43.08
+margin_right = -35.56
+margin_bottom = 43.0801
 
-[node name="ManaBg" type="TextureRect" parent="CanvasLayer/UiController/Mana"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -3.0
-margin_bottom = -3.0
+[node name="manaTextBg" type="TextureRect" parent="CanvasLayer/UiController/Mana"]
+anchor_left = 0.943
+anchor_top = 0.555
+anchor_right = 1.124
+anchor_bottom = 0.893
+margin_left = -56.185
+margin_top = 6.035
+margin_right = -63.3713
+margin_bottom = -8.85896
+rect_scale = Vector2( 0.960001, 1.08 )
 texture = ExtResource( 32 )
-expand = true
-stretch_mode = 6
 
-[node name="P1Mana" type="Label" parent="CanvasLayer/UiController/Mana"]
+[node name="P1Mana" type="Label" parent="CanvasLayer/UiController/Mana/manaTextBg"]
 anchor_left = 0.34
 anchor_top = 0.302
 anchor_right = 0.639
 anchor_bottom = 0.642
-margin_left = -0.379997
-margin_top = -0.0500183
-margin_right = -0.0730286
-margin_bottom = 0.66597
-custom_fonts/font = ExtResource( 29 )
+margin_left = -1.84694
+margin_top = -7.348
+margin_right = 4.39906
+margin_bottom = 10.492
+custom_fonts/font = ExtResource( 22 )
 text = "0"
 align = 1
 valign = 1
 uppercase = true
 
-[node name="P2Mana" type="Label" parent="CanvasLayer/UiController/Mana"]
-anchor_left = 0.646
-anchor_top = 0.567
-anchor_right = 0.801
-anchor_bottom = 0.729
-margin_left = 0.0759888
-margin_top = -0.121002
-margin_right = 0.0760193
-margin_bottom = -0.118988
-custom_fonts/font = SubResource( 69 )
-text = "12"
-align = 1
-valign = 1
-uppercase = true
+[node name="ManaCrystalsRoot" parent="CanvasLayer/UiController/Mana" instance=ExtResource( 46 )]
+anchor_left = 0.054
+anchor_right = 1.031
+anchor_bottom = 0.863
+margin_left = 0.132264
+margin_top = 4.0
+margin_right = 39.1971
+margin_bottom = 40.0311
+rect_scale = Vector2( 0.72, 0.88 )
 
 [node name="CardList" type="Control" parent="CanvasLayer/UiController"]
 anchor_left = 0.161
 anchor_top = 0.83
 anchor_right = 0.638
 anchor_bottom = 1.0
-margin_left = 0.718994
+margin_left = -1309.12
 margin_top = -4.39996
-margin_right = -0.598022
-margin_bottom = -3.99988
+margin_right = -1309.12
+margin_bottom = -4.3999
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UiController/CardList"]
 anchor_right = 0.976
@@ -1023,6 +1055,9 @@ margin_top = 507.0
 margin_right = -2026.0
 margin_bottom = 507.0
 
+[node name="CardZoomPanel" parent="CanvasLayer/UiController" instance=ExtResource( 53 )]
+visible = false
+
 [node name="OptionsScreen" type="Control" parent="CanvasLayer/UiController"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1041,13 +1076,14 @@ texture = ExtResource( 13 )
 expand = true
 
 [node name="MsgPopup" type="Control" parent="CanvasLayer/UiController/OptionsScreen"]
+visible = false
 anchor_left = -0.338
 anchor_top = 0.214
 anchor_bottom = 0.339
-margin_left = -650.0
-margin_top = 248.0
-margin_right = 1297.44
-margin_bottom = 653.0
+margin_left = -1.03998
+margin_top = 16.88
+margin_right = 9733.92
+margin_bottom = 2041.88
 rect_pivot_offset = Vector2( 314, 66 )
 
 [node name="PopupBg" type="TextureRect" parent="CanvasLayer/UiController/OptionsScreen/MsgPopup"]
@@ -1056,8 +1092,8 @@ anchor_right = 0.753
 anchor_bottom = 0.978
 margin_left = 5.0
 margin_top = 3.0
-margin_right = 905.0
-margin_bottom = 553.0
+margin_right = -6914.09
+margin_bottom = -1559.48
 mouse_filter = 0
 texture = ExtResource( 8 )
 expand = true
@@ -1069,9 +1105,10 @@ anchor_bottom = 1.023
 input_pass_on_modal_close_click = false
 size_flags_horizontal = 2
 size_flags_vertical = 2
-custom_colors/font_color = Color( 0.113725, 0.466667, 0.486275, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0.554466, 0.739643, 0.830078, 1 )
+custom_constants/shadow_offset_x = 2
 custom_fonts/font = ExtResource( 27 )
 text = "Your Turn"
 align = 1
@@ -1091,7 +1128,6 @@ anchor_right = 1.0
 anchor_bottom = 1.002
 margin_right = 1.0
 margin_bottom = -0.156128
-texture = ExtResource( 33 )
 expand = true
 stretch_mode = 6
 
@@ -1103,7 +1139,7 @@ margin_right = -0.246033
 margin_bottom = 2.15991
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UiController/OptionsScreen/PauseMenu"]
-self_modulate = Color( 1, 1, 1, 0.686275 )
+self_modulate = Color( 1, 1, 1, 0.890196 )
 anchor_left = 0.671
 anchor_top = 0.214
 anchor_right = 2.411
@@ -1170,6 +1206,8 @@ margin_top = -0.505
 margin_right = 0.697998
 margin_bottom = 2.465
 input_pass_on_modal_close_click = false
+custom_colors/font_color_shadow = Color( 0.329412, 0.329412, 0.329412, 1 )
+custom_constants/shadow_offset_x = 1
 custom_fonts/font = SubResource( 68 )
 text = "Quit To Menu"
 align = 1
@@ -1188,9 +1226,10 @@ margin_bottom = 22.9
 input_pass_on_modal_close_click = false
 size_flags_horizontal = 2
 size_flags_vertical = 2
-custom_colors/font_color = Color( 0.054902, 0.4, 0.419608, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0.554466, 0.739643, 0.830078, 1 )
+custom_colors/font_color_shadow = Color( 0.54902, 0.54902, 0.54902, 1 )
+custom_constants/shadow_offset_x = 3
 custom_fonts/font = ExtResource( 10 )
 text = "It's a Draw"
 align = 1
@@ -1203,6 +1242,11 @@ playback_speed = 0.75
 method_call_mode = 1
 anims/PopUpAnim = SubResource( 6 )
 anims/RESET = SubResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UiController"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 70 )
+anims/forGameplayGrid = SubResource( 71 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 962, 540 )
@@ -1217,6 +1261,5 @@ script = ExtResource( 35 )
 [connection signal="mouse_exited" from="CanvasLayer/UiController/ActionPanel/Attack/AttackButton" to="CanvasLayer/UiController" method="_on_Button_mouse_exited" binds= [ "AttackBtn" ]]
 [connection signal="pressed" from="CanvasLayer/UiController/ActionPanel/Attack/AttackButton" to="CanvasLayer/UiController" method="_on_ActionButton_pressed" binds= [ "Attackbtn" ]]
 [connection signal="pressed" from="CanvasLayer/UiController/ActionPanel/SkipUnitTurn/TextureButton" to="CanvasLayer/UiController" method="_on_SkipUnitTurn_mouse_entered"]
-[connection signal="pressed" from="CanvasLayer/UiController/OptionsBtn/TextureButton" to="CanvasLayer/UiController" method="PauseGame"]
 [connection signal="pressed" from="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect/ResumeBtn" to="CanvasLayer/UiController/OptionsScreen" method="ResumeGame"]
 [connection signal="pressed" from="CanvasLayer/UiController/OptionsScreen/PauseMenu/TextureRect/ReturnToMenuBtn" to="CanvasLayer/UiController/OptionsScreen" method="QuitToMenu"]

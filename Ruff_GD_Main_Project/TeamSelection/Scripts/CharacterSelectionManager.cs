@@ -23,6 +23,8 @@ namespace RuffGdMainProject.UiSystem
         [Export] public PackedScene worldItem;
         [Export] public List<PackedScene> Breeds;
 
+        private Control vsScreenParent;
+
 
         public override void _Process(float delta)
         {
@@ -42,8 +44,8 @@ namespace RuffGdMainProject.UiSystem
             TeamIds = new List<int>();
             Breeds = new List<PackedScene>();
             CharactersList = new List<Character>();
+            vsScreenParent = GetNode<Control>("VSScreen");
             InitializeCharactersList();
-            GD.Print("List count is" + CharactersList.Count);
             InstanceCharacterNode();
         }
 
@@ -78,7 +80,6 @@ namespace RuffGdMainProject.UiSystem
                 TeamItem.Connect("pressed", this, "AddToTheTeam", new Godot.Collections.Array { CharactersList[n].characterID });
                 TeamItem.SetValue(CharactersList[n].characterName, CharactersList[n].characterSprite);
                 TeamItem.setCharacterId(CharactersList[n].characterID);
-                // GD.Print("Path is" + GetNode<ScrollContainer>("allCharacterScroll").GetNode<Control>("allCharacter").Name);
                 GetNode<ScrollContainer>("allCharacterScroll").GetNode<Control>("allCharacter").AddChild(TeamItem);
 
             }
@@ -92,22 +93,18 @@ namespace RuffGdMainProject.UiSystem
 
         public void AddToTheTeam(int id)
         {
-            GD.Print("characte id " + id);
             if (TeamIds.Count == 0)
             {
                 SoundManager.Instance.PlaySoundByName("ButtonSound2");
                 TeamIds.Add(id);
-                for (int j = 0; j < TeamIds.Count; j++)
-                {
-                    GD.Print("Loop items are:" + TeamIds[j]);
-                }
+
                 GlobalData gd = new GlobalData();
                 gd.addItem(id);
                 PackedScene TeamGridItem = (PackedScene)GD.Load("res://TeamSelection/Scenes/TeamGridItem.tscn");
                 TeamGridItemUI TeamItem1 = (TeamGridItemUI)TeamGridItem.Instance();
                 TeamItem1.SetValue(CharactersList[id - 1].characterName, CharactersList[id - 1].characterSprite);
                 TeamItem1.setCharacterId(CharactersList[id - 1].characterID);
-                //TeamItem1.GetNode("TextureButton").Connect("pressed", this, "RemoveCharacterFromGrid");
+                TeamItem1.SetCharcterStats(CharactersList[id - 1].characterID, CharactersList[id - 1].characterName);
                 GetNode<GridContainer>("TeamCharacter").AddChild(TeamItem1);
             }
             else
@@ -119,16 +116,14 @@ namespace RuffGdMainProject.UiSystem
                     {
                         SoundManager.Instance.PlaySoundByName("ButtonSound2");
                         TeamIds.Add(id);
-                        for (int j = 0; j < TeamIds.Count; j++)
-                        {
-                            GD.Print("Loop items are:" + TeamIds[j]);
-                        }
+
                         GlobalData gd = new GlobalData();
                         gd.addItem(id);
                         PackedScene TeamGridItem = (PackedScene)GD.Load("res://TeamSelection/Scenes/TeamGridItem.tscn");
                         TeamGridItemUI TeamItem1 = (TeamGridItemUI)TeamGridItem.Instance();
                         TeamItem1.SetValue(CharactersList[id - 1].characterName, CharactersList[id - 1].characterSprite);
                         TeamItem1.setCharacterId(CharactersList[id - 1].characterID);
+                        TeamItem1.SetCharcterStats(CharactersList[id - 1].characterID, CharactersList[id - 1].characterName);
                         GetNode<GridContainer>("TeamCharacter").AddChild(TeamItem1);
                     }
                 }
@@ -138,13 +133,11 @@ namespace RuffGdMainProject.UiSystem
 
         public void RemoveCharacterFromGrid(int id)
         {
-            GD.Print("id found is" + id);
             for (int i = 0; i < TeamIds.Count; i++)
             {
                 if (id == TeamIds[i])
                 {
                     SoundManager.Instance.PlaySoundByName("ButtonSound2");
-                    GD.Print("id found" + id);
                     TeamIds.Remove(id);
                 }
             }
@@ -185,12 +178,12 @@ namespace RuffGdMainProject.UiSystem
         public void _on_ConfirmationButton_pressed()
         {
             SoundManager.Instance.PlaySoundByName("ButtonSound");
-            var vsScreen = GetNode("AnimationPlayer") as AnimationPlayer;
-            vsScreen.Play("PlayerSelectionPanelAnim");
+            
             List<int> storedCharacterIds = StoreSelectedCharacterIDS();
-            GD.Print("Name is" + this.GetNode<Control>("VersusScreenBg").Name);
 
-            this.GetNode<Control>("VersusScreenBg").Show();
+            vsScreenParent.Show();
+            var vsScreen = vsScreenParent.GetNode("AnimationPlayer") as AnimationPlayer;
+            vsScreen.Play("PlayerSelectionPanelAnimNEW");
             ShowChosenCharacters(storedCharacterIds);
             StartupScript.Startup.StartGame();
         }
@@ -216,27 +209,22 @@ namespace RuffGdMainProject.UiSystem
                     {
                         TeamItemUI = (PackedScene)GD.Load("res://TeamSelection/Scenes/PlayerTeamItem.tscn");
                         TeamItemUI TeamItem = (TeamItemUI)TeamItemUI.Instance();
-                        // TeamItem.Connect("pressed", this, "AddToTheTeam", new Godot.Collections.Array { CharactersList[n].characterID });
                         TeamItem.SetValue(CharactersList[n].characterName, CharactersList[n].characterSprite);
                         TeamItem.setCharacterId(CharactersList[n].characterID);
-                        GD.Print("Path is" + GetNode<ScrollContainer>("allCharacterScroll").GetNode<Control>("allCharacter").Name);
-                        this.GetNode<Control>("VersusScreenBg").GetNode<Control>("VersusBG").GetNode<GridContainer>("Player2Grid").AddChild(TeamItem);
+                        vsScreenParent.GetNode<Control>("VersusScreenBg").GetNode<Control>("VersusBG").GetNode<GridContainer>("Player2Grid").AddChild(TeamItem);
                     }
                 }
             }
         }
 
-        public void ShowOpponantCharacters(int id, string nm)
+        public void ShowOpponentCharacters(int id, string nm)
         {
-            GD.Print("Oppanant ID = " + id);
-            this.GetNode<Control>("VersusScreenBg").GetNode<Control>("VersusBG").GetNode<Control>("Player1Parent").Hide();
+            vsScreenParent.GetNode<Control>("VersusScreenBg").GetNode<Control>("VersusBG").GetNode<Control>("Player1Parent").Hide();
             TeamItemUI = (PackedScene)GD.Load("res://TeamSelection/Scenes/PlayerTeamItem.tscn");
             TeamItemUI TeamItem = (TeamItemUI)TeamItemUI.Instance();
-            // TeamItem.Connect("pressed", this, "AddToTheTeam", new Godot.Collections.Array { CharactersList[n].characterID });
             TeamItem.SetValue(nm, ReturnTeamItemProfilePic(id));
             TeamItem.setCharacterId(id);
-            // GD.Print("Path is" + GetNode<ScrollContainer>("allCharacterScroll").GetNode<GridContainer>("allCharacter").Name);
-            this.GetNode<Control>("VersusScreenBg").GetNode<Control>("VersusBG").GetNode<GridContainer>("Player1Grid").AddChild(TeamItem);
+            vsScreenParent.GetNode<Control>("VersusScreenBg").GetNode<Control>("VersusBG").GetNode<GridContainer>("Player1Grid").AddChild(TeamItem);
         }
 
         public Texture ReturnTeamItemProfilePic(int ID)
@@ -244,12 +232,9 @@ namespace RuffGdMainProject.UiSystem
             var character = CharactersList.Find(x=>x.characterID == ID);
             TeamItemUI = (PackedScene)GD.Load("res://TeamSelection/Scenes/PlayerTeamItem.tscn");
             TeamItemUI TeamItem = (TeamItemUI)TeamItemUI.Instance();
-
             TeamItem.SetValue(character.characterName, character.characterSprite);
             TeamItem.setCharacterId(character.characterID);
-
             var TeamCharSprite = TeamItem.GetNode("Frame").GetChild<TextureRect>(0).Texture;
-
             return TeamCharSprite;
         }
 
@@ -257,7 +242,7 @@ namespace RuffGdMainProject.UiSystem
         public async void PlayersJoined()
         {
             await ToSignal(GetTree().CreateTimer(1.0f), "timeout"); 
-            this.GetNode<Control>("VersusScreenBg").GetNode<Control>("Select Party2").Hide();
+            vsScreenParent.GetNode<Control>("VersusScreenBg").GetNode<Control>("Select Party2").Hide();
         }
     }
 }

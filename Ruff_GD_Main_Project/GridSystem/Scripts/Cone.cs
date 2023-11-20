@@ -20,6 +20,12 @@ namespace RuffGdMainProject.GridSystem
         public bool IsSynced = false;
         public int TileNo { get; private set; }
 
+        private Sprite highlight;
+        [Export]
+        private Color enemyColor;
+        [Export]
+        private Color allyColor;
+
         public void Init(Player player, Tile spawnTile, float hp)
         {
             TileNo = spawnTile.TileNo;
@@ -30,11 +36,18 @@ namespace RuffGdMainProject.GridSystem
             Cell.CurrentCone = this;
             HitPoints = hp;
             GlobalPosition = spawnTile.GlobalPosition;
-            GetChild<AnimatedSprite>(0).Play("default", true);
+            highlight = GetNode<Sprite>("Highlight");
+            GetNode<AnimatedSprite>("AnimatedSprite").Play("default", true);
             SoundManager.Instance.PlaySoundByName("BubbleSound");
             GridManager.GM.BlockTile(Cell, this);
-            // Cell.ActivatePlayerhighlight(MyPlayer.IsLocalPlayer);
-            // IsSynced = true;
+            if(player.IsLocalPlayer)
+            {
+                highlight.SelfModulate = allyColor;
+            }
+            else
+            {
+                highlight.SelfModulate = enemyColor;
+            }
         }
 
         public void OnMouseEnter()
@@ -45,12 +58,10 @@ namespace RuffGdMainProject.GridSystem
         {
             if (_event is InputEventMouseButton mouseButton)
             {
-                // GD.Print("Targetting CONE----------------");
                 if(!isDead && !MyPlayer.IsMyTurn
                     && GridManager.GM.CanSelectTarget && !GridManager.GM.CM.CanPlaceCones)
                 {
                     GridManager.GM.CanSelectTarget = false;
-                    // DealDamage(10);
                     GridManager.GM.CM.AttackOnCone(this);
                 }
             }
@@ -62,7 +73,6 @@ namespace RuffGdMainProject.GridSystem
 
         public void DealDamage(float dmg)
         {
-            // GD.Print(">>>>>>> Damaging CONE");
             HitPoints -= dmg;
             GridManager.GM.UiController.ShowDmgAtUnit(this, dmg, TextColorType.Damage);
             GridManager.GM.camShake.Shake(0.35f);

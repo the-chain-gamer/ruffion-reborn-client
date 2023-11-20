@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ManaUI/Scripts/ManaUi.cs" type="Script" id=1]
+[ext_resource path="res://ManaUI/Graphics/CrystalGrey.png" type="Texture" id=2]
+
+[node name="ManaCrystalsRoot" type="Control"]
+anchor_right = 0.18
+anchor_bottom = 0.256
+margin_right = 0.399994
+margin_bottom = 0.519989
+rect_scale = Vector2( 0.84, 1 )
+script = ExtResource( 1 )
+
+[node name="ManaCrystal1" type="Sprite" parent="."]
+position = Vector2( 60.5, 138 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal2" type="Sprite" parent="."]
+position = Vector2( 98, 79.9999 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal3" type="Sprite" parent="."]
+position = Vector2( 98, 197 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal4" type="Sprite" parent="."]
+position = Vector2( 135, 139 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal5" type="Sprite" parent="."]
+position = Vector2( 173, 80.9999 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal6" type="Sprite" parent="."]
+position = Vector2( 173, 197 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal7" type="Sprite" parent="."]
+position = Vector2( 211, 139 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal8" type="Sprite" parent="."]
+position = Vector2( 248, 80.9999 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal9" type="Sprite" parent="."]
+position = Vector2( 248, 197 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )
+
+[node name="ManaCrystal10" type="Sprite" parent="."]
+position = Vector2( 285, 139 )
+scale = Vector2( 0.495902, 0.471976 )
+texture = ExtResource( 2 )

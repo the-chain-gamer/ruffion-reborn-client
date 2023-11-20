@@ -13,13 +13,24 @@ namespace RuffGdMainProject.GridSystem
         private Control AppliedCardPopup;
         private Control PauseMenu;
         private Label EndGameMsgLbl;
+        private TextureRect PopupBg;
+        private Texture BlueMsgImg;
+        private Texture RedMsgimg;
+        private Texture GreenMsgimg;
+
+        private TextureRect PauseMenuBg;
+        private Texture DefaultTexture;
+        private Texture WinTexture;
+        private Texture LoseTexture;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
             PauseMenu = GetNode<Control>("PauseMenu");
             PauseMenu.Hide();
+            PauseMenuBg = PauseMenu.GetNode<TextureRect>("TextureRect");
             MsgPopup = GetChild<Control>(1);
+            PopupBg = MsgPopup.GetNode<TextureRect>("PopupBg");
             MsgPopup.Hide();
             overlay = GetChild<TextureRect>(0);
             overlay.Hide();
@@ -27,26 +38,41 @@ namespace RuffGdMainProject.GridSystem
             EndGameMsgLbl = GetChild(3).GetChild(0).GetNode<Label>("MsgLbl2");
             AppliedCardPopup = GetChild<Control>(2);
             AppliedCardPopup.Hide();
+
+            BlueMsgImg = GD.Load<Texture>("res://GridSystem/Assets/Gameplay/popup.png");
+            RedMsgimg = GD.Load<Texture>("res://GridSystem/Assets/Gameplay/popup-red.png");
+            GreenMsgimg = GD.Load<Texture>("res://GridSystem/Assets/Gameplay/popup-green.png");
+
+            DefaultTexture = GD.Load<Texture>("res://GridSystem/Assets/Gameplay/Frame.png");
+            WinTexture = GD.Load<Texture>("res://GridSystem/Assets/Gameplay/Win.png");
+            LoseTexture = GD.Load<Texture>("res://GridSystem/Assets/Gameplay/Lost.png");
         }
 
         public void ShowMsgPopup(string msg, bool HideMsg)
         {
+            PopupBg.Texture = BlueMsgImg;
             MsgLbl.Text = msg;
             overlay.Show();
             MsgPopup.Show();
             var vsScreen = GetNode("AnimationPlayer") as AnimationPlayer;
             vsScreen.Play("PopUpAnim");
-            // SoundManager.Instance.PlaySoundByName("TurnChangeSound");
-            // tw.TweenProperty($, Modulate, 255.0f, 2.5f);
             if(HideMsg){
                 HideMsgWithDelay(false);
             }
         }
 
-        public void ShowMsgPopup(bool turnMsg, string msg = null)
+        public void ShowMsgPopup(bool turnMsg, bool isMyTurn, string msg = null)
         {
             if(turnMsg)
             {
+                if(isMyTurn)
+                {
+                    PopupBg.Texture = GreenMsgimg;
+                }
+                else
+                {
+                    PopupBg.Texture = RedMsgimg;
+                }
                 MsgLbl.Text = msg;
             }
             overlay.Show();
@@ -101,15 +127,21 @@ namespace RuffGdMainProject.GridSystem
             GetTree().ReloadCurrentScene();
         }
 
-        public async void GameEndScreen(string msg)
+        public async void GameEndScreen(string msg, bool isGameLost)
         {
-            // ShowMsgPopup(msg, true);
+            if(isGameLost)
+            {
+                PauseMenuBg.Texture = LoseTexture;
+            }
+            else
+            {
+                PauseMenuBg.Texture = WinTexture;
+            }
+
             EndGameMsgLbl.Text = msg;
             EndGameMsgLbl.Show();
             await ToSignal(GetTree().CreateTimer(2.5f), "timeout");
-            // GD.Print("PauseMenu.GetNode<TextureButton>(TextureRect-ResumeBtn) = "+PauseMenu.GetNode("TextureRect/ResumeBtn"));
             PauseMenu.GetNode<Control>("TextureRect/ResumeBtn").Hide();
-            // btn.Hide();
             PauseMenu.Show();
             overlay.Show();
         }

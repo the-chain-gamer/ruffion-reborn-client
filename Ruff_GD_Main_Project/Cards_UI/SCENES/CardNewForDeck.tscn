@@ -8,7 +8,9 @@
 size = 42
 outline_size = 2
 outline_color = Color( 0.184314, 0.184314, 0.184314, 1 )
+use_mipmaps = true
 use_filter = true
+extra_spacing_char = 2
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -56,14 +58,15 @@ margin_bottom = -14.598
 rect_scale = Vector2( 1.33248, 1.10024 )
 custom_colors/font_color = Color( 0.917647, 0.74902, 0, 1 )
 custom_colors/font_color_shadow = Color( 0.0901961, 0.360784, 0.360784, 1 )
-custom_constants/shadow_offset_x = 5
-custom_constants/shadow_offset_y = 8
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 3
 custom_fonts/font = SubResource( 1 )
 text = "Lalito Laser"
 align = 1
 valign = 1
 autowrap = true
 uppercase = true
+percent_visible = -0.0909091
 
 [node name="Description" type="Label" parent="TextureButton"]
 anchor_left = 0.077

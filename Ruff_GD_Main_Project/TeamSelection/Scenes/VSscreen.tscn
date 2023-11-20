@@ -1,0 +1,734 @@
+[gd_scene load_steps=130 format=2]
+
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars12.png" type="Texture" id=1]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/Bg.png" type="Texture" id=2]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-01.png" type="Texture" id=3]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars57.png" type="Texture" id=4]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/CharacterSelected.png" type="Texture" id=5]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars40.png" type="Texture" id=6]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars20.png" type="Texture" id=7]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/SeparatingLine.png" type="Texture" id=8]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-02.png" type="Texture" id=9]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars38.png" type="Texture" id=10]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars28.png" type="Texture" id=11]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars42.png" type="Texture" id=12]
+[ext_resource path="res://TeamSelection/Art/CharacterSelection/typys RP-03.png" type="Texture" id=13]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars32.png" type="Texture" id=14]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars83.png" type="Texture" id=15]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars82.png" type="Texture" id=16]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars103.png" type="Texture" id=17]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars98.png" type="Texture" id=18]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars74.png" type="Texture" id=19]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars96.png" type="Texture" id=20]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars111.png" type="Texture" id=21]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars84.png" type="Texture" id=22]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars88.png" type="Texture" id=23]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars97.png" type="Texture" id=24]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars100.png" type="Texture" id=25]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars109.png" type="Texture" id=26]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars86.png" type="Texture" id=27]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars105.png" type="Texture" id=28]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars110.png" type="Texture" id=29]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars93.png" type="Texture" id=30]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars104.png" type="Texture" id=31]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars77.png" type="Texture" id=32]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars1.png" type="Texture" id=33]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars2.png" type="Texture" id=34]
+[ext_resource path="res://Cards_UI/Fonts/upheavtt.ttf" type="DynamicFontData" id=35]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars108.png" type="Texture" id=36]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars51.png" type="Texture" id=37]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars87.png" type="Texture" id=38]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars8.png" type="Texture" id=39]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars75.png" type="Texture" id=40]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars90.png" type="Texture" id=41]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars85.png" type="Texture" id=42]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars73.png" type="Texture" id=43]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars79.png" type="Texture" id=44]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars81.png" type="Texture" id=45]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars91.png" type="Texture" id=46]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars7.png" type="Texture" id=47]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars102.png" type="Texture" id=48]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars95.png" type="Texture" id=49]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars23.png" type="Texture" id=50]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars5.png" type="Texture" id=51]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars3.png" type="Texture" id=52]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars56.png" type="Texture" id=53]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars50.png" type="Texture" id=54]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars6.png" type="Texture" id=55]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars4.png" type="Texture" id=56]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars94.png" type="Texture" id=57]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars101.png" type="Texture" id=58]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars80.png" type="Texture" id=59]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars106.png" type="Texture" id=60]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars19.png" type="Texture" id=61]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars78.png" type="Texture" id=62]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars99.png" type="Texture" id=63]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars48.png" type="Texture" id=64]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars39.png" type="Texture" id=65]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars54.png" type="Texture" id=66]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars89.png" type="Texture" id=67]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars107.png" type="Texture" id=68]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars76.png" type="Texture" id=69]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars92.png" type="Texture" id=70]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars24.png" type="Texture" id=71]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars59.png" type="Texture" id=72]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars60.png" type="Texture" id=73]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars61.png" type="Texture" id=74]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars11.png" type="Texture" id=75]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars62.png" type="Texture" id=76]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars14.png" type="Texture" id=77]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars13.png" type="Texture" id=78]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars18.png" type="Texture" id=79]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars36.png" type="Texture" id=80]
+[ext_resource path="res://TeamSelection/Art/Versus Screen/VS.png" type="Texture" id=81]
+[ext_resource path="res://TeamSelection/Art/Versus Screen/LineUp.png" type="Texture" id=82]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars41.png" type="Texture" id=83]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars25.png" type="Texture" id=84]
+[ext_resource path="res://TeamSelection/Art/Versus Screen/LineDown.png" type="Texture" id=85]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars58.png" type="Texture" id=86]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars65.png" type="Texture" id=87]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars70.png" type="Texture" id=88]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars44.png" type="Texture" id=89]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars16.png" type="Texture" id=90]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars34.png" type="Texture" id=91]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars37.png" type="Texture" id=92]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars33.png" type="Texture" id=93]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars29.png" type="Texture" id=94]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars45.png" type="Texture" id=95]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars43.png" type="Texture" id=96]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars68.png" type="Texture" id=97]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars46.png" type="Texture" id=98]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars72.png" type="Texture" id=99]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars9.png" type="Texture" id=100]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars30.png" type="Texture" id=101]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars64.png" type="Texture" id=102]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars69.png" type="Texture" id=103]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars31.png" type="Texture" id=104]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars49.png" type="Texture" id=105]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars67.png" type="Texture" id=106]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars10.png" type="Texture" id=107]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars21.png" type="Texture" id=108]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars52.png" type="Texture" id=109]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars27.png" type="Texture" id=110]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars26.png" type="Texture" id=111]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars66.png" type="Texture" id=112]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars53.png" type="Texture" id=113]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars17.png" type="Texture" id=114]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars71.png" type="Texture" id=115]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars63.png" type="Texture" id=116]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars22.png" type="Texture" id=117]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars35.png" type="Texture" id=118]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars55.png" type="Texture" id=119]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars47.png" type="Texture" id=120]
+[ext_resource path="res://Cards_UI/New UI/BG png 2/BG Stars/BG stars15.png" type="Texture" id=121]
+[ext_resource path="res://TeamSelection/Animation/PlayerSelectionPanelAnimNEW.tres" type="Animation" id=122]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 33 ), ExtResource( 34 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 51 ), ExtResource( 55 ), ExtResource( 47 ), ExtResource( 39 ), ExtResource( 100 ), ExtResource( 107 ), ExtResource( 75 ), ExtResource( 1 ), ExtResource( 78 ), ExtResource( 77 ), ExtResource( 121 ), ExtResource( 90 ), ExtResource( 114 ), ExtResource( 79 ), ExtResource( 61 ), ExtResource( 7 ), ExtResource( 108 ), ExtResource( 117 ), ExtResource( 50 ), ExtResource( 71 ), ExtResource( 84 ), ExtResource( 111 ), ExtResource( 110 ), ExtResource( 11 ), ExtResource( 94 ), ExtResource( 101 ), ExtResource( 104 ), ExtResource( 14 ), ExtResource( 93 ), ExtResource( 91 ), ExtResource( 118 ), ExtResource( 80 ), ExtResource( 92 ), ExtResource( 10 ), ExtResource( 65 ), ExtResource( 6 ), ExtResource( 83 ), ExtResource( 12 ), ExtResource( 96 ), ExtResource( 89 ), ExtResource( 95 ), ExtResource( 98 ), ExtResource( 120 ), ExtResource( 64 ), ExtResource( 105 ), ExtResource( 54 ), ExtResource( 37 ), ExtResource( 109 ), ExtResource( 113 ), ExtResource( 66 ), ExtResource( 119 ), ExtResource( 53 ), ExtResource( 4 ), ExtResource( 86 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 76 ), ExtResource( 116 ), ExtResource( 102 ), ExtResource( 87 ), ExtResource( 112 ), ExtResource( 106 ), ExtResource( 97 ), ExtResource( 103 ), ExtResource( 88 ), ExtResource( 115 ), ExtResource( 99 ), ExtResource( 43 ), ExtResource( 19 ), ExtResource( 40 ), ExtResource( 69 ), ExtResource( 32 ), ExtResource( 62 ), ExtResource( 44 ), ExtResource( 59 ), ExtResource( 45 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 22 ), ExtResource( 42 ), ExtResource( 27 ), ExtResource( 38 ), ExtResource( 23 ), ExtResource( 67 ), ExtResource( 41 ), ExtResource( 46 ), ExtResource( 70 ), ExtResource( 30 ), ExtResource( 57 ), ExtResource( 49 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 18 ), ExtResource( 63 ), ExtResource( 25 ), ExtResource( 58 ), ExtResource( 48 ), ExtResource( 17 ), ExtResource( 31 ), ExtResource( 28 ), ExtResource( 60 ), ExtResource( 68 ), ExtResource( 36 ), ExtResource( 26 ), ExtResource( 29 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+use_filter = true
+extra_spacing_top = 25
+extra_spacing_bottom = 20
+font_data = ExtResource( 35 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player1Parent:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 782, 206 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Player2Grid:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 693, 738 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 954, 510 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/VsImage:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineDown:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineUp:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control/LineDown:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/Control:rect_rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/Select Party2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("PlayerSelectionControlNode/VersusScreenBg/VersusBG/joiningRoom:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("VSScreen/VersusScreenBg/VersusBG/VsImage:self_modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("VSScreen/VersusScreenBg/VersusBG/VsImage:rect_scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 20, 20 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("VSScreen/VersusScreenBg/VersusBG/VsImage:rect_position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 499, 140 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("VSScreen/VersusScreenBg/VersusBG/Control/LineUp:self_modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("VSScreen/VersusScreenBg/VersusBG/Control/LineDown:self_modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("VSScreen/VersusScreenBg/Select Party2:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("VSScreen/VersusScreenBg/VersusBG/joiningRoom:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("VersusScreenBg/VersusBG/Control:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "VsBars"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("VersusScreenBg/VersusBG/Control:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("VersusScreenBg/Select Party2/dot1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VersusScreenBg/Select Party2/dot2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VersusScreenBg/Select Party2/dot3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "loopDots"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("VersusScreenBg/Select Party2/dot1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VersusScreenBg/Select Party2/dot2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VersusScreenBg/Select Party2/dot3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.004
+anchor_bottom = 1.01
+margin_right = 0.319824
+margin_bottom = 0.199951
+
+[node name="VersusScreenBg" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VersusBG" type="TextureRect" parent="VersusScreenBg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+stretch_mode = 1
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="VersusScreenBg/VersusBG"]
+position = Vector2( 960.5, 541 )
+scale = Vector2( 1.201, 1.122 )
+frames = SubResource( 1 )
+frame = 28
+speed_scale = 2.0
+playing = true
+
+[node name="Player1Parent" type="Control" parent="VersusScreenBg/VersusBG"]
+anchor_left = 0.345
+anchor_top = 0.182
+anchor_right = 0.695
+anchor_bottom = 0.421
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 672, 258.12 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="CharacterDog1" type="TextureRect" parent="VersusScreenBg/VersusBG/Player1Parent"]
+anchor_left = 0.047
+anchor_top = 0.09
+anchor_right = 0.278
+anchor_bottom = 0.795
+margin_left = -0.758999
+margin_top = -0.410002
+margin_right = 0.233978
+margin_bottom = 0.0449982
+rect_min_size = Vector2( 156.225, 182.43 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="CharacterDog2" type="TextureRect" parent="VersusScreenBg/VersusBG/Player1Parent"]
+anchor_left = 0.344
+anchor_top = 0.09
+anchor_right = 0.574
+anchor_bottom = 0.803
+margin_left = 0.231995
+margin_top = -0.410002
+rect_min_size = Vector2( 156.225, 184.45 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="CharacterDog3" type="TextureRect" parent="VersusScreenBg/VersusBG/Player1Parent"]
+anchor_left = 0.637
+anchor_top = 0.088
+anchor_right = 0.866
+anchor_bottom = 0.803
+margin_left = 0.0109863
+margin_top = 0.0879974
+rect_min_size = Vector2( 153.877, 184.45 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Control" type="Control" parent="VersusScreenBg/VersusBG"]
+margin_left = 957.0
+margin_top = 550.0
+margin_right = 997.0
+margin_bottom = 590.0
+rect_pivot_offset = Vector2( 20, 20 )
+
+[node name="LineDown" type="TextureRect" parent="VersusScreenBg/VersusBG/Control"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = -34.0
+margin_top = 42.0
+margin_right = -3.0
+margin_bottom = 74.0
+texture = ExtResource( 85 )
+
+[node name="LineUp" type="TextureRect" parent="VersusScreenBg/VersusBG/Control"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 45.0
+margin_top = -36.0
+margin_right = 76.0
+margin_bottom = -3.0
+texture = ExtResource( 82 )
+
+[node name="VsImage" type="TextureRect" parent="VersusScreenBg/VersusBG"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 499.0
+margin_top = 140.0
+margin_right = 543.0
+margin_bottom = 180.0
+rect_scale = Vector2( 20, 20 )
+texture = ExtResource( 81 )
+expand = true
+stretch_mode = 6
+
+[node name="Label1" type="Label" parent="VersusScreenBg/VersusBG"]
+anchor_left = 0.448
+anchor_top = 0.1
+anchor_right = 0.56
+anchor_bottom = 0.18
+margin_left = -0.160034
+margin_right = 0.800049
+margin_bottom = -0.400009
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_fonts/font = SubResource( 2 )
+text = "Alpha 321"
+align = 1
+
+[node name="Label2" type="Label" parent="VersusScreenBg/VersusBG"]
+anchor_left = 0.448
+anchor_top = 0.88
+anchor_right = 0.569
+anchor_bottom = 0.959
+margin_left = -0.160034
+margin_top = -0.400085
+margin_right = -0.47998
+margin_bottom = 0.279907
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_fonts/font = SubResource( 2 )
+text = "Bravo 569"
+align = 1
+
+[node name="Player2Grid" type="GridContainer" parent="VersusScreenBg/VersusBG"]
+anchor_left = 0.362
+anchor_top = 0.683
+anchor_right = 0.656
+anchor_bottom = 0.869
+margin_left = -2.03998
+margin_top = 0.359985
+margin_right = -2.04004
+margin_bottom = 0.359985
+rect_min_size = Vector2( 160, 178 )
+custom_constants/vseparation = 30
+custom_constants/hseparation = 30
+columns = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Player1Grid" type="GridContainer" parent="VersusScreenBg/VersusBG"]
+anchor_left = 0.361
+anchor_top = 0.201
+anchor_right = 0.655
+anchor_bottom = 0.387
+margin_left = 0.879944
+margin_top = -0.0800018
+margin_right = 0.399902
+margin_bottom = 0.039978
+rect_min_size = Vector2( 160, 178 )
+custom_constants/vseparation = 30
+custom_constants/hseparation = 30
+columns = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="joiningRoom" type="TextureRect" parent="VersusScreenBg/VersusBG"]
+anchor_left = 0.047
+anchor_top = 0.044
+anchor_right = 0.231
+anchor_bottom = 0.079
+margin_left = -0.240005
+margin_top = -0.520004
+margin_right = -0.52002
+margin_bottom = -0.320007
+texture = ExtResource( 9 )
+expand = true
+
+[node name="Line2" type="TextureRect" parent="VersusScreenBg/VersusBG"]
+anchor_left = 0.04
+anchor_top = 0.09
+anchor_right = 0.967
+anchor_bottom = 0.105
+margin_left = -0.800003
+margin_top = -0.200005
+margin_right = -0.640137
+margin_bottom = -0.400002
+texture = ExtResource( 8 )
+stretch_mode = 5
+
+[node name="Select Party2" type="TextureButton" parent="VersusScreenBg"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -1817.0
+margin_top = 35.0
+margin_right = -1550.0
+margin_bottom = 75.0
+expand = true
+stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="VersusScreenBg/Select Party2"]
+anchor_left = -0.049
+anchor_top = 0.15
+anchor_right = 1.85
+anchor_bottom = 1.275
+margin_left = 0.0830002
+margin_right = 0.0501404
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 6
+
+[node name="dot1" type="TextureRect" parent="VersusScreenBg/Select Party2"]
+visible = false
+anchor_left = 1.869
+anchor_top = 0.85
+anchor_right = 1.944
+anchor_bottom = 1.275
+margin_left = -0.0230103
+margin_right = -0.0480347
+margin_bottom = 0.999996
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dot2" type="TextureRect" parent="VersusScreenBg/Select Party2"]
+visible = false
+anchor_left = 2.0
+anchor_top = 0.85
+anchor_right = 2.075
+anchor_bottom = 1.3
+margin_right = -0.0250244
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dot3" type="TextureRect" parent="VersusScreenBg/Select Party2"]
+visible = false
+anchor_left = 2.124
+anchor_top = 0.85
+anchor_right = 2.191
+anchor_bottom = 1.3
+margin_left = -0.108032
+margin_right = 2.00293
+texture = ExtResource( 3 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+playback_speed = 2.0
+anims/PlayerSelectionPanelAnimNEW = ExtResource( 122 )
+anims/RESET = SubResource( 4 )
+
+[node name="BarsRotationLoop" type="AnimationPlayer" parent="."]
+autoplay = "VsBars"
+anims/RESET = SubResource( 5 )
+anims/VsBars = SubResource( 6 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+autoplay = "loopDots"
+anims/RESET = SubResource( 7 )
+anims/loopDots = SubResource( 8 )

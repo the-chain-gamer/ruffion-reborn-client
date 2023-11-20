@@ -12,10 +12,10 @@ shader_param/line_color = Color( 1, 1, 1, 1 )
 shader_param/line_thickness = 7.833
 
 [node name="Card" type="Control"]
-anchor_right = 0.11
-anchor_bottom = 0.129
-margin_right = -211.2
-margin_bottom = -139.32
+anchor_right = 0.127
+anchor_bottom = 0.149
+margin_right = -243.84
+margin_bottom = -160.92
 rect_pivot_offset = Vector2( 123, 161 )
 input_pass_on_modal_close_click = false
 script = ExtResource( 1 )

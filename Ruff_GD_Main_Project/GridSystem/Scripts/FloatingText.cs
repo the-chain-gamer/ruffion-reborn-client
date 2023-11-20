@@ -18,7 +18,6 @@ namespace RuffGdMainProject.UiSystem
         {
             Visible = false;
             ready = false;
-            // StartEffect();
             defaultPos = Position;
         }
         public void Init(int dmg, TextColorType colorType)

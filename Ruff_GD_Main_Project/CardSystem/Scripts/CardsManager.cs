@@ -21,19 +21,21 @@ namespace RuffGdMainProject.UiSystem
         public void LoadCardDeck(Player player)
         {
             CardsList = new List<Card>();
-            //this is my local card deck
-            // int totalCards = StartupScript.Startup.DB.MyCardDeck.Count;
             //loading from the deck server sent us
             int totalCards = StartupScript.Startup.DB.MyCardDeck.Count;
             PackedScene cardScene = (PackedScene)GD.Load("res://CardSystem/Scenes/Card.tscn");
+
             for (int i = 0; i < totalCards; i++) {
                 Card card = (Card)cardScene.Instance();
-                // GD.Print("StartupScript.Startup.DB.GetDataByID(StartupScript.Startup.DB.MyCardDeck[i] "
-                //     +StartupScript.Startup.DB.GetDataByID(StartupScript.Startup.DB.MyCardDeck[i]));
                 card.SetCardData(StartupScript.Startup.DB.GetDataByID(StartupScript.Startup.DB.MyCardDeck[i]));
                 GridManager.GM.UiController.cardsList.GetChild(0).AddChild(card);
                 CardsList.Add(card);
             }
+        }
+
+        public List<Card> GetCardsInDeck()
+        {
+            return CardsList;
         }
 
         public void AddCardsInGrid(int id)
@@ -61,13 +63,9 @@ namespace RuffGdMainProject.UiSystem
             List<TargetDog> targetDogs = new List<TargetDog>();
             List<MoveDogInput> opponantMoves = new List<MoveDogInput>();
             List<MoveDogInput> ourMoves = new List<MoveDogInput>();
-            GD.Print("CurrentCard.Name Before = " + CurrentCard.CardName);
             Unit unt = GridManager.GM.TM.GetCurrentUnit();
             CurrentCard.MakeConeAttack();
             AppliedCardInput appliedCardInput;
-            GD.Print("CurrentCard.Name After = " + CurrentCard.CardName);
-
-            // GD.Print("DEFAULT CARD APPLIED");
             targetDogs.Add(new TargetDog(cone.MyPlayer.OnlineID, cone.TileNo.ToString()));
 
             appliedCardInput = new AppliedCardInput(CurrentCard.CardID.ToString(), unt.UnitId.ToString(), targetDogs.ToArray());
@@ -136,7 +134,6 @@ namespace RuffGdMainProject.UiSystem
 
         private void RequestConePlacement()
         {
-            GD.Print("########### Trying to place cones %%%%%%%%%");
             List<TargetDog> targetDogs = new List<TargetDog>();
             List<MoveDogInput> opponantMoves = new List<MoveDogInput>();
             List<MoveDogInput> ourMoves = new List<MoveDogInput>();
@@ -170,7 +167,6 @@ namespace RuffGdMainProject.UiSystem
             Unit target = GridManager.GM.SelectedUnit;
 
             AppliedCardInput appliedCardInput;
-            GD.Print("MadDog value = " + unt.IsMadDog);
             if(unt.IsMadDog > 0)
             {
                 var random = new System.Random();
@@ -249,7 +245,6 @@ namespace RuffGdMainProject.UiSystem
                         {
                             float tempDmg = dmg * 0.25f; // Reduce damage by 25% for successive hits
                             dmg -= tempDmg;
-                            GD.Print("Total Dmg after reduction is = " + dmg);
                         }
                         
                         int d = 0;
@@ -374,37 +369,41 @@ namespace RuffGdMainProject.UiSystem
 
         public async void MultiplayerAttack(AppliedCardInput cardInput, PlayerDataModel currentPlayer, List<PlayerDataModel> players = null)
         {
-            GD.Print("cardID = " + cardInput.CardId);
-            CurrentCard = StartupScript.Startup.DB.GetDataByID(Convert.ToInt32(cardInput.CardId));
-            GridManager.GM.UiController.ToggleCardsList();
+            var p = GridManager.GM.TM.GetPlayerByID(currentPlayer.ID.ToString());
+            if(!p.IsLocalPlayer)
+            {
+                //get all unts for this player
+                var units = p.MyUnits;
 
-            GD.Print("CurrentCard.cardID = " + CurrentCard.CardID);
-            GD.Print("CurrentCard.CardName = " + CurrentCard.CardName);
+                //find dog who attacked
+                var dog = units.Find(x=>x.UnitId.ToString().Equals(cardInput.DogId));
+                await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
+                //update profile picture position for other dogs
+                 GridManager.GM.UiController.UpdateUnitsOnPlayerId(p, dog);
+                //update profile pic for the dog who attacked
+                GridManager.GM.UiController.UpdateProfilePic(p.PlayerNumber, dog);
+            }
+            CurrentCard = StartupScript.Startup.DB.GetDataByID(Convert.ToInt32(cardInput.CardId));
 
             ApplyCard(cardInput, currentPlayer, players);
         }
 
         public async void ApplyCard(AppliedCardInput cardInput, PlayerDataModel currentPlayer, List<PlayerDataModel> players = null)
         {
-            // AppliedCard.Hide();
             //Deduct Mana Cost
             GridManager.GM.TM.ConsumeMana(CurrentCard.ManaCost);
-            GD.Print("Consuming Mana = " + CurrentCard.ManaCost);
             Unit myUnit = GridManager.GM.TM.GetPlayerByID(currentPlayer.ID).MyUnits.Find(x=>x.UnitId.ToString().Equals(cardInput.DogId));
             Unit targetUnit = null;
             Player player = null;
             
             if(cardInput.TargetDogsArray.Length > 0)
             {
-                GD.Print("Getting Target Unit");
                 player = GridManager.GM.TM.GetPlayerByID(cardInput.TargetDogsArray[0].PlayerId);
                 targetUnit = player.MyUnits.Find(x=>x.UnitId.ToString().Equals(cardInput.TargetDogsArray[0].DogId));
                 //Check if we are attacking or applyng card on allies
                 isAllyAttack = targetUnit != null && targetUnit.MyPlayer.OnlineID.Equals(myUnit.MyPlayer.OnlineID);
             }
 
-            // GD.Print("CURRENT CARD APPLIED = " + CurrentCard.CardName);
-            // GD.Print("Apply Card GridManager.GM.TM.GetCurrentPlayerTotalMana() = " + GridManager.GM.TM.GetCurrentPlayerTotalMana());
             if(CurrentCard.CardName.Equals("Basic Attack"))
             {
                 //Apply Damage or whatever
@@ -426,7 +425,6 @@ namespace RuffGdMainProject.UiSystem
                 //Effect
                 PackedScene effectScene = (PackedScene)GD.Load("res://Cards_UI/SCENES/ParticleScenes/SmolSteinsBigHit.tscn");
                 BigHitEffectPlayer bigHit = (BigHitEffectPlayer)effectScene.Instance();
-                GD.Print("%%%%% Created bigHit Effect..... :)");
                 GridManager.GM.AddChild(bigHit);
                 if(myUnit.Cell.ColNum > targetUnit.Cell.ColNum)
                 {
@@ -437,7 +435,6 @@ namespace RuffGdMainProject.UiSystem
                     if(myUnit.Cell.Position.x > targetUnit.Cell.Position.x) bigHit.Scale = new Vector2(-1, 1);
                 }
                 bigHit.GlobalPosition = myUnit.GlobalPosition;
-                // bigHit.GetChild<AnimationPlayer>(1).Play("bigHitAnim");
                 bigHit.PlayHitAnim(myUnit ,targetUnit);
             }
             else if (CurrentCard.CardName.Equals("Lalito's Laser"))
@@ -476,7 +473,6 @@ namespace RuffGdMainProject.UiSystem
             else if(CurrentCard.CardName.Equals("Wiz's Smol Telescope"))
             {
                 ApplyCardEffectOnUnit(myUnit, CurrentCard);
-                // SoundManager.Instance.PlaySoundByName("TelescopeSound");
                 //View Enemy's Cards
                 var lst = GetPupperCards(targetUnit.data);
                 if(lst.Count > 0)
@@ -511,18 +507,13 @@ namespace RuffGdMainProject.UiSystem
                 GridManager.GM.UnblockTile(targetUnit.Cell);
                 GridManager.GM.ResetGridVisuals();
 
-                
-                GD.Print("targetUnit.Cell.Name = " + targetUnit.Cell.Name);
-                GD.Print("tile.Name = " + tile.Name);
                 targetUnit.Cell = tile;
                 tile.IsTaken = true;
                 tile.CurrentUnit = targetUnit;
                 // tile.MarkAsSelected();
                 await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
                 targetUnit.Position = tile.Position;
-                targetUnit.DealDamage(dmg);
-                GD.Print("targetUnit.Position = " + targetUnit.Position);
-                
+                targetUnit.DealDamage(dmg);                
             }
             else if (CurrentCard.CardName == "Bethany's Road block")
             {
@@ -635,8 +626,6 @@ namespace RuffGdMainProject.UiSystem
             {
                 if(targetUnit != null)
                 {
-                    GD.Print("targetUnt.UnitId = " + targetUnit.UnitId);
-                    GD.Print("targetUnit.data.UnitStats.Strength = " + targetUnit.data.UnitStats.Strength);
                     if(targetUnit.data.UnitStats.Strength < 3)
                     {
                         targetUnit.InstantKnockOut();
@@ -652,7 +641,6 @@ namespace RuffGdMainProject.UiSystem
             {
                 if(targetUnit != null)
                 {
-                    GD.Print("targetUnt.UnitId = " + targetUnit.UnitId);
                     var dmg = 5 * (myUnit.data.UnitStats.Strength + 3);
                     targetUnit.DealDamage(dmg, isAllyAttack);
                     targetUnit.ApplyGlovesOfDoom();
@@ -662,7 +650,6 @@ namespace RuffGdMainProject.UiSystem
             {
                 if(targetUnit != null)
                 {
-                    GD.Print("targetUnt.UnitId = " + targetUnit.UnitId);
                     targetUnit.DealDamage(10.0f, isAllyAttack);
                     myUnit.ApplyMaskofEEEEEE();
                 }
@@ -693,7 +680,6 @@ namespace RuffGdMainProject.UiSystem
                 //Effect
                 PackedScene effectScene = (PackedScene)GD.Load("res://Cards_UI/NewDiscordEffects/SwolNewEffects/SwolEffectScenes/Mittens.tscn");
                 MittensEffectPlayer mittens = (MittensEffectPlayer)effectScene.Instance();
-                GD.Print("%%%%% Created bigHit Effect..... :)");
                 GridManager.GM.AddChild(mittens);
                 if(myUnit.Cell.ColNum > targetUnit.Cell.ColNum)
                 {
@@ -704,7 +690,6 @@ namespace RuffGdMainProject.UiSystem
                     if(myUnit.Cell.Position.x > targetUnit.Cell.Position.x) mittens.Scale = new Vector2(-1, 1);
                 }
                 mittens.GlobalPosition = myUnit.GlobalPosition;
-                // bigHit.GetChild<AnimationPlayer>(1).Play("bigHitAnim");
                 mittens.PlayHitAnim(myUnit ,targetUnit);
             }
 
@@ -713,7 +698,6 @@ namespace RuffGdMainProject.UiSystem
                 //Effect
                 PackedScene effectScene = (PackedScene)GD.Load("res://Cards_UI/NewDiscordEffects/SwolNewEffects/SwolEffectScenes/ChampSurprise.tscn");
                 ChampEffectPlayer champ = (ChampEffectPlayer)effectScene.Instance();
-                GD.Print("%%%%% Created bigHit Effect..... :)");
                 GridManager.GM.AddChild(champ);
                 if(myUnit.Cell.ColNum > targetUnit.Cell.ColNum)
                 {
@@ -724,7 +708,6 @@ namespace RuffGdMainProject.UiSystem
                     if(myUnit.Cell.Position.x > targetUnit.Cell.Position.x) champ.Scale = new Vector2(-1, 1);
                 }
                 champ.GlobalPosition = myUnit.GlobalPosition;
-                // bigHit.GetChild<AnimationPlayer>(1).Play("bigHitAnim");
                 champ.PlayHitAnim(myUnit ,targetUnit);
             }
             else if (CurrentCard.CardName.Equals("Babeeee's Chair Toss"))
@@ -733,15 +716,11 @@ namespace RuffGdMainProject.UiSystem
                 {
                     var target = cardInput.TargetDogsArray[0];
                     var targetUnt = targetUnit.MyPlayer.MyUnits.Find(x => x.UnitId.ToString().Equals(target.DogId));
-                    GD.Print("targetUnt.UnitId = " + targetUnt.UnitId);
                     if (targetUnt != null)
                     {
-                        GD.Print("targetUnit.data.UnitStats.Strength = " + targetUnit.data.UnitStats.Strength);
                         PlayChairTossAnimation(myUnit, targetUnit);
                     }
                 }
-
-
             }
             else if (CurrentCard.CardName.Equals("The Wolf's Lair"))
             {
@@ -749,10 +728,8 @@ namespace RuffGdMainProject.UiSystem
                 {
                     var target = cardInput.TargetDogsArray[0];
                     var targetUnt = targetUnit.MyPlayer.MyUnits.Find(x => x.UnitId.ToString().Equals(target.DogId));
-                    GD.Print("targetUnt.UnitId = " + targetUnt.UnitId);
                     if (targetUnt != null)
                     {
-                        GD.Print("targetUnit.data.UnitStats.Strength = " + targetUnit.data.UnitStats.Strength);
                         ApplyWolfsLair(myUnit, targetUnit);
                     }
                 }
@@ -771,7 +748,6 @@ namespace RuffGdMainProject.UiSystem
 
                 await ToSignal(GetTree().CreateTimer(2f), "timeout");
 
-                GD.Print("playersData.Count = " + players.Count);
                 float dmg = DmgCalculator(myUnit.data, CurrentCard);
 
                 List<Tile> TilesList = GridManager.GM.GetTilesList();
@@ -782,7 +758,6 @@ namespace RuffGdMainProject.UiSystem
                 var otherPlayerData = players.Find(x=>x.ID.Equals(targetUnit.MyPlayer.OnlineID));
 
                 await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
-                GD.Print("targetUnit.Cell.Name = " + targetUnit.Cell.Name);
                 var myDogData = myPlayerData.Assets.Dogs.Find(x=>x.DogId == myUnit.UnitId.ToString());
                 var otherDogData = otherPlayerData.Assets.Dogs.Find(x=>x.DogId == targetUnit.UnitId.ToString());
 
@@ -818,19 +793,6 @@ namespace RuffGdMainProject.UiSystem
                 await ToSignal(GetTree().CreateTimer(5.0f), "timeout");
                 missCakes.QueueFree();
                 missCakes2.QueueFree();
-                // if (targetUnit != null)
-                // {
-                    
-                    // var target = cardInput.TargetDogsArray[0];
-                    // var targetUnt = targetUnit.MyPlayer.MyUnits.Find(x => x.UnitId.ToString().Equals(target.DogId));
-
-                    // GD.Print("targetUnt.UnitId = " + targetUnt.UnitId);
-                    // if (targetUnt != null)
-                    // {
-                    //     GD.Print("targetUnit.data.UnitStats.Strength = " + targetUnit.data.UnitStats.Strength);
-                    //     ApplyMissCake(myUnit, targetUnit, players);
-                    // }
-                // }
             }
 
 
@@ -858,7 +820,6 @@ namespace RuffGdMainProject.UiSystem
             SoundManager.Instance.PlaySoundByName("LalitoLaserSound");
             //Calculate Damage
             float dmg = DmgCalculator(myUnit.data, CurrentCard);
-            GD.Print("Total Dmg for Lalito's Laser is = " + dmg);
             var myRow = GridManager.GM.GetMyRow(myUnit.Cell, myUnit.MyPlayer.PlayerNumber == 2);
             //search for units on any tile from above list
             var enemyList = myRow.FindAll(
@@ -877,11 +838,8 @@ namespace RuffGdMainProject.UiSystem
                     if(successiveUnit > 0)
                     {
                         //Each successive Pupper hit gets damage reduced by 25%.
-                        GD.Print("Total Dmg before reduction is = " + dmg);
                         float tempDmg = dmg/100 * 25.0f;
-                        GD.Print("tempDmg is = " + tempDmg);
                         dmg -= tempDmg;
-                        GD.Print("Total Dmg after reduction is = " + dmg);
                     }
                     //Apply Damage or whatever
                     if(e.CurrentUnit != null)
@@ -901,16 +859,12 @@ namespace RuffGdMainProject.UiSystem
         {
             await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
             SoundManager.Instance.PlaySoundByName("SmokeScreenSound");
-            GD.Print("SMOKESCREEN main ");
             foreach(Unit u in targets)
             {
-                GD.Print("SMOKESCREEN foreach LLOOPP !");
                 u.IsSmokescreenApplied = show;
                 ApplyCardEffectOnUnit(u, CurrentCard);
                 EffectPlayer EP = (EffectPlayer)u.GetChild(4).GetChild<EffectPlayer>(0);
                 EP.PlayAnimationOnce();
-                
-                GD.Print("SMOKESCREEN applied !");
             }
         }
 
@@ -930,9 +884,9 @@ namespace RuffGdMainProject.UiSystem
                     destCol++;
                 else
                     destCol--;
+                
                 if(T.RowNum == target.Cell.RowNum && T.ColNum == destCol)
                 {
-                    // GridManager.GM.TM.GetCurrentUnit().GlobalPosition = T.GlobalPosition;
                     mUnit.Move(T, 0);
                     break;
                 }
@@ -953,7 +907,6 @@ namespace RuffGdMainProject.UiSystem
 
             mUnit.AddConsumableCloak(1);
             int moveRangeIncrease = (int)Mathf.Round((mUnit.data.UnitStats.Smarts + mUnit.data.UnitStats.Science) / 2);
-            // GD.Print("Marlon Smol Smoke Bomb increase = " + moveRangeIncrease);
             mUnit.AddConsumableMovementPoints(moveRangeIncrease);
             await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
             SoundManager.Instance.PlaySoundByName("ExplosionSound");
@@ -974,7 +927,6 @@ namespace RuffGdMainProject.UiSystem
             if (target != null)
             {
                 float dmg = DmgCalculator(mUnit.data, CurrentCard);
-                GD.Print("Gamble Dmg = " + dmg);
                 //Apply Damage or whatever
                 target.DealDamage(dmg, isAllyAttack);
                 await ToSignal(GetTree().CreateTimer(2.2f), "timeout");
@@ -1002,7 +954,6 @@ namespace RuffGdMainProject.UiSystem
 
         public async void ApplyThrowdown(Unit unt)
         {
-            //
             PackedScene effectScene = (PackedScene)GD.Load("res://Cards_UI/NewDiscordEffects/SwolNewEffects/SwolEffectScenes/ThrowDown.tscn");
             Node2D throwdown = (Node2D)effectScene.Instance();
             GridManager.GM.AddChild(throwdown);
@@ -1030,7 +981,6 @@ namespace RuffGdMainProject.UiSystem
 
             float dmg = 12 / myUnit.data.UnitStats.Strength;
             //Apply Damage or whatever
-            //await ToSignal(GetTree().CreateTimer(1f), "timeout");
             targetunit.DealDamage(dmg, isAllyAttack);
         }
 
@@ -1041,63 +991,14 @@ namespace RuffGdMainProject.UiSystem
             ChairToss chair = (ChairToss)effectScene.Instance();
             GridManager.GM.AddChild(chair);
             chair.GlobalPosition = myUnit.GlobalPosition;
-            // throwdown.GetNode<AnimatedSprite>("AnimatedSprite").Play();
             await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
             if(myUnit.Cell.ColNum >= targetUnit.Cell.ColNum)
             {
                 chair.Scale = new Vector2(-1, 1);
             }
             chair.GlobalPosition = myUnit.GlobalPosition;
-            // bigHit.GetChild<AnimationPlayer>(1).Play("bigHitAnim");
             chair.PlayHitAnim(myUnit ,targetUnit);
         }
-        // public async void ApplyChairToss(Unit mUnit, Unit target)
-        // {
-        //     //Calculate Damage
-        //     float dmg = mUnit.data.UnitStats.Strength + GridManager.GM.TM.GetCurrentPlayerTotalMana();
-        //     var TargetsCell = target.Cell;
-        //     //Get neighbours of selected dog tile
-        //     List<Tile> neighbouringTiles = GridManager.GM.GetNeigbourTiles(TargetsCell, GridManager.GM.SelectedUnit);
-        //     // 
-
-        //     foreach (var T in neighbouringTiles)
-        //     {
-        //         //if (T.IsTaken) continue;
-        //         int destCol = target.Cell.ColNum;
-        //         if (target.IsFacingRight)
-        //             destCol--;
-        //         else
-        //             destCol++;
-        //         if (T.RowNum == target.Cell.RowNum && T.ColNum == destCol)
-        //         {
-        //             if (!T.IsTaken)
-        //             {
-        //                 // GridManager.GM.TM.GetCurrentUnit().GlobalPosition = T.GlobalPosition;
-        //                 target.Move(T, 0);
-        //                 target.DealDamage(dmg);
-        //                 break;
-        //             }
-        //             else
-        //             {
-        //                 //We need to do damage for each pupper
-        //                 T.CurrentUnit.DealDamage(3f);
-        //                 target.DealDamage(3f);
-        //                 break;
-        //             }
-        //         }
-        //         else
-        //         {
-        //             target.DealDamage(3f);
-        //             break;
-        //         }
-        //     }
-
-        //     //await ToSignal(GetTree().CreateTimer(0.8f), "timeout");
-        //     //SoundManager.Instance.PlaySoundByName("TeleportCardSound");
-        //     ////Apply Damage or whatever
-        //     //target.DealDamage(dmg, isAllyAttack);
-        //     //mUnit.AddConsumableCloak(1, true); // The Small Pup is not targetable until its next turn
-        // }
 
         public async void ApplyChairToss(Unit mUnit, Unit target)
         {
@@ -1108,30 +1009,6 @@ namespace RuffGdMainProject.UiSystem
                 destCol = target.Cell.ColNum - 1;
             else
                 destCol = target.Cell.ColNum + 1;
-
-            
-            // var destTile = GridManager.GM.GetTileBehindMe(target.Cell.RowNum, target.Cell.ColNum);
-
-            // if(destTile != null)
-            // {
-            //     if(!destTile.IsTaken)
-            //     {
-            //         target.Move(destTile, 0);
-            //     }
-            //     else
-            //     {
-            //         if(destTile.CurrentCone != null)
-            //         {
-            //             destTile.CurrentCone.DealDamage(3.0f);
-            //         }
-            //         else if(destTile.CurrentUnit != null)
-            //         {
-            //             destTile.CurrentUnit.DealDamage(3.0f);
-            //         }
-            //     }
-
-            //     target.DealDamage(3f);
-            // }
 
             foreach (var T in GridManager.GM.GetNeigbourTiles(target.Cell, GridManager.GM.SelectedUnit))
             {
@@ -1159,7 +1036,6 @@ namespace RuffGdMainProject.UiSystem
 
         public async void ApplyWolfsLair(Unit mUnit, Unit target)
         {
-            //   ApplyCardEffectOnUnit(mUnit, CurrentCard);
             //Calculate Damage
             float dmg = (6-mUnit.data.UnitStats.Strength) * 5;
 
@@ -1210,12 +1086,10 @@ namespace RuffGdMainProject.UiSystem
 
             target.DealDamage(dmg);
 
-            // GridManager.GM.BlockTile(cell1, target);
-            // GridManager.GM.BlockTile(cell2, mUnit);
+
             await ToSignal(GetTree().CreateTimer(5f), "timeout");
             missCakes.QueueFree();
             missCakes2.QueueFree();
-            // GridManager.GM.SelectedUnit = null;
         }
 
         
@@ -1230,8 +1104,6 @@ namespace RuffGdMainProject.UiSystem
             else
             {
                 //Check Mana Cost
-                // GD.Print("GridManager.GM.TM.GetCurrentPlayerTotalMana() = " + GridManager.GM.TM.GetCurrentPlayerTotalMana());
-                // GD.Print("card.ManaCost = " + card.ManaCost);
                 return GridManager.GM.TM.GetCurrentPlayerTotalMana() >= card.ManaCost && ReqsOkay(card.CardName, GridManager.GM.TM.GetCurrentUnitData());
             }
         }
@@ -1367,7 +1239,7 @@ namespace RuffGdMainProject.UiSystem
             else if(cData.CardName.Equals("Wiz's Smol Telescope"))
             {
                 //need to recalculate for all neighboring units
-                return 10 * uData.UnitStats.Smarts * 1; //replace 1 with no. of seected enemy's cartridges revieled
+                return 10 * uData.UnitStats.Smarts * 1; //replace 1 with no. of selected enemy's cartridges revieled
             }
             else if(cData.CardName.Equals("Bubbles' Pick 'n' Drop"))
             {
@@ -1388,9 +1260,6 @@ namespace RuffGdMainProject.UiSystem
             else if(cData.CardName.Equals("Penelope's Gamble"))
             {
                 float val = (float)uData.UnitStats.Smarts / (float)uData.UnitStats.Strength;
-                GD.Print("uData.UnitStats.Smarts Gamble ______________________________ - = " + uData.UnitStats.Smarts);
-                GD.Print("uData.UnitStats.Strength Gamble ______________________________ - = " + uData.UnitStats.Strength);
-                GD.Print("Dmg Calc for Gamble ______________________________ - = " + val);
                 return val * 10f; // with a 50% chance
             }
             else if(cData.CardName.Equals("Crosby's Smokescreen"))
@@ -1415,18 +1284,15 @@ namespace RuffGdMainProject.UiSystem
             {
                 foreach (var c in CardsList)
                 {
-                    // GD.Print("CanApply(c.Data) = " + CanApply(c.Data));
                     if(!CanApply(c.Data))
                     {
                         c.GreyoutEffect(true);
                         c.MouseFilter = Control.MouseFilterEnum.Ignore;
-                        // GD.Print("GreyoutNonUsableCards >>>>>>>>>>>> ");
                     }
                     else
                     {
                         c.GreyoutEffect(false);
                         c.MouseFilter = Control.MouseFilterEnum.Stop;
-                        // GD.Print("COLORIZE GreyoutNonUsableCards >>>>>>>>>>>> ");
                     }
                 }
             }
@@ -1439,7 +1305,6 @@ namespace RuffGdMainProject.UiSystem
             {
                 foreach (var c in CardsList)
                 {
-                    // GD.Print("CanApply(c.Data) = " + CanApply(c.Data));
                     if(CanApply(c.Data))
                     {
                         pupperCardList.Add(c);
@@ -1451,7 +1316,6 @@ namespace RuffGdMainProject.UiSystem
         }
 
          #region Show Cards WRT TO Selected Dog
-        //Newly Added
         public void AddCardInShuffleCardList()
         {
             ShuffleCardList = new List<Card>();
@@ -1462,8 +1326,6 @@ namespace RuffGdMainProject.UiSystem
                     ShuffleCardList.Add(CardsList[i]);
                 }
             }
-
-            // GD.Print("=========Scroll Card Count is +++++++"+ GridManager.GM.UiController.cardsList.GetChild(0).GetChildCount());
 
             AddCardsInScroll(ShuffleCardList);
         }
@@ -1505,17 +1367,13 @@ namespace RuffGdMainProject.UiSystem
                     if (CheckUniqueNumber(RandomNumberList, randNumber))
                     {
                         RandomNumberList.Add(randNumber);
-                        // GD.Print("+++++++++++++++++++++++=======RandomNumberList Count is=========" + randNumber);
                         if (RandomNumberList.Count == 5)
                         {
-                            // GD.Print("+++++++++++++++++++++++======= Inside RandomNumberList Count is=========" + RandomNumberList.Count);
                             break;
                         }
                     }
                 }
-                // GD.Print("+++++++++++++++++++++++=======RandomNumberList Count is=========" + RandomNumberList.Count);
-
-                ShowCardsinScroll(RandomNumberList);
+                ShowCardsInScroll(RandomNumberList);
             }
             else
             {
@@ -1530,7 +1388,7 @@ namespace RuffGdMainProject.UiSystem
         {
             return !Convert.ToBoolean(randomNumbersList.Find(x => x.Equals(num)));
         }
-        private void ShowCardsinScroll(List<int> randomNumbersList)
+        private async void ShowCardsInScroll(List<int> randomNumbersList)
         {
             if (GridManager.GM.UiController.cardsList.GetChild(0).GetChildCount() > 0)
             {
@@ -1540,28 +1398,25 @@ namespace RuffGdMainProject.UiSystem
                 }
             }
 
-            for (int j = 0; j < randomNumbersList.Count; j++)
+           for (int j = 0; j < randomNumbersList.Count; j++)
             {
+                if (j == 0)
+                {
+                    await ToSignal(GetTree().CreateTimer(4.0f), "timeout");
+                }
+                else
+                {
+                    await ToSignal(GetTree().CreateTimer(0.4f), "timeout");
+                }
                 CardsList[randomNumbersList[j]].ShowCard();
             }
         }
 
         private void ApplyCardEffectOnUnit(Unit currentUnit, CardData CurrentCard)
         {
-            // GD.Print("&&&&&&&&&&&&& Name  of Card is &&&&&&&&&&&" + CurrentCard.CardName);
-            // GD.Print("&&&&&&&&&&&&& Name  of Unit is &&&&&&&&&&&" + currentUnit.UnitName);
-
             if (currentUnit.UnitName == "Corgi" || currentUnit.UnitName == "Shiba" || currentUnit.UnitName == "Beagle" || currentUnit.UnitName == "Poodle")
             {
-                // if (CurrentCard.CardName.Equals("Smolstein's Big Hit"))
-                // {
-                //     //Effect
-                //     currentUnit.GetChild(1).GetChild<Node2D>(0).Show();
-                //     EffectPlayer EP = (EffectPlayer)currentUnit.GetChild(1).GetChild<Node2D>(4).GetChild<EffectPlayer>(0);
-                //     EP.PlayAnimationOnce(currentUnit.GlobalPosition);
-                // }
-                // else
-                 if (CurrentCard.CardName.Equals("Lalito's Laser"))
+                if (CurrentCard.CardName.Equals("Lalito's Laser"))
                 {
                     //Effect
                     currentUnit.GetChild(1).GetChild<Node2D>(0).Show();
@@ -1633,15 +1488,6 @@ namespace RuffGdMainProject.UiSystem
             }
             else if (currentUnit.UnitName == "Golden" || currentUnit.UnitName == "Labrador" )
             {
-
-                // if (CurrentCard.CardName.Equals("Smolstein's Big Hit"))
-                // {
-                //     //Effect
-                //     currentUnit.GetChild(1).GetChild<Node2D>(0).Show();
-                //     EffectPlayer EP = (EffectPlayer)currentUnit.GetChild(2).GetChild<Node2D>(4).GetChild<EffectPlayer>(0);
-                //     EP.PlayAnimationOnce(GridManager.GM.SelectedUnit.GlobalPosition);
-                // }
-                // else 
                 if (CurrentCard.CardName.Equals("Lalito's Laser"))
                 {
                     //Effect
@@ -1715,14 +1561,6 @@ namespace RuffGdMainProject.UiSystem
             }
             else if (currentUnit.UnitName == "Malamute" || currentUnit.UnitName == "Mastiff" || currentUnit.UnitName == "Hound")
             {
-                // if (CurrentCard.CardName.Equals("Smolstein's Big Hit"))
-                // {
-                //     //Effect
-                //     currentUnit.GetChild(1).GetChild<Node2D>(0).Show();
-                //     EffectPlayer EP = (EffectPlayer)currentUnit.GetChild(3).GetChild<Node2D>(4).GetChild<EffectPlayer>(0);
-                //     EP.PlayAnimationOnce(currentUnit.GlobalPosition);
-                // }
-                // else 
                 if (CurrentCard.CardName.Equals("Lalito's Laser"))
                 {
                     //Effect

@@ -15,30 +15,18 @@ namespace RuffGdMainProject.UiSystem
         public int CardsLimit = 9;
         public PackedScene CardNewScene;
 
-        public int returnValue = -1;
-
-        //Code Testing 
-        List<int> cardSaveIdsList;
+        List<int> savedCardsList;
         int x;
         private ConfigFile CF = new ConfigFile();
         [Export]
         public string CFName = "CardSaveIDS.cfg";
-
-
-        //******************************
         public List<CardButtonUI> CardsList;
-        //******************************
+        public int ZoomCardClickedId;
 
         public override void _Ready()
         {
-
             CardsList = new List<CardButtonUI>();
-
-
-
             instance = this;
-
-            //Code Testing 
 
             if (CF.Load("user://" + CFName) != Error.Ok)
             {
@@ -46,13 +34,10 @@ namespace RuffGdMainProject.UiSystem
             }
             LoadCardIDS();
             //init card DB/DataObjects
-            IntantiateCards();
+            InstantiateCards();
             DoneButton();
             LoadDeckWithDelay();
         }
-
-
-
 
         public async void LoadDeckWithDelay()
         {
@@ -62,114 +47,137 @@ namespace RuffGdMainProject.UiSystem
 
         public void LoadCardIDS()
         {
-            cardSaveIdsList = new List<int>();
-            // GD.Print("Loading data from:  " + OS.GetUserDataDir() + "/" + CFName);
+            savedCardsList = new List<int>();
             for (int i = 0; i < 9; i++)
             {
                 int xValue = (int)CF.GetValue("CardDeck", "CardId" + (i + 1), x);
-                cardSaveIdsList.Add(xValue);
+                savedCardsList.Add(xValue);
             }
-
         }
 
-
-
-        public void IntantiateCards()
+        public void InstantiateCards()
         {
+            var container = GetNode<Control>("Control").GetNode<TextureRect>("AllCardsHolderBG").GetNode<TextureRect>("AllCardsHolderFrame").
+                    GetNode<ScrollContainer>("ScrollContainer").GetNode<GridContainer>("GridContainer");
+
             for (int n = 2; n < StartupScript.Startup.DB.AllCardsData.Count; n++)
             {
                 CardNewScene = (PackedScene)GD.Load("res://Cards_UI/SCENES/CardNew.tscn");
                 CardButtonUI CardItem = (CardButtonUI)CardNewScene.Instance();
                 CardData data = StartupScript.Startup.DB.AllCardsData[n];
-                // CardItem.GetNode("TextureButton").Connect("pressed", this, "AddToDeck", new Godot.Collections.Array { data.CardID });
                 CardItem.SetFullCard(data);
-                GetNode<Control>("Control").GetNode<TextureRect>("AllCardsHolderBG").GetNode<TextureRect>("AllCardsHolderFrame").
-                    GetNode<ScrollContainer>("ScrollContainer").GetNode<GridContainer>("GridContainer").AddChild(CardItem);
-                GD.Print("Loop index :   " + n);
-
+                container.AddChild(CardItem);
                 CardsList.Add(CardItem);
             }
         }
 
-        public void Testfunc()
-        {
-            // GD.Print("Hover");
-        }
-
         private int CheckIdExistance(int id)
         {
-            GD.Print(id);
-            var item = StartupScript.Startup.DB.MyCardDeck.Find(x => x.Equals(id));
-            GD.Print(item);
+            var item = StartupScript.Startup.DB.MyCardDeck.Find(x => x.Equals(id));           
             return item == 0 ? 0 : item;
         }
 
         public void LoadDeck()
         {
-            // GD.Print("Card Ids Count = " + cardSaveIdsList.Count);
-            // GD.Print("Button Pressed");
-            if (cardSaveIdsList.Count <= 0)
+            if (savedCardsList.Count <= 0)
                 return;
-            for (int k = 0; k < cardSaveIdsList.Count; k++)
+            
+            var container = GetNode<Control>("Control").GetNode<TextureRect>("DeckHolderBG")
+                        .GetNode<TextureRect>("DeckHolderFrame").GetNode<ScrollContainer>("ScrollContainer")
+                            .GetNode<VBoxContainer>("VBoxContainer");
+            for (int k = 0; k < savedCardsList.Count; k++)
             {
-                if (cardSaveIdsList[k] != 0)
+                if (savedCardsList[k] != 0)
                 {
                     CardNewScene = (PackedScene)GD.Load("res://Cards_UI/SCENES/CardNewForDeck.tscn");
                     CardButtonUI CardItem = (CardButtonUI)CardNewScene.Instance();
-                    CardData data = StartupScript.Startup.DB.AllCardsData.Find(x => x.CardID.Equals(cardSaveIdsList[k]));
-                    // GD.Print("Card ID is" + data.CardID);
+                    CardData data = StartupScript.Startup.DB.AllCardsData.Find(x => x.CardID.Equals(savedCardsList[k]));
                     CardItem.SetShortCard(data);
-                    GetNode<Control>("Control").GetNode<TextureRect>("DeckHolderBG")
-                        .GetNode<TextureRect>("DeckHolderFrame").GetNode<ScrollContainer>("ScrollContainer")
-                            .GetNode<VBoxContainer>("VBoxContainer").AddChild(CardItem);
+                    container.AddChild(CardItem);
 
                     StartupScript.Startup.DB.MyCardDeck.Add(data.CardID);
                 }
             }
 
             DoneButton();
+            GreyoutCards();
         }
 
         public void AddToDeck(int id)
         {
+            // Common setup for loading scene and creating card item
+            CardNewScene = (PackedScene)GD.Load("res://Cards_UI/SCENES/CardNewForDeck.tscn");
+            CardButtonUI CardItem = (CardButtonUI)CardNewScene.Instance();
+            CardData data = StartupScript.Startup.DB.AllCardsData.Find(x => x.CardID.Equals(id));
+            CardItem.SetShortCard(data);
 
-            GD.Print("Card Ids Count = " + StartupScript.Startup.DB.MyCardDeck.Count);
-            GD.Print("Button Pressed");
+            // Play sound
+            SoundManager.Instance.PlaySoundByName("ButtonSound2");
+
             if (StartupScript.Startup.DB.MyCardDeck.Count == 0)
             {
-                SoundManager.Instance.PlaySoundByName("ButtonSound2");
-                CardNewScene = (PackedScene)GD.Load("res://Cards_UI/SCENES/CardNewForDeck.tscn");
-                CardButtonUI CardItem = (CardButtonUI)CardNewScene.Instance();
-                CardData data = StartupScript.Startup.DB.AllCardsData.Find(x => x.CardID.Equals(id));
-                CardItem.SetShortCard(data);
-                GetNode<Control>("Control").GetNode<TextureRect>("DeckHolderBG")
-                    .GetNode<TextureRect>("DeckHolderFrame").GetNode<ScrollContainer>("ScrollContainer")
-                        .GetNode<VBoxContainer>("VBoxContainer").AddChild(CardItem);
+                // Deck is empty
                 GD.Print("data.CardID = " + data.CardID);
                 GD.Print("ADDED ON ZERO" + StartupScript.Startup.DB.MyCardDeck.Count);
                 StartupScript.Startup.DB.MyCardDeck.Add(data.CardID);
+
+                // Add card to UI
+                GetNode<Control>("Control").GetNode<TextureRect>("DeckHolderBG")
+                    .GetNode<TextureRect>("DeckHolderFrame").GetNode<ScrollContainer>("ScrollContainer")
+                    .GetNode<VBoxContainer>("VBoxContainer").AddChild(CardItem);
+
+                GreyoutCards();
             }
             else
             {
+                // Deck is not empty
                 int cardId = CheckIdExistance(id);
-                if (cardId == 0)
+
+                if (cardId == 0 && StartupScript.Startup.DB.MyCardDeck.Count < 9)
                 {
-                    if (StartupScript.Startup.DB.MyCardDeck.Count < 9)
+                    // Card doesn't exist in the deck, and the deck size is less than 9
+                    StartupScript.Startup.DB.MyCardDeck.Add(data.CardID);
+
+                    // Add card to UI
+                    GetNode<Control>("Control").GetNode<TextureRect>("DeckHolderBG")
+                        .GetNode<TextureRect>("DeckHolderFrame").GetNode<ScrollContainer>("ScrollContainer")
+                        .GetNode<VBoxContainer>("VBoxContainer").AddChild(CardItem);
+
+                    GreyoutCards();
+                }
+            }
+
+            // Call DoneButton regardless of conditions
+            DoneButton();
+        }
+
+        public void GreyoutCards()
+        {
+            for (int i = 0; i < CardsList.Count; i++)
+            {
+                for (int y = 0; y < StartupScript.Startup.DB.MyCardDeck.Count; y++)
+                {
+                    if (CardsList[i].CardID == StartupScript.Startup.DB.MyCardDeck[y])
                     {
-                        SoundManager.Instance.PlaySoundByName("ButtonSound2");
-                        CardNewScene = (PackedScene)GD.Load("res://Cards_UI/SCENES/CardNewForDeck.tscn");
-                        CardButtonUI CardItem = (CardButtonUI)CardNewScene.Instance();
-                        CardData data = StartupScript.Startup.DB.AllCardsData.Find(x => x.CardID.Equals(id));
-                        CardItem.SetShortCard(data);
-                        GetNode<Control>("Control").GetNode<TextureRect>("DeckHolderBG")
-                            .GetNode<TextureRect>("DeckHolderFrame").GetNode<ScrollContainer>("ScrollContainer")
-                                .GetNode<VBoxContainer>("VBoxContainer").AddChild(CardItem);
-                        StartupScript.Startup.DB.MyCardDeck.Add(data.CardID);
+                        CardsList[i].GetChild(0).GetNode<TextureRect>("TextureRect").SelfModulate = new Color("6e808080");
+                        
+                    }                   
+                }               
+            }
+        }
+
+        public void revertGreyout(int id)
+        {
+            for (int i = 0; i < CardsList.Count; i++)
+            {
+                for (int y = 0; y <= StartupScript.Startup.DB.MyCardDeck.Count; y++)
+                {
+                    if (CardsList[i].CardID == id)
+                    {
+                        CardsList[i].GetChild(0).GetNode<TextureRect>("TextureRect").SelfModulate = new Color("ffffff");
                     }
                 }
-                GD.Print("ADDED THROUGH ELSE" + StartupScript.Startup.DB.MyCardDeck.Count);
             }
-            DoneButton();
         }
 
         public void RemoveFromDeck(int id)
@@ -177,6 +185,7 @@ namespace RuffGdMainProject.UiSystem
             var data = StartupScript.Startup.DB.MyCardDeck.Find(x => x.Equals(id));
             StartupScript.Startup.DB.MyCardDeck.Remove(data);
             DoneButton();
+            revertGreyout(id);
         }
 
         public void DoneButton()
@@ -201,7 +210,6 @@ namespace RuffGdMainProject.UiSystem
                     CF.SetValue("CardDeck", "CardId" + (i + 1), 0);
                 }
                 CF.Save("user://" + CFName);
-                GD.Print("Saving data to:  " + OS.GetUserDataDir() + "/" + CFName);
             }
             else
             {
@@ -216,15 +224,13 @@ namespace RuffGdMainProject.UiSystem
                 }
 
                 CF.Save("user://" + CFName);
-                GD.Print("Saving data to:  " + OS.GetUserDataDir() + "/" + CFName);
             }
         }
 
         public void CardZoomIn(int CardId)
-        {
+        {      
             GetNode<Control>("BackButton").Hide();
             GetNode<Control>("CardZoomPanel").Show();
-            GD.Print("Card Id on Zoom in" + CardId);
             CardNewScene = (PackedScene)GD.Load("res://Cards_UI/SCENES/CardNewZoom.tscn");
             CardZoomItem = (CardButtonUI)CardNewScene.Instance();
             CardData data = StartupScript.Startup.DB.AllCardsData.Find(x => x.CardID.Equals(CardId));
@@ -233,7 +239,7 @@ namespace RuffGdMainProject.UiSystem
             GetNode<Control>("CardZoomPanel").GetNode<TextureRect>("TextureRect").GetNode<Control>("ZoomButtons").AddChild(CardZoomItem);
             CardZoomItem.RectPosition = new Vector2(180f, 0f);
             CardZoomItem.RectScale = new Vector2(2.5f, 2.5f);
-
+            HideAddBtn();
         }
 
         public async void _on_AddButton_pressed()
@@ -246,12 +252,12 @@ namespace RuffGdMainProject.UiSystem
             {
                 child.QueueFree();
             }
-
         }
 
         public void _on_CancelButton_pressed()
         {
-            foreach (CardButtonUI child in GetNode<Control>("CardZoomPanel").GetNode<TextureRect>("TextureRect").GetNode<Control>("ZoomButtons").GetChildren())
+            var zoomBtns = GetNode<Control>("CardZoomPanel").GetNode<TextureRect>("TextureRect").GetNode<Control>("ZoomButtons");
+            foreach (CardButtonUI child in zoomBtns.GetChildren())
             {
                 child.QueueFree();
             }
@@ -259,10 +265,25 @@ namespace RuffGdMainProject.UiSystem
             GetNode<Control>("BackButton").Show();
         }
 
-       
+        public void HideAddBtn()
+        {
+            for (int y = 0; y < StartupScript.Startup.DB.MyCardDeck.Count; y++)
+            {
+                if ( GetZoomCardID() == StartupScript.Startup.DB.MyCardDeck[y])
+                {
+                    GetNode<Control>("CardZoomPanel").GetNode<TextureRect>("TextureRect").GetNode<Control>("AddButton").Hide();
+                    break;
+                }
+                else
+                {
+                    GetNode<Control>("CardZoomPanel").GetNode<TextureRect>("TextureRect").GetNode<Control>("AddButton").Show();
+                }
+            }
+        }
+
         private void SetZoomCardId(int cardID)
         {
-            zoomCardID = cardID;
+            zoomCardID = cardID;           
         }
 
         private int GetZoomCardID()

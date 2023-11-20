@@ -3,5 +3,7 @@
 [ext_resource path="res://GridSystem/Assets/Roboto_Mono/static/RobotoMono-Bold.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 30
+size = 31
+outline_color = Color( 0.858824, 0.843137, 0.843137, 1 )
+use_filter = true
 font_data = ExtResource( 1 )

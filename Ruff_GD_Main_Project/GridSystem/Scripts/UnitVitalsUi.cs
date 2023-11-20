@@ -54,13 +54,23 @@ namespace RuffGdMainProject.UiSystem
                 return;
 
             isShowing = true;
-            iconsBg.Hide();
-            GD.Print(">>>>>>> vital on");
-            // GetChild<Control>(0).Hide();
+            iconsBg.Hide();            
             hpBar.MaxValue = unit.TotalHitPoints;
             hpBar.Value = unit.HitPoints;
-            // GD.Print("MY HP + +++ = " + unit.HitPoints);
             unitLbl.Text = unit.UnitName;
+            if (unit.HitPoints >= 90)
+            {
+                hpBar.SelfModulate = new Color(0,255,0); //new Color("308c0f");//Green
+            }
+            else if (unit.HitPoints >= 25 || unit.HitPoints <= 89)
+            {
+                hpBar.SelfModulate = new Color(255, 255, 0); //new Color("ccc22b");//Yellow
+            }
+            else if (unit.HitPoints < 25)
+            {
+                hpBar.SelfModulate = new Color(255, 0, 0); //new Color("f23618");//Red
+            }
+            
             if (unit.HitPoints < 0.0f)
             {
                 hpLbl.Text = 0.0f.ToString() + "/" + unit.TotalHitPoints;
@@ -108,8 +118,6 @@ namespace RuffGdMainProject.UiSystem
             if (unit.IsConsumeableShieldApplied)
             {
                 iconsBg.Show();
-                GD.Print("SHIELDDDDDDDDDDDDDD");
-                GD.Print("Consumeable SHield from VITALS = " + unit.ConsumeableShieldValue);
                 saunderLbl.Text = unit.ConsumeableShieldValue.ToString();
                 saunder.Show();
             }
@@ -117,8 +125,6 @@ namespace RuffGdMainProject.UiSystem
             {
                 saunder.Hide();
             }
-            // AutoHide();
-            GD.Print("unit.ConsumeableShieldValue ************************", unit.ConsumeableShieldValue);
         }
 
         // Show vitals UI for a Cone object
@@ -128,7 +134,6 @@ namespace RuffGdMainProject.UiSystem
                 return;
 
             isShowing = true;
-            GD.Print(">>>>>>> vital on");
 
             // Update UI elements with Cone data
             hpBar.MaxValue = 10;
@@ -151,7 +156,6 @@ namespace RuffGdMainProject.UiSystem
         public void HideVitals()
         {
             isShowing = false;
-            GD.Print(">>>>>>> vital off");
             GetChild<Control>(0).Hide();
             GetChild<Control>(1).Hide();
         }
@@ -164,7 +168,6 @@ namespace RuffGdMainProject.UiSystem
 
             await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
             isShowing = false;
-            GD.Print(">>>>>>> vital off");
             GetChild<Control>(0).Hide();
             GetChild<Control>(1).Hide();
         }

@@ -28,14 +28,8 @@ namespace RuffGdMainProject.UiSystem
         {
             if (@event is InputEventMouseButton mouseButton)
             {
-                if (mouseButton.IsPressed() && mouseButton.ButtonIndex == (int)ButtonList.Left)
+                if (!mouseButton.IsPressed() && mouseButton.ButtonIndex == (int)ButtonList.Left)
                 {
-                    // GD.Print("Mouse Pressed Down");
-                }
-                else if (!mouseButton.IsPressed() && mouseButton.ButtonIndex == (int)ButtonList.Left)
-                {
-                    // GD.Print("Mouse Pressed Up:" + cardID);
-                    // GD.Print("Name of parent is" + this.GetParent().GetParent().Name);
                     spawnDragableCards(cardID);
                     this.QueueFree();
                 }
@@ -47,7 +41,6 @@ namespace RuffGdMainProject.UiSystem
             PackedScene dragableCardItem = (PackedScene)GD.Load("res://CardSystem/Scenes/DragableCard.tscn");
             DragableCard CardItem = (DragableCard)dragableCardItem.Instance();
             CardItem.SetCardData(myData);
-            // GD.Print("Name of Node is instantiated" + RuffGdMainProject.GridSystem.GridManager.GM.UiController.Name);
             RuffGdMainProject.GridSystem.GridManager.GM.UiController.AddChild(CardItem);
             CardItem.RectPosition = new Vector2(this.RectPosition.x + 450, this.RectPosition.y + 700);
         }

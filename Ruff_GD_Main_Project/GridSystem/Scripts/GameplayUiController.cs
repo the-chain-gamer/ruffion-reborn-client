@@ -1,24 +1,42 @@
+using System;
 using System.Collections.Generic;
 using Godot;
+using RuffGdMainProject.DataClasses;
 using RuffGdMainProject.GridSystem;
 namespace RuffGdMainProject.UiSystem
 {
     public class GameplayUiController : Control
     {
         public PlayerInfo p1Info, p2Info;
+        public UnitInfo u1Info, u2Info, u3Info, u4Info;
         private OptionsScreen options;
         private TurnTimer timer;
         public Control moveBtn, attackBtn, skipTurn, cardsList, tempCardList;
-        private Label p1ManaLbl;
+        private ManaUi ManaSystem;
         private UnitVitalsUi UnitVitals;
         private PackedScene FloatingTxtScene;
+        private Label manaLbl;
+        private int p1Mana = 0, p2Mana = 0;
+
+        private AnimationPlayer AnimationPlayerDeck;
+
+        private CardViewer viewCardPanel;
         
 
         public override void _Ready()
         {
             FloatingTxtScene = GD.Load<PackedScene>("res://GridSystem/Scenes/FloatingText.tscn");
+            viewCardPanel = GetNode<CardViewer>("CardZoomPanel");
+
             p1Info = this.GetChild<PlayerInfo>(0);
             p2Info = this.GetChild<PlayerInfo>(1);
+            u1Info = this.GetChild<UnitInfo>(2);
+            u2Info = this.GetChild<UnitInfo>(3);
+            u3Info = this.GetChild<UnitInfo>(4);
+            u4Info = this.GetChild<UnitInfo>(5);
+            p1Info = this.GetChild<PlayerInfo>(0);
+            p2Info = this.GetChild<PlayerInfo>(1);
+            
             options = this.GetNode<OptionsScreen>("OptionsScreen");
             timer = this.GetNode<TurnTimer>("TurnTimer");
             moveBtn = this.GetNode<Control>("ActionPanel").GetChild<Control>(0);
@@ -27,13 +45,18 @@ namespace RuffGdMainProject.UiSystem
             UnitVitals = GetNode<UnitVitalsUi>("UnitVitals");
             cardsList = this.GetNode<Control>("CardList");
             tempCardList = this.GetNode<Control>("TempCardList");
-            p1ManaLbl = this.GetNode("Mana").GetChild<Label>(1);
+            
+            ManaSystem = GetNode<Control>("Mana").GetNode<ManaUi>("ManaCrystalsRoot");
+            manaLbl = GetNode<Control>("Mana").GetNode<TextureRect>("manaTextBg").GetChild<Label>(0);
+
             cardsList.GetChild<GridContainer>(0).Hide();
             tempCardList.GetChild<GridContainer>(0).Hide();
             skipTurn.Hide();
             HideUnitVitals();
             moveBtn.Hide();
             attackBtn.Hide();
+
+            AnimationPlayerDeck = this.GetNode<AnimationPlayer>("AnimationPlayer");
         }
 
         public void Init()
@@ -43,48 +66,87 @@ namespace RuffGdMainProject.UiSystem
             options.ShowMsgPopup("Start Battle", true);
         }
 
+        public async void PlayCardAnimation()
+        {
+            await ToSignal(GetTree().CreateTimer(2f), "timeout");
+            cardsList.Show();
+            cardsList.GetChild<GridContainer>(0).Show();
+            AnimationPlayerDeck.Play("forGameplayGrid");
+        }
+
         public void TimeOutMsg()
         {
-            options.ShowMsgPopup(true, "Time Out!");
+            options.ShowMsgPopup(true, GridManager.GM.TM.IsLocalPlayerTurn(), "Time Out!");
         }
 
         public async void OnTurnChanged(int currentPlayer, int playerTotalTurns, int matchTotalTurns)
         {
-            // var items =cardsList.GetChild(0).GetChildren().Count;
-            // for (int i = 0; i < items; i++)
-            // {
-            //     cardsList.GetChild(0).GetChild<Card>(i).CardImage.RectScale = new Vector2(1, 1);
-            // }
-            cardsList.GetChild<GridContainer>(0).Hide();
             skipTurn.Hide();
+            viewCardPanel.CloseMe();
             timer.HideTimer();
             moveBtn.Hide();
             attackBtn.Hide();
             await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
-            p1ManaLbl.Text = "0";
+            ManaSystem.ShowZeroMana();
+            manaLbl.Text = "0";
             if(currentPlayer == 1)
             {
+                if(matchTotalTurns == 1)
+                {
+                    p1Mana = 2;
+                    p2Mana = 3;
+                }
                 p1Info.Highlight(true);
                 p2Info.Highlight(false);
             }
             else
             {
+                if(matchTotalTurns == 1)
+                {
+                    p1Mana = 3;
+                    p2Mana = 2;
+                }
                 p2Info.Highlight(true);
                 p1Info.Highlight(false);
             }
-            // GD.Print(" GridManager.GM.TM.IsLocalPlayerTurn() = " + GridManager.GM.TM.IsLocalPlayerTurn());
+            
+            foreach (var item in GridManager.GM.CM.GetCardsInDeck())
+            {
+                item.Show();
+                item.GreyoutEffect(false);
+                item.MouseFilter = Control.MouseFilterEnum.Stop;
+            }
             if(GridManager.GM.TM.IsLocalPlayerTurn())
             {
-                options.ShowMsgPopup(true, "Your Turn!");
-                p1ManaLbl.Text = playerTotalTurns.ToString();
+                options.ShowMsgPopup(true, true, "Your Turn!");
                 var units = GridManager.GM.TM.GetCurrentPlayer().MyUnits;
                 UpdateProfilePic(currentPlayer, units[units.Count-1]);
-                GridManager.GM.TM.GetNextPlayer().MarkMyTurn(playerTotalTurns);
+                List<Unit> playerRemainingUnits = new List<Unit>();
+                for (int i = 0; i < units.Count - 1; i++)
+                {
+                    playerRemainingUnits.Add(units[i]);
+                }
+                UpdateUnitsProfilePic(currentPlayer, playerRemainingUnits);
+                if(currentPlayer == 1)
+                {
+                    GridManager.GM.TM.GetNextPlayer().MarkMyTurn(p1Mana);
+                    ManaSystem.ShowMana(p1Mana);
+                    manaLbl.Text = p1Mana.ToString();
+                    p1Mana += 2;
+                }
+                else
+                {
+                    GridManager.GM.TM.GetNextPlayer().MarkMyTurn(p2Mana);
+                    ManaSystem.ShowMana(p2Mana);
+                    manaLbl.Text = p2Mana.ToString();
+                    p2Mana += 2;
+                }
+                
                 GridManager.GM.CM.ShowRandomCardsInContainer();
             }
             else
             {
-                options.ShowMsgPopup(true, "Enemy's Turn...");
+                options.ShowMsgPopup(true, false, "Enemy's Turn...");
                 GridManager.GM.TM.GetNextPlayer().MarkMyTurnOnClient();
             }
             StartTimer(currentPlayer);
@@ -100,6 +162,79 @@ namespace RuffGdMainProject.UiSystem
             {
                 p2Info.UpdatePic(unit.data.ProfilePic);
             }
+        }
+
+      public void UpdateUnitsProfilePic(int pNum, List<Unit> units)
+        {
+            if (pNum == 1)
+            {
+                if (units.Count == 2)
+                {
+                    u1Info.UpdateUnitPic(null);
+                    u2Info.UpdateUnitPic(null);
+                    u1Info.UpdateUnitPic(units[0].data.ProfilePic);
+                    u2Info.UpdateUnitPic(units[1].data.ProfilePic);
+                }
+                else if (units.Count == 1)
+                {
+                    u1Info.UpdateUnitPic(null);
+                    u2Info.UpdateUnitPic(null);
+                    u1Info.UpdateUnitPic(units[0].data.ProfilePic);
+                }
+                else if (units.Count == 0)
+                {
+                    u1Info.UpdateUnitPic(null);
+                    u2Info.UpdateUnitPic(null);
+                }
+
+            }
+            else if(pNum == 2)
+            {
+                if (units.Count == 2)
+                {
+                    u3Info.UpdateUnitPic(null);
+                    u4Info.UpdateUnitPic(null);
+                    u3Info.UpdateUnitPic(units[0].data.ProfilePic);
+                    u4Info.UpdateUnitPic(units[1].data.ProfilePic);
+                }
+                else if (units.Count == 1)
+                {
+                    u3Info.UpdateUnitPic(null);
+                    u4Info.UpdateUnitPic(null);
+                    u3Info.UpdateUnitPic(units[0].data.ProfilePic);
+                }
+                else if (units.Count == 0)
+                {
+                    u3Info.UpdateUnitPic(null);
+                    u4Info.UpdateUnitPic(null);
+                }
+            }
+        }
+
+        public void UpdateUnitsOnPlayerId(Player player, Unit currentUnit)
+        {
+            List<Unit> playerRemainingUnits = new List<Unit>();
+            int currentUnitIndex = player.MyUnits.IndexOf(currentUnit);
+
+            if (currentUnitIndex == 0)
+            {
+                playerRemainingUnits.Add(player.MyUnits[1]);
+                playerRemainingUnits.Add(player.MyUnits[2]);
+                UpdateUnitsProfilePic(player.PlayerNumber, playerRemainingUnits);
+            }
+            else if (currentUnitIndex == 1)
+            {
+                playerRemainingUnits.Add(player.MyUnits[0]);
+                playerRemainingUnits.Add(player.MyUnits[2]);
+                UpdateUnitsProfilePic(player.PlayerNumber, playerRemainingUnits);
+            }
+            else
+            {
+                playerRemainingUnits.Add(player.MyUnits[0]);
+                playerRemainingUnits.Add(player.MyUnits[1]);
+                UpdateUnitsProfilePic(player.PlayerNumber, playerRemainingUnits);
+            }
+
         }
 
         public void UpdateNameLbls(int localPlayerNumber)
@@ -118,8 +253,19 @@ namespace RuffGdMainProject.UiSystem
 
         public void UpdateMana(int Mana)
         {
-            p1ManaLbl.Text = Mana.ToString();
-            GD.Print("Consuming Mana from UI Controller = " + Mana);
+            ManaSystem.ShowMana(Mana);
+        }
+
+        public void ShowSelectedUnitVitals(Unit unit)
+        {
+            if (unit.MyPlayer.PlayerNumber == 1)
+            {
+                p1Info.ShowUnitVitals(unit);
+            }
+            else
+            {
+                p2Info.ShowUnitVitals(unit);
+            }
         }
 
         public void StartTimer(int playerNum){
@@ -129,7 +275,6 @@ namespace RuffGdMainProject.UiSystem
                 skipTurn.Show();
                 moveBtn.Show();
                 attackBtn.Show();
-                cardsList.GetChild<GridContainer>(0).Show();
             }
         }
 
@@ -148,12 +293,10 @@ namespace RuffGdMainProject.UiSystem
             if(btn.Equals("MoveBtn"))
             {
                 moveBtn.RectScale = new Vector2(1f, 1f);
-                // moveBtn.RectPosition = new Vector2(-33, -13);
             }
             else
             {
                 attackBtn.RectScale = new Vector2(1f, 1f);
-                // attackBtn.RectPosition = new Vector2(62, -13);
             }
         }
 
@@ -162,12 +305,10 @@ namespace RuffGdMainProject.UiSystem
             if(btn.Equals("MoveBtn"))
             {
                 moveBtn.RectScale = new Vector2(1, 1);
-                // moveBtn.RectPosition = new Vector2(11, 11);
             }
             else
             {
                 attackBtn.RectScale = new Vector2(1, 1);
-                // attackBtn.RectPosition = new Vector2(68, 11);
             }
         }
 
@@ -181,38 +322,19 @@ namespace RuffGdMainProject.UiSystem
             else if(btnName.Equals("Attackbtn"))
             {
                 GridManager.GM.UnmarkPath();
-                if(GridManager.GM.IsEnemyNearMe())
-                {
-                    // ToggleCardsList();
-                    GridManager.GM.TM.GetCurrentUnit().Attack();
-                }
-                else
-                {
-                    ShowMessage("Not in Range!");
-                }
+                GridManager.GM.TM.GetCurrentUnit().Attack();
             }
-            // else
-            // {
-            //     if (GridManager.GM.CanSelectCell)
-            //     {
-            //         GridManager.GM.UnmarkPath();
-            //         GridManager.GM.CanSelectCell = false;
-            //     }
-
-            //     // ToggleCardsList();
-            //     GridManager.GM.TM.GetCurrentUnit().Attack();
-            // }
         }
 
         public void GreyoutButtons(string btnName, bool greyOut = true)
         {
             if(btnName.Equals("MoveBtn"))
             {
-                // moveBtn.GetChild<TextureButton>(0).Disabled = greyOut;
+                moveBtn.GetChild<TextureButton>(0).Disabled = greyOut;
             }
             else if(btnName.Equals("Attackbtn"))
             {
-                // attackBtn.GetChild<TextureButton>(0).Disabled = greyOut;
+                attackBtn.GetChild<TextureButton>(0).Disabled = greyOut;
             }
         }
 
@@ -234,10 +356,7 @@ namespace RuffGdMainProject.UiSystem
             moveBtn.Hide();
             attackBtn.Hide();
             timer.HideTimer();
-            // if(GridManager.GM.CM.CanPlaceCones)
-            // {
-            //     GridManager.GM.CM.RequestApplyCard();
-            // }
+
             await ToSignal(GetTree().CreateTimer(1f), "timeout");
             GridManager.GM.TM.SkipUnitTurn();
         }
@@ -256,11 +375,10 @@ namespace RuffGdMainProject.UiSystem
             options.HideImmediate();
         }
 
-        public void GameEnded(string msg)
+        public void GameEnded(string msg, bool lost)
         {
-            options.GameEndScreen(msg);
-            // options.GetNode<AnimationPlayer>("GameEndAnim").Play("GameEndPanelAnim");
-            // GridManager.GM.GetTree().Paused = true;
+            viewCardPanel.CloseMe();
+            options.GameEndScreen(msg, lost);
         }
 
         public void ToggleCardsList(bool hide =  true)
@@ -294,7 +412,6 @@ namespace RuffGdMainProject.UiSystem
 
         public void ShowDmgAtUnit(Unit unt, float dmg, TextColorType colorType)
         {
-            // if(dmg < 0) dmg = 0;
             SoundManager.Instance.PlaySoundByName("AttackSound");
             unt.GetNode<FloatingText>("FloatingText").Init((int)dmg, colorType);
         }
@@ -325,5 +442,14 @@ namespace RuffGdMainProject.UiSystem
                 item.QueueFree();
             }
         }
+
+        public void ShowCard(string texturePath)
+        {
+            Logger.UiLogger.Log(Logger.LogLevel.INFO, "In Show Card Function");
+            Texture tempCardImg = (Texture)GD.Load(texturePath);
+            viewCardPanel.ViewCard(tempCardImg);
+        }
+
+
     }
 }

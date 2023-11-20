@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SoundManager : Node2D
 {
@@ -13,10 +14,6 @@ public class SoundManager : Node2D
     {
         // Set the singleton instance
         Instance = this;
-
-        // Start playing the first audio stream player
-        this.GetChild<AudioStreamPlayer>(0).Playing = true;
-
         // Initialize the sounds dictionary
         InitializeSounds();
     }
@@ -52,5 +49,33 @@ public class SoundManager : Node2D
         soundsDictionary.Add("SaundersSound", GetNode<QueueSound>("SaundersSound")); // Colonel Saunders Sound
         soundsDictionary.Add("CattenSound", GetNode<QueueSound>("CattenSound")); // Catten Sound PlayerSpawnSound
         soundsDictionary.Add("PlayerSpawnSound", GetNode<QueueSound>("PlayerSpawnSound")); //PlayerSpawnSound
+
     }
+
+    public void ToggleSound(bool toggle)
+    {
+        this.GetChild<AudioStreamPlayer>(0).Playing = toggle;
+        Dictionary<string, QueueSound>.KeyCollection Keys = soundsDictionary.Keys;
+        foreach (string val in Keys)
+        {
+            AudioStreamPlayer audioClip = soundsDictionary[val].GetChild<AudioStreamPlayer>(0);
+            if (toggle)
+            {
+                audioClip.SetVolumeDb(0f);
+            }
+            else
+            {
+                audioClip.SetVolumeDb(-80f);
+            }
+           
+        }
+
+    }
+
+    public void SetSoundVolume(float volumeVal)
+    {
+        this.GetChild<AudioStreamPlayer>(0).SetVolumeDb(volumeVal);
+    }
+
+
 }

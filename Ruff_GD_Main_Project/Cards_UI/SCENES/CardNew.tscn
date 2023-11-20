@@ -12,11 +12,19 @@ shader_param/line_color = Color( 0.921569, 0.0666667, 0.0666667, 0 )
 shader_param/line_thickness = 9.896
 
 [node name="Control" type="Control"]
+anchor_right = 0.2
+anchor_bottom = 0.264
+margin_left = 1.0
+margin_right = -30.0
+margin_bottom = -30.12
+rect_min_size = Vector2( 383, 285 )
 script = ExtResource( 2 )
 
 [node name="TextureButton" type="TextureButton" parent="."]
-margin_right = 1058.0
-margin_bottom = 749.0
+anchor_right = 0.985
+anchor_bottom = 0.985
+margin_right = 617.745
+margin_bottom = 458.275
 rect_scale = Vector2( 0.379, 0.379 )
 size_flags_horizontal = 4
 size_flags_vertical = 4

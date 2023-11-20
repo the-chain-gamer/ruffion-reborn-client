@@ -14,26 +14,36 @@ namespace RuffGdMainProject.DataClasses
 {
     public class MultiplayerManager : Node2D
     {
+        //a reference to subscription controller
         private SubscriptionController subscriptionController;
+        //list that holds records of available rooms
         private List<MatchDataModel> availableRooms;
+        //joined room data model
         private MatchDataModel JoinedRoom;
+        //Put here the actual server address when publishing
         private const string URL = "http://localhost:3000/graphql";
+        //Auth Token provided by server.
         private string AuthToken = "";
         private bool isGameStarted = false;
+
+        //GraphQL http client options object
         private GraphQLHttpClientOptions graphQLHttpClientOptions = new GraphQLHttpClientOptions {
             EndPoint = new Uri(URL)
         };
 
-        public string PlayerId { get; private set; }
-
         public GraphQLHttpClientOptions GraphQLHttpClientOptions { get => graphQLHttpClientOptions; set => graphQLHttpClientOptions = value; }
 
+        //Player ID
+        public string PlayerId { get; private set; }
+        
         public override void _Ready()
         {
             subscriptionController = GetNode<SubscriptionController>("SubscriptionManager");
+            //registering the event
             subscriptionController.ClientConnected += OnClientConnected;
         }
 
+        //On client connected event handler
         private void OnClientConnected(string clientId)
         {
             GD.Print("New client connected:", clientId);
@@ -43,8 +53,6 @@ namespace RuffGdMainProject.DataClasses
         //Searching for rooms
         public async Task SearchForRooms(UserDataModel playerData)
         {
-            GD.Print("In SearchForRooms function");
-
             var graphQLClient = new GraphQLHttpClient(GraphQLHttpClientOptions, new NewtonsoftJsonSerializer());
 
             var graphQLRequest = new GraphQLRequest
@@ -66,16 +74,11 @@ namespace RuffGdMainProject.DataClasses
                 GD.Print("Total Games =  " + graphQLResponse.Data.Matches.Count);
             }
 
-            GD.Print("allRooms Count = " + availableRooms.Count);
-
             if (availableRooms.Count > 0)
             {
                 var rooms = availableRooms.FindAll(x => x.Status == "WAITING");
-                GD.Print("available are Rooms Count  = " + rooms.Count);
-
                 if (rooms.Count > 0)
                 {
-                    GD.Print("Rooms are available");
                     var random = new RandomNumberGenerator();
                     random.Randomize();
                     var roomNum = random.RandiRange(1, rooms.Count);
@@ -84,20 +87,16 @@ namespace RuffGdMainProject.DataClasses
                 }
                 else
                 {
-                    GD.Print("No rooms found");
                     var createdRoom = CreateRoom(playerData);
                 }
             }
             else
             {
-                GD.Print("No rooms found so creating one");
                 var createdRoom = CreateRoom(playerData);
             }
         }
         public async Task JoinRoom(UserDataModel playerData, MatchDataModel room)
         {
-            GD.Print("roomID  = " + room.MatchId);
-
             var graphQLClient = new GraphQLHttpClient(GraphQLHttpClientOptions, new NewtonsoftJsonSerializer());
 
             var graphQLRequest = new GraphQLRequest
@@ -156,8 +155,6 @@ namespace RuffGdMainProject.DataClasses
                 }
             };
 
-            GD.Print("Trying to send Join Game Query");
-
             var mutationResponse = await graphQLClient.SendMutationAsync<JoinGameResponse>(graphQLRequest);
 
             if (mutationResponse.Errors != null)
@@ -166,16 +163,13 @@ namespace RuffGdMainProject.DataClasses
             }
             else
             {
-                GD.Print("Joined Game ID =  " + mutationResponse.Data.ResponseData.Game.MatchId);
                 AuthToken = mutationResponse.Data.ResponseData.AuthToken.Token;
-                GD.Print("Joined Game Auth Token =  " + AuthToken);
                 JoinedRoom = mutationResponse.Data.ResponseData.Game;
                 PlayerId = playerData.UserId;
-                GD.Print("mutationResponse.Data = " + mutationResponse.Data.ResponseData.Game.Status);
                 Logger.UiLogger.Log(Logger.LogLevel.INFO, "Joined room & looking for subs");
                 if(mutationResponse.Data.ResponseData.Game.Status.Equals("STARTED") || mutationResponse.Data.ResponseData.Game.EventName.Equals("JOINED"))
                 {
-                    StartupScript.Startup.LoadOppnantImgs(mutationResponse.Data.ResponseData.Game.Player1, mutationResponse.Data.ResponseData.Game.Player2);
+                    StartupScript.Startup.LoadOpponentImgs(mutationResponse.Data.ResponseData.Game.Player1, mutationResponse.Data.ResponseData.Game.Player2);
                     Logger.UiLogger.Log(Logger.LogLevel.INFO, "I have Joined this room");
                     //Mark Player 1 as Local Player
                     //load initial data for both players.
@@ -191,7 +185,6 @@ namespace RuffGdMainProject.DataClasses
         public async Task CreateRoom(UserDataModel playerData)
         {
             var data = new MatchDataModel();
-            GD.Print("CreateRoom Func");
 
             var graphQLClient = new GraphQLHttpClient(GraphQLHttpClientOptions, new NewtonsoftJsonSerializer());
 
@@ -248,11 +241,7 @@ namespace RuffGdMainProject.DataClasses
                 }
             };
 
-            GD.Print("Trying to send Create Room Query");
-
             var mutationResponse = await graphQLClient.SendMutationAsync<Data>(graphQLRequest);
-
-            GD.Print("Checking create room response");
 
             if (mutationResponse.Errors != null)
             {
@@ -260,23 +249,16 @@ namespace RuffGdMainProject.DataClasses
             }
             else
             {
-                GD.Print("SUCCESSSSS");
-                GD.Print("mutationResponse.Data.token = " + mutationResponse.Data);
-
                 if (mutationResponse.Data != null)
                 {
-                    GD.Print("DATA HEGA");
-                    GD.Print("Game ID =  " + mutationResponse.Data);
                     AuthToken = mutationResponse.Data.ResponseData.AuthToken.Token;
-                    GD.Print("Joined Game Auth Token =  " + AuthToken);
                     JoinedRoom = mutationResponse.Data.ResponseData.Game;
                     PlayerId = playerData.UserId;
-                    GD.Print("CALLING Subscription");
                     SubscribeForEvents();
                 }
                 else
                 {
-                    GD.Print("NO SUCCESSssss");
+                    GD.Print("NO SUCCESS");
                 }
             }
         }
@@ -288,14 +270,12 @@ namespace RuffGdMainProject.DataClasses
 
         public void RecieveSubscriptionData(SubscriptionData data)
         {
-            // GD.Print("RecieveSubscriptionData =  " + data.GameUpdates.Player1.Assets.Dogs.Count);
-            Logger.UiLogger.Log(Logger.LogLevel.INFO, "In Sub response main");
+            Logger.UiLogger.Log(Logger.LogLevel.INFO, "In Subscription response");
             Logger.UiLogger.Log(Logger.LogLevel.INFO, "data.GameUpdates.Status = " + data.GameUpdates.Status);
-            GD.Print("Server Sent Event Type: " + data.GameUpdates.EventName.ToString());
             string eventName = data.GameUpdates.EventName.ToString();
             if(!isGameStarted && (data.GameUpdates.Status.Equals("STARTED") || eventName.Equals("JOINED")))
             {
-                StartupScript.Startup.LoadOppnantImgs(data.GameUpdates.Player1, data.GameUpdates.Player2);
+                StartupScript.Startup.LoadOpponentImgs(data.GameUpdates.Player1, data.GameUpdates.Player2);
                 isGameStarted = true;
                 Logger.UiLogger.Log(Logger.LogLevel.INFO, "I have Joined this room");
                 //Mark Player 1 as Local Player
@@ -307,39 +287,27 @@ namespace RuffGdMainProject.DataClasses
             else if(eventName.Equals("TURNCHANGE"))
             {
                 GridManager.GM.UiController.StopTimer();
-                GD.Print("It's a turn change event now we have to check who's turn it is");
-                // GD.Print("It's a turn change event now we have to check who's turn it is?");
                 string currentPlayerID = data.GameUpdates.CurrentPlayer.ID;
                 var player = GridManager.GM.TM.GetPlayerByID(currentPlayerID);
                 var totalTurns = data.GameUpdates.Player1.Turn + data.GameUpdates.Player2.Turn;
-                GD.Print("data.GameUpdates.Player1.Turn from Server = " + data.GameUpdates.Player1.Turn);
-                GD.Print("data.GameUpdates.Player2.Turn from Server = " + data.GameUpdates.Player2.Turn);
-                GD.Print("Total Turns from Server = " + totalTurns);
                 GridManager.GM.TM.ChangeTurn(player, data.GameUpdates.CurrentPlayer.Turn, totalTurns);
             }
             else if(eventName.Equals("MOVE"))
             {
-                GD.Print("Unit moved!!!");
                 GridManager.GM.MoveUnits(data.GameUpdates.CurrentPlayer);
             }
             else if(eventName.Equals("WINNER"))
             {
                 Logger.UiLogger.Log(Logger.LogLevel.INFO, "The winnder is = " + data.GameUpdates.Winner.ID);
-                GD.Print("The winnder is = " + data.GameUpdates.Winner.ID);
             }
             else if(eventName.Equals("FORFEIT"))
             {
                 Logger.UiLogger.Log(Logger.LogLevel.INFO, "Other Player Disconnected");
-                GD.Print("Other Player Disconnected" );
                 StartupScript.Startup.ReturnToMenu();
             }
             else if(eventName.Equals("ATTACK"))
             {
                 Logger.UiLogger.Log(Logger.LogLevel.INFO, "Unit Attacked!!!");
-                GD.Print("trying to convert CardInputArray from OBJECT" );
-                // AppliedCardInput[] objs = data.GameUpdates.AppliedAttackCards as AppliedCardInput[];
-                GD.Print("data.GameUpdates.AppliedAttackCards = " + data.GameUpdates.AppliedAttackCard);
-                // GD.Print("data.GameUpdates.AppliedAttackCards.TargetDogs[0].ID = " + data.GameUpdates.AppliedAttackCard.TargetDogsArray[0].DogId);
                 var card = StartupScript.Startup.DB.GetDataByID(Convert.ToInt32(data.GameUpdates.AppliedAttackCard.CardId));
                 if(card.CardName.Equals("Bubbles' Pick 'n' Drop") || card.CardName.Equals("Miss Cake By The Ocean"))
                 {
@@ -357,7 +325,6 @@ namespace RuffGdMainProject.DataClasses
 
         public async Task ClaimTurnRequest()
         {
-            GD.Print("ClaimTurnFunc Func");
             var graphQlEndpoint = new Uri(URL);
             var graphQLClient = new GraphQLHttpClient(graphQlEndpoint, new NewtonsoftJsonSerializer());
             graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthToken);
@@ -368,11 +335,8 @@ namespace RuffGdMainProject.DataClasses
                 }"
             };
 
-            GD.Print("Trying to send ClaimTurn Mutation");
 
             var mutationResponse = await graphQLClient.SendMutationAsync<ClaimTurnResponse>(graphQLRequest);
-
-            GD.Print("Checking ClaimTurn response");
 
             if (mutationResponse.Errors != null)
             {
@@ -380,8 +344,6 @@ namespace RuffGdMainProject.DataClasses
             }
             else
             {
-                GD.Print("TURN Claimed )))");
-                GD.Print("CALIM TURN  )))" + mutationResponse);
                 if (mutationResponse.Data.Data.ClaimTurn)
                 {
                     GD.Print("Your Turn Now");
@@ -396,7 +358,6 @@ namespace RuffGdMainProject.DataClasses
 
         public async Task SkipTurnRequest()
         {
-            GD.Print("SkipTurnFunc Func");
             var graphQlEndpoint = new Uri(URL);
             var graphQLClient = new GraphQLHttpClient(graphQlEndpoint, new NewtonsoftJsonSerializer());
             graphQLClient.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + AuthToken);
@@ -407,11 +368,8 @@ namespace RuffGdMainProject.DataClasses
                 }"
             };
 
-            GD.Print("Trying to send handOverTurn Mutation");
 
             var mutationResponse = await graphQLClient.SendMutationAsync<SkipTurnResponse>(graphQLRequest);
-
-            GD.Print("Checking handOverTurn response");
 
             if (mutationResponse.Errors != null)
             {
@@ -419,12 +377,9 @@ namespace RuffGdMainProject.DataClasses
             }
             else
             {
-                GD.Print("Skip TURN  )))");
-                GD.Print("Skip TURN  )))" + mutationResponse);
                 if (mutationResponse.Data.Data.SkipTurn)
                 {
                     GD.Print("Turn Skipped");
-                    // GridManager.GM.TM.SkipUnitTurn();
                 }
                 else
                 {
@@ -490,8 +445,6 @@ namespace RuffGdMainProject.DataClasses
                     moves = ourMoves
                 }
             };
-
-            GD.Print("Trying to send Attack Query");
 
             var mutationResponse = await graphQLClient.SendMutationAsync<object>(graphQLRequest);
 

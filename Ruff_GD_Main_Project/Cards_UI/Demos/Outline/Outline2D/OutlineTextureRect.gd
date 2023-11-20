@@ -21,6 +21,9 @@ func _on_Area2D_mouse_entered() -> void:
 	_tween.start()
 	if(isInGameplay == true):
 		rect_scale = Vector2(2.5, 2.5);
+		var parentNode = get_parent();
+		parentNode.call("OnMouseEnter");
+	
 
 
 func _on_Area2D_mouse_exited() -> void:
@@ -30,6 +33,8 @@ func _on_Area2D_mouse_exited() -> void:
 	_tween.start()
 	if(isInGameplay == true):
 		rect_scale = Vector2(1, 1);
+		var parentNode = get_parent();
+		parentNode.call("OnMouseExit");
 
 
 func outline_alpha(value: float) -> void:

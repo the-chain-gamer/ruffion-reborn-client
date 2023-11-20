@@ -71,6 +71,7 @@ namespace RuffGdMainProject.DataClasses
         {
             var options = new GraphQLHttpClientOptions
             {
+                //insert server url here...
                 EndPoint = new Uri("ws://localhost:3000/graphql"),
                 ConfigureWebSocketConnectionInitPayload = (opt) =>
                 {
